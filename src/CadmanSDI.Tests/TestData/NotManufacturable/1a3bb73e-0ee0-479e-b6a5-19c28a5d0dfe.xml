@@ -1,0 +1,222 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<CADMAN Version="1" ExportApplication="CADMAN-SDI" ExportVersion="8.8">
+  <JOBOSMCONVERTLIST>
+    <JOBOSMCONVERT Version="1.0" ID="35D0CE88-8FEC-4CEF-A79B-6626F2013FDF" OrderID="44558D64-3CDD-44F8-9335-4B026796EDEE">
+      <JobStatus>Finished</JobStatus>
+      <JobStatusReason></JobStatusReason>
+      <OSMCONVERTORDER Version="1.1" ID="17716">
+        <PartID>1a3bb73e-0ee0-479e-b6a5-19c28a5d0dfe</PartID>
+        <MaterialID>RVS 304 kgw finish 2B</MaterialID>
+        <Thickness>1</Thickness>
+        <Unit>MM</Unit>
+        <OrigPath>C:\QF\Exchange\Cadman-SDI\LVD CadMan-SDI\Files\1a3bb73e-0ee0-479e-b6a5-19c28a5d0dfe.step</OrigPath>
+        <Quantity>0</Quantity>
+      </OSMCONVERTORDER>
+      <OSMCONVERTRESULT Version="1.1" ID="17716">
+        <PartTypeID>1a3bb73e-0ee0-479e-b6a5-19c28a5d0dfe</PartTypeID>
+        <PartTypeRev>1</PartTypeRev>
+        <PartTypeSubRev>0</PartTypeSubRev>
+      </OSMCONVERTRESULT>
+    </JOBOSMCONVERT>
+  </JOBOSMCONVERTLIST>
+  <JOBPARTPREPARATIONLIST>
+    <JOBPARTPREPARATION ID="16828" OrderID="44558D64-3CDD-44F8-9335-4B026796EDEE" PartID="1a3bb73e-0ee0-479e-b6a5-19c28a5d0dfe">
+      <MachineTypeID>39511</MachineTypeID>
+      <Method>BYTOOLS</Method>
+      <JobStatus>Finished</JobStatus>
+      <JobStatusReason></JobStatusReason>
+      <UnfoldingID>1a3bb73e-0ee0-479e-b6a5-19c28a5d0dfe</UnfoldingID>
+      <PossibleToolCombinationGroupList>
+        <ToolCombinationGroup>
+          <ToolCombinationList>
+            <ToolCombination>
+              <PunchID>BIU_021</PunchID>
+              <PunchHolderID></PunchHolderID>
+              <DieID>OZU_381</DieID>
+              <DieHolderID></DieHolderID>
+            </ToolCombination>
+            <ToolCombination>
+              <PunchID>BIU_053</PunchID>
+              <PunchHolderID></PunchHolderID>
+              <DieID>OZU_381</DieID>
+              <DieHolderID></DieHolderID>
+            </ToolCombination>
+          </ToolCombinationList>
+          <NumberOfBends>2</NumberOfBends>
+        </ToolCombinationGroup>
+        <ToolCombinationGroup>
+          <ToolCombinationList>
+            <ToolCombination>
+              <PunchID>BIU_021</PunchID>
+              <PunchHolderID></PunchHolderID>
+              <DieID>OZU_351</DieID>
+              <DieHolderID></DieHolderID>
+            </ToolCombination>
+            <ToolCombination>
+              <PunchID>BIU_053</PunchID>
+              <PunchHolderID></PunchHolderID>
+              <DieID>OZU_351</DieID>
+              <DieHolderID></DieHolderID>
+            </ToolCombination>
+            <ToolCombination>
+              <PunchID>BIU_023</PunchID>
+              <PunchHolderID></PunchHolderID>
+              <DieID>OZU_351</DieID>
+              <DieHolderID></DieHolderID>
+            </ToolCombination>
+          </ToolCombinationList>
+          <NumberOfBends>1</NumberOfBends>
+        </ToolCombinationGroup>
+        <ToolCombinationGroup>
+          <ToolCombinationList>
+            <ToolCombination>
+              <PunchID>BIU_053</PunchID>
+              <PunchHolderID></PunchHolderID>
+              <DieID>OZU_381</DieID>
+              <DieHolderID></DieHolderID>
+            </ToolCombination>
+          </ToolCombinationList>
+          <NumberOfBends>2</NumberOfBends>
+        </ToolCombinationGroup>
+      </PossibleToolCombinationGroupList>
+    </JOBPARTPREPARATION>
+  </JOBPARTPREPARATIONLIST>
+  <PARTTYPELIST>
+    <PARTSHEETMETALTYPE Version="1.0" Kind="PART" ID="1a3bb73e-0ee0-479e-b6a5-19c28a5d0dfe" Rev="1" SubRev="0">
+      <Unit>MM</Unit>
+      <MaterialID>RVS 304 kgw finish 2B</MaterialID>
+      <MaterialRev>1</MaterialRev>
+      <MaterialSubRev>0</MaterialSubRev>
+      <Thickness>1</Thickness>
+      <SPECIALSIDE>BOTTOM</SPECIALSIDE>
+      <PARTSHEETMETALTYPECONFLIST/>
+      <PARTSHEETMETALMODELLIST>
+        <PARTSHEETMETALMODEL Version="1.0" ID="1a3bb73e-0ee0-479e-b6a5-19c28a5d0dfe" Rev="1" SubRev="0">
+          <Description>1a3bb73e-0ee0-479e-b6a5-19c28a5d0dfe</Description>
+          <Comment>4257e783-b494-4037-a920-b870285dc6c1</Comment>
+          <TAGS/>
+          <UnfoldedBoundHeight>80</UnfoldedBoundHeight>
+          <UnfoldedBoundWidth>273.721808299547</UnfoldedBoundWidth>
+          <MinUnfoldedBoundHeight>80</MinUnfoldedBoundHeight>
+          <MinUnfoldedBoundWidth>273.721808299547</MinUnfoldedBoundWidth>
+          <UnfoldedArea>21897.745</UnfoldedArea>
+          <UnfoldedBrutoArea>21897.745</UnfoldedBrutoArea>
+          <BoundingBox3DHeight>80</BoundingBox3DHeight>
+          <BoundingBox3DWidth>121</BoundingBox3DWidth>
+          <BoundingBox3DDepth>121</BoundingBox3DDepth>
+          <TotalContourLength>707.444</TotalContourLength>
+          <NumberOfHinges>3</NumberOfHinges>
+          <NumberOfContours>1</NumberOfContours>
+          <NumberOfBends>3</NumberOfBends>
+          <NumberOfBendSequences>5</NumberOfBendSequences>
+          <LengthLongestBend>80.02499609497</LengthLongestBend>
+          <ForceLongestBend>14.064</ForceLongestBend>
+          <Mass>0.170802411</Mass>
+          <Folded3DImage_Base64>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</Folded3DImage_Base64>
+          <Unfolded3DImage_Base64>iVBORw0KGgoAAAANSUhEUgAAAH0AAABkCAYAAACrWT92AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAOwwAADsMBx2+oZAAAAMJJREFUeF7t3LENglAARVGmtHUGY2Fl6JjAJawdzBEwJAyAdD/3nORO8Po3AQAAAAAAAAAAAAAAAAAAAPzl9nh9n8t71Zht++1THne5Lut9/mjQtv32KY8z+tgZPZjRgxk9mNGDGT2Y0YMZPZjRgxk9mNGDGT2Y0YMZPZjRgxk9mNGDGT2Y0YMZPZjRgxk9mNGDGT2Y0YMZPZjRgxk9mNGDGT2Y0YOdGt0pwdidOiUAAAAAAAAAAAAAAAAAAAAAyqbpBykgjkD1g4LHAAAAAElFTkSuQmCC</Unfolded3DImage_Base64>
+          <NumberOfBEVELs>0</NumberOfBEVELs>
+          <NumberOfRELIEFs>0</NumberOfRELIEFs>
+          <NumberOfUNKNOWNs>0</NumberOfUNKNOWNs>
+          <NumberOfCOUNTERSINKHOLEs>0</NumberOfCOUNTERSINKHOLEs>
+        </PARTSHEETMETALMODEL>
+      </PARTSHEETMETALMODELLIST>
+      <FEATURELIST>
+        <FEATURE>
+          <Name>Contour 1</Name>
+          <FeatureTypeCode>CONTOUR</FeatureTypeCode>
+          <FeatureTypeName>Contour</FeatureTypeName>
+        </FEATURE>
+        <FEATURE>
+          <Name>Bend 1</Name>
+          <FeatureTypeCode>BEND</FeatureTypeCode>
+          <FeatureTypeName>Bend</FeatureTypeName>
+        </FEATURE>
+        <FEATURE>
+          <Name>Bend 2</Name>
+          <FeatureTypeCode>BEND</FeatureTypeCode>
+          <FeatureTypeName>Bend</FeatureTypeName>
+        </FEATURE>
+        <FEATURE>
+          <Name>Bend 3</Name>
+          <FeatureTypeCode>BEND</FeatureTypeCode>
+          <FeatureTypeName>Bend</FeatureTypeName>
+        </FEATURE>
+      </FEATURELIST>
+    </PARTSHEETMETALTYPE>
+  </PARTTYPELIST>
+  <EXECUTIONPLANPROPOSALLIST>
+    <EXECUTIONPLANPROPOSAL OrderID="44558D64-3CDD-44F8-9335-4B026796EDEE" PartID="1a3bb73e-0ee0-479e-b6a5-19c28a5d0dfe" Name="Proposal" Valid="0">
+      <PATHLIST>
+        <PATH Name="Path1" IsDefault="1" PartTypeID="2F2E8E3D-86CF-4464-89F6-D086F90AE3D7">
+          <STEPLIST>
+            <STEP Kind="2DLASEREXEC" Valid="0">
+              <JOBTYPELIST/>
+            </STEP>
+            <STEP Kind="BENDINGEXEC" Valid="0">
+              <JOBTYPELIST>
+                <JOBTYPE JobTypeID="4230">
+                  <SUMMARY>
+                    <MachineTypeID>39511</MachineTypeID>
+                    <Valid>0</Valid>
+                    <ProductionTime>68</ProductionTime>
+                    <SetupTime>100.56</SetupTime>
+                    <TotalTime>168.56</TotalTime>
+                    <Reason>HasCollisions</Reason>
+                  </SUMMARY>
+                </JOBTYPE>
+              </JOBTYPELIST>
+            </STEP>
+          </STEPLIST>
+        </PATH>
+      </PATHLIST>
+    </EXECUTIONPLANPROPOSAL>
+  </EXECUTIONPLANPROPOSALLIST>
+  <MATERIALLIST>
+    <MATERIAL Version="1.0" ID="RVS 304 kgw finish 2B" Rev="1" SubRev="0">
+      <DateCreated>
+        <YEAR>2022</YEAR>
+        <MONTH>1</MONTH>
+        <DAY>17</DAY>
+        <HOUR>11</HOUR>
+        <MIN>9</MIN>
+        <SEC>41</SEC>
+        <MSEC>0</MSEC>
+        <TZ>120</TZ>
+      </DateCreated>
+      <DateUpdated>
+        <YEAR>2022</YEAR>
+        <MONTH>2</MONTH>
+        <DAY>16</DAY>
+        <HOUR>16</HOUR>
+        <MIN>9</MIN>
+        <SEC>24</SEC>
+        <MSEC>0</MSEC>
+        <TZ>120</TZ>
+      </DateUpdated>
+      <Description>RVS 304</Description>
+      <Comment></Comment>
+      <Unit>0</Unit>
+      <Color>
+        <T>0</T>
+        <R>192</R>
+        <G>192</G>
+        <B>192</B>
+      </Color>
+      <SideColor>
+        <T>0</T>
+        <R>100</R>
+        <G>110</G>
+        <B>155</B>
+      </SideColor>
+      <Density>7.8</Density>
+      <YieldStrength>228</YieldStrength>
+      <TensileStrength>586</TensileStrength>
+      <MaxStrain>0.5</MaxStrain>
+      <RSRatio>0.5</RSRatio>
+      <Type>2</Type>
+      <MaterialNorm>X5CrNi 18 10</MaterialNorm>
+      <MaterialNormRev>1</MaterialNormRev>
+      <MaterialNormSubRev>0</MaterialNormSubRev>
+    </MATERIAL>
+  </MATERIALLIST>
+</CADMAN>

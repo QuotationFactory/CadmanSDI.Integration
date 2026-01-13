@@ -1,0 +1,32 @@
+<Project>
+  <PropertyGroup>
+    <Authors>Quotation Factory B.V.</Authors>
+    <Copyright>Quotation Factory B.V</Copyright>
+    <IsPackable>false</IsPackable>
+    <LangVersion>12</LangVersion>
+    <PublishUrl Condition="'$(PublishBaseUrl)' != '' and '$(PublishUrl)' == ''">$(PublishBaseUrl)\$(MSBuildProjectName)\</PublishUrl>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <NoWarn>$(NoWarn);1591;VSTHRD200;SYSLIB0050;SYSLIB0051</NoWarn>
+    <!--
+    1591: Missing XML comment for publicly visible type or member
+    VSTHRD200: Use Async suffix for async methods
+    SYSLIB0050 / SYSLIB0051 : 'FormatterServices' is obsolete: 'Formatter-based serialization is obsolete and should not be used.' (https://aka.ms/dotnet-warnings/SYSLIB0050)
+    -->
+  </PropertyGroup>
+  <PropertyGroup Label="CI" Condition="'$(CI)' == ''">
+    <CI>false</CI>
+    <!-- GH, CircleCI, GitLab and BitBucket already use CI -->
+    <CI Condition="'$(TF_BUILD)' == 'true' or
+                 '$(TEAMCITY_VERSION)' != '' or
+                 '$(APPVEYOR)' != '' or
+                 '$(BuildRunner)' == 'MyGet' or
+                 '$(JENKINS_URL)' != '' or
+                 '$(TRAVIS)' == 'true' or
+                 '$(BUDDY)' == 'true' or
+                 '$(CODEBUILD_CI)' == 'true'">true</CI>
+  </PropertyGroup>
+</Project>

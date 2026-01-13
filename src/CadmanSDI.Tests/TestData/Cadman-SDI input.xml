@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CADMAN>
+  <PARTTYPEIMPORT>
+    <PARTTYPELIST>
+      <PARTTYPE ID="demoLVD">
+        <MaterialID>S235JR</MaterialID>
+        <THICKNESS>3</THICKNESS>
+        <UNIT>MM</UNIT>
+        <IMPORTFILENAME>C:\CADMAN\CADMAN-B\Part\Samples\demoLVD.sat</IMPORTFILENAME>
+        <TAGS>
+          <TAG Type="Buigwerkplek">1030</TAG>
+          <TAG Type="QR-code">?</TAG>
+          <TAG Type="VoPos"></TAG>
+          <TAG Type="TekeningNr">0000-0018</TAG>
+        </TAGS>
+        <COMMENT>Inventor 2017 - </COMMENT>
+        <DESCRIPTION>Frame Eindbalk Koppelbeugel</DESCRIPTION>
+        <DOCUMENTATION>
+          <DOCUMENT>
+            <CATEGORY>Pdf</CATEGORY>
+            <NAME>2d-Tekening</NAME>
+            <FILE>C:\CADMAN\CADMAN-B\Part\Samples\demoLVD.pdf</FILE>
+            <LINK>0</LINK>
+          </DOCUMENT>
+        </DOCUMENTATION>
+      </PARTTYPE>
+    </PARTTYPELIST>
+  </PARTTYPEIMPORT>
+  <BATCH>
+    <COMMAND Command="HANDLEFILE_BATCH">
+      <PARAMETERS>
+        <PARAMETER ID="PARTTYPEID" Value="demoLVD" />
+      </PARAMETERS>
+    </COMMAND>
+  </BATCH>
+</CADMAN>
