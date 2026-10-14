@@ -34,20 +34,23 @@ public class CadmanSdiImportFactory : ICadmanSdiImportFactory
 
     SdiImport ICadmanSdiImportFactory.FromRequest(RequestManufacturabilityCheckOfPartTypeMessage request, string importFileName)
     {
-        string partTypeId;
+        string partTypeName;
         if (_settings.SaveAsUniqueInclPartName)
         {
-            partTypeId = ToFileName($"{request.PartType.Id.ToString()}_{request.PartType.Name}");
+            var partTypeId = string.IsNullOrWhiteSpace(request.PartType.SellingPartyArticleNumber)
+                ? request.PartType.Id.ToString()
+                : request.PartType.SellingPartyArticleNumber;
+            partTypeName = ToFileName($"{partTypeId}_{request.PartType.Name}");
         }
         else
         {
-            partTypeId = _settings.SaveAsPartName
+            partTypeName = _settings.SaveAsPartName
                 ? ToFileName(request.PartType.Name)
                 : request.PartType.Id.ToString();
         }
 
         var materialId = GetMaterialCode(request);
-        return FromRequest(request, importFileName, partTypeId, materialId, _settings.CadmanSdiResultsFolder);
+        return FromRequest(request, importFileName, partTypeName, materialId, _settings.CadmanSdiResultsFolder, _settings.CadmanSdiMacroName);
     }
 
     private string ToFileName(string? description)
@@ -60,16 +63,17 @@ public class CadmanSdiImportFactory : ICadmanSdiImportFactory
     public static SdiImport FromRequest(
         RequestManufacturabilityCheckOfPartTypeMessage request,
         string importFileName,
-        string partTypeId,
+        string partTypeName,
         string materialId,
-        string cadmanSdiResultsFolder
+        string cadmanSdiResultsFolder,
+        string macroName
         )
     {
         if (string.IsNullOrWhiteSpace(importFileName))
             throw new ArgumentNullException(nameof(importFileName));
 
-        if (string.IsNullOrWhiteSpace(partTypeId))
-            partTypeId = request.PartType.Name;
+        if (string.IsNullOrWhiteSpace(partTypeName))
+            partTypeName = request.PartType.Name;
 
         if (string.IsNullOrWhiteSpace(materialId))
             materialId = request.PartType.Material.SelectableArticles.SelectedArticle.Id;
@@ -84,7 +88,7 @@ public class CadmanSdiImportFactory : ICadmanSdiImportFactory
                     {
                         new()
                         {
-                            Id = partTypeId,
+                            Id = partTypeName,
                             Comment = request.ProjectId.ToString(),
                             Description = request.PartType.Id.ToString(),
                             MaterialId = materialId,
@@ -107,12 +111,12 @@ public class CadmanSdiImportFactory : ICadmanSdiImportFactory
                 {
                     new()
                     {
-                        CommandString = "HANDLEFILE_BATCH",
-                        Parameters = new[]
-                        {
-                             new Parameter { Id = "PARTTYPEID", Value = partTypeId },
-                             new Parameter { Id = "OUTPUTPATH", Value =  cadmanSdiResultsFolder }
-                        }
+                        CommandString = string.IsNullOrWhiteSpace(macroName)? "HANDLEFILE_BATCH" : macroName,
+                        Parameters =
+                        [
+                            new Parameter { Id = "PARTTYPEID", Value = partTypeName },
+                            new Parameter { Id = "OUTPUTPATH", Value =  cadmanSdiResultsFolder }
+                        ]
                     }
                 }
             }

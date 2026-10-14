@@ -16,7 +16,8 @@ public class CadmanSdiIntegrationSettings
     // The folder where CADMAN-SDI saves processed results.
     public string CadmanSdiResultsFolder { get; set; }
 
-
+    // The name of the macro in CADMAN-SDI to run for processing the files.
+    public string CadmanSdiMacroName { get; set; }
 
     // Save the project in cadman-sdi as the part-name (instead of the part-id).
     public bool SaveAsPartName { get; set; }
