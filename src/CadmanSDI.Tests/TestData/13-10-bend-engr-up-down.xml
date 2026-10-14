@@ -1,0 +1,261 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<CADMAN Version="1" ExportApplication="CADMAN-SDI" ExportVersion="8.7">
+  <JOBOSMCONVERTLIST>
+    <JOBOSMCONVERT Version="1.0" ID="1C58BA1A-F1FB-477D-AA73-576F74F5E31C" OrderID="6AD5DC88-61B6-4338-88FA-4632AC09748F">
+      <JobStatus>Finished</JobStatus>
+      <JobStatusReason></JobStatusReason>
+      <OSMCONVERTORDER Version="1.1" ID="02c94880-53c2-42aa-8f0a-1d6eeb4fee43">
+        <PartID>13-10-bend-engr-up-down</PartID>
+        <MaterialID></MaterialID>
+        <Thickness>-1</Thickness>
+        <Unit>MM</Unit>
+        <OrigPath>C:\Users\jrmm\Downloads\driessen\soevereine gaten\13-10-bend-engr-up-down.STEP</OrigPath>
+        <Quantity>0</Quantity>
+      </OSMCONVERTORDER>
+      <OSMCONVERTRESULT Version="1.1" ID="23d6567d-b63d-4754-8a46-7a19a01fd3db">
+        <PartTypeID>13-10-bend-engr-up-down</PartTypeID>
+        <PartTypeRev>1</PartTypeRev>
+        <PartTypeSubRev>0</PartTypeSubRev>
+      </OSMCONVERTRESULT>
+    </JOBOSMCONVERT>
+  </JOBOSMCONVERTLIST>
+  <JOBPARTPREPARATIONLIST>
+    <JOBPARTPREPARATION ID="0540315d-d80c-42b2-811b-ca633f64ce18#A8DD1DA9-9173-4D5C-B245-95EA9663DF41" OrderID="6AD5DC88-61B6-4338-88FA-4632AC09748F" PartID="13-10-bend-engr-up-down">
+      <MachineTypeID>34994_XT</MachineTypeID>
+      <Method>BYTOOLS</Method>
+      <JobStatus>Finished</JobStatus>
+      <JobStatusReason></JobStatusReason>
+      <UnfoldingID>13-10-bend-engr-up-down_1</UnfoldingID>
+      <PossibleToolCombinationGroupList>
+        <ToolCombinationGroup>
+          <ToolCombinationList>
+            <ToolCombination>
+              <PunchID>F15W_G1546313</PunchID>
+              <PunchHolderID></PunchHolderID>
+              <DieID>V16_78_90_G1543223</DieID>
+              <DieHolderID></DieHolderID>
+            </ToolCombination>
+          </ToolCombinationList>
+          <NumberOfBends>1</NumberOfBends>
+        </ToolCombinationGroup>
+      </PossibleToolCombinationGroupList>
+    </JOBPARTPREPARATION>
+    <JOBPARTPREPARATION ID="0540315d-d80c-42b2-811b-ca633f64ce18#0681F5C1-9AB6-4DA4-86FD-660D2BB40C1B" OrderID="6AD5DC88-61B6-4338-88FA-4632AC09748F" PartID="13-10-bend-engr-up-down">
+      <MachineTypeID>37675</MachineTypeID>
+      <Method>BYTOOLS</Method>
+      <JobStatus>Stopped</JobStatus>
+      <JobStatusReason>PartProblemsFound  -  LENGTH</JobStatusReason>
+      <UnfoldingID></UnfoldingID>
+    </JOBPARTPREPARATION>
+  </JOBPARTPREPARATIONLIST>
+  <PARTTYPELIST>
+    <PARTSHEETMETALTYPE Version="1.0" Kind="PART" ID="13-10-bend-engr-up-down" Rev="1" SubRev="0">
+      <Unit>MM</Unit>
+      <MaterialID>S235JR</MaterialID>
+      <MaterialRev>1</MaterialRev>
+      <MaterialSubRev>0</MaterialSubRev>
+      <Thickness>3</Thickness>
+      <SPECIALSIDE>TOP</SPECIALSIDE>
+      <PARTSHEETMETALTYPECONFLIST/>
+      <PARTSHEETMETALMODELLIST>
+        <PARTSHEETMETALMODEL Version="1.0" ID="13-10-bend-engr-up-down" Rev="1" SubRev="0">
+          <Description></Description>
+          <Comment></Comment>
+          <TAGS>
+            <TAG Type="ACTION">BATCH</TAG>
+          </TAGS>
+          <UnfoldedBoundHeight>100</UnfoldedBoundHeight>
+          <UnfoldedBoundWidth>144.723622017639</UnfoldedBoundWidth>
+          <MinUnfoldedBoundHeight>100</MinUnfoldedBoundHeight>
+          <MinUnfoldedBoundWidth>144.723622017639</MinUnfoldedBoundWidth>
+          <UnfoldedArea>14090.902</UnfoldedArea>
+          <UnfoldedBrutoArea>14472.362</UnfoldedBrutoArea>
+          <BoundingBox3DHeight>100</BoundingBox3DHeight>
+          <BoundingBox3DWidth>100</BoundingBox3DWidth>
+          <BoundingBox3DDepth>50</BoundingBox3DDepth>
+          <TotalContourLength>694.593</TotalContourLength>
+          <NumberOfHinges>1</NumberOfHinges>
+          <NumberOfContours>11</NumberOfContours>
+          <NumberOfBends>1</NumberOfBends>
+          <NumberOfBendSequences>1</NumberOfBendSequences>
+          <LengthLongestBend>100</LengthLongestBend>
+          <ForceLongestBend>29.82</ForceLongestBend>
+          <Mass>0.3297271068</Mass>
+          <Folded3DImage_Base64>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</Folded3DImage_Base64>
+          <Unfolded3DImage_Base64>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</Unfolded3DImage_Base64>
+          <NumberOfSOEVEREINs>0</NumberOfSOEVEREINs>
+          <NumberOfRELIEFs>0</NumberOfRELIEFs>
+          <NumberOfUNKNOWNs>0</NumberOfUNKNOWNs>
+        </PARTSHEETMETALMODEL>
+      </PARTSHEETMETALMODELLIST>
+      <FEATURELIST>
+        <FEATURE>
+          <Name>Contour 1</Name>
+          <FeatureTypeCode>CONTOUR</FeatureTypeCode>
+          <FeatureTypeName>Contour</FeatureTypeName>
+        </FEATURE>
+        <FEATURE>
+          <Name>Contour 2</Name>
+          <FeatureTypeCode>CONTOUR</FeatureTypeCode>
+          <FeatureTypeName>Contour</FeatureTypeName>
+        </FEATURE>
+        <FEATURE>
+          <Name>Contour 3</Name>
+          <FeatureTypeCode>CONTOUR</FeatureTypeCode>
+          <FeatureTypeName>Contour</FeatureTypeName>
+        </FEATURE>
+        <FEATURE>
+          <Name>Contour 4</Name>
+          <FeatureTypeCode>CONTOUR</FeatureTypeCode>
+          <FeatureTypeName>Contour</FeatureTypeName>
+        </FEATURE>
+        <FEATURE>
+          <Name>Contour 5</Name>
+          <FeatureTypeCode>CONTOUR</FeatureTypeCode>
+          <FeatureTypeName>Contour</FeatureTypeName>
+        </FEATURE>
+        <FEATURE>
+          <Name>Contour 6</Name>
+          <FeatureTypeCode>CONTOUR</FeatureTypeCode>
+          <FeatureTypeName>Contour</FeatureTypeName>
+        </FEATURE>
+        <FEATURE>
+          <Name>Contour 7</Name>
+          <FeatureTypeCode>CONTOUR</FeatureTypeCode>
+          <FeatureTypeName>Contour</FeatureTypeName>
+        </FEATURE>
+        <FEATURE>
+          <Name>Contour 8</Name>
+          <FeatureTypeCode>CONTOUR</FeatureTypeCode>
+          <FeatureTypeName>Contour</FeatureTypeName>
+        </FEATURE>
+        <FEATURE>
+          <Name>Contour 9</Name>
+          <FeatureTypeCode>CONTOUR</FeatureTypeCode>
+          <FeatureTypeName>Contour</FeatureTypeName>
+        </FEATURE>
+        <FEATURE>
+          <Name>Contour 10</Name>
+          <FeatureTypeCode>CONTOUR</FeatureTypeCode>
+          <FeatureTypeName>Contour</FeatureTypeName>
+        </FEATURE>
+        <FEATURE>
+          <Name>Contour 11</Name>
+          <FeatureTypeCode>CONTOUR</FeatureTypeCode>
+          <FeatureTypeName>Contour</FeatureTypeName>
+        </FEATURE>
+        <FEATURE>
+          <Name>Bend 1</Name>
+          <FeatureTypeCode>BEND</FeatureTypeCode>
+          <FeatureTypeName>Bend</FeatureTypeName>
+        </FEATURE>
+      </FEATURELIST>
+    </PARTSHEETMETALTYPE>
+  </PARTTYPELIST>
+  <EXECUTIONPLANPROPOSALLIST>
+    <EXECUTIONPLANPROPOSAL OrderID="6AD5DC88-61B6-4338-88FA-4632AC09748F" PartID="13-10-bend-engr-up-down" Name="Proposal" Valid="1">
+      <PATHLIST>
+        <PATH Name="Path1" IsDefault="1" PartTypeID="CD3EDE45-2F6A-4238-8C65-F838E00FC83B">
+          <STEPLIST>
+            <STEP Kind="2DLASEREXEC" Valid="1">
+              <JOBTYPELIST>
+                <JOBTYPE JobTypeID="B01F338F-F26D-432D-A486-4BC7DD735652">
+                  <SUMMARY>
+                    <MachineTypeID>impuls repo 12530 - 6000W</MachineTypeID>
+                    <Valid>1</Valid>
+                    <TotalTime>24.702213</TotalTime>
+                    <Reason>NORMAL</Reason>
+                  </SUMMARY>
+                </JOBTYPE>
+                <JOBTYPE JobTypeID="11E6614D-7BC9-4163-BA60-BF7CED909B6A">
+                  <SUMMARY>
+                    <MachineTypeID>Phoenix FL 3015 - 6000W</MachineTypeID>
+                    <Valid>1</Valid>
+                    <TotalTime>10.832928</TotalTime>
+                    <Reason>NORMAL</Reason>
+                  </SUMMARY>
+                </JOBTYPE>
+              </JOBTYPELIST>
+            </STEP>
+            <STEP Kind="BENDINGEXEC" Valid="1">
+              <JOBTYPELIST>
+                <JOBTYPE JobTypeID="FB92CA75-CBC2-411C-B3A9-813ADB71EE66">
+                  <SUMMARY>
+                    <MachineTypeID>34994_XT</MachineTypeID>
+                    <Valid>0</Valid>
+                    <Reason>REDO - ExternalChanged</Reason>
+                  </SUMMARY>
+                </JOBTYPE>
+                <JOBTYPE JobTypeID="FB92CA75-CBC2-411C-B3A9-813ADB71EE66#5BB264DC-3606-4306-AC99-BA60D1454532">
+                  <SUMMARY>
+                    <MachineTypeID>34994_XT</MachineTypeID>
+                    <Valid>1</Valid>
+                    <TotalTime>77.28</TotalTime>
+                    <Reason>NORMAL</Reason>
+                  </SUMMARY>
+                </JOBTYPE>
+              </JOBTYPELIST>
+            </STEP>
+          </STEPLIST>
+        </PATH>
+      </PATHLIST>
+    </EXECUTIONPLANPROPOSAL>
+  </EXECUTIONPLANPROPOSALLIST>
+  <MATERIALLIST>
+    <MATERIAL Version="1.0" ID="S235JR" Rev="1" SubRev="0">
+      <DateCreated>
+        <YEAR>2019</YEAR>
+        <MONTH>9</MONTH>
+        <DAY>5</DAY>
+        <HOUR>13</HOUR>
+        <MIN>8</MIN>
+        <SEC>52</SEC>
+        <MSEC>0</MSEC>
+        <TZ>60</TZ>
+      </DateCreated>
+      <DateUpdated>
+        <YEAR>2019</YEAR>
+        <MONTH>9</MONTH>
+        <DAY>5</DAY>
+        <HOUR>13</HOUR>
+        <MIN>8</MIN>
+        <SEC>52</SEC>
+        <MSEC>0</MSEC>
+        <TZ>60</TZ>
+      </DateUpdated>
+      <Description>LVD - S 235</Description>
+      <Comment Type="ML">
+        <L>************************************************************</L>
+        <L>LVD Material - S 235</L>
+        <L>-------------------------------------------------------</L>
+        <L>Tensile Strength = 420</L>
+        <L>Yield Strength = 252</L>
+        <L>Max. Strain = .5</L>
+        <L>StrainHardening = .176</L>
+        <L>************************************************************</L>
+      </Comment>
+      <Unit>0</Unit>
+      <Color>
+        <T>0</T>
+        <R>192</R>
+        <G>192</G>
+        <B>192</B>
+      </Color>
+      <SideColor>
+        <T>0</T>
+        <R>100</R>
+        <G>110</G>
+        <B>155</B>
+      </SideColor>
+      <Density>7.8</Density>
+      <YieldStrength>252</YieldStrength>
+      <TensileStrength>420</TensileStrength>
+      <MaxStrain>0.5</MaxStrain>
+      <RSRatio>0.5</RSRatio>
+      <Type>1</Type>
+      <MaterialNorm>S 235</MaterialNorm>
+      <MaterialNormRev>1</MaterialNormRev>
+      <MaterialNormSubRev>0</MaterialNormSubRev>
+    </MATERIAL>
+  </MATERIALLIST>
+</CADMAN>

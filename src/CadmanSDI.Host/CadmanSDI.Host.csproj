@@ -1,0 +1,51 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="MediatR" />
+      <PackageReference Include="Microsoft.Extensions.Hosting" />
+      <PackageReference Include="Microsoft.Extensions.Hosting.WindowsServices" />
+      <PackageReference Include="Microsoft.Extensions.Options" />
+      <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" />
+      <PackageReference Include="Microsoft.Extensions.Options.DataAnnotations" />
+      <PackageReference Include="Serilog" />
+      <PackageReference Include="Serilog.Enrichers.Environment" />
+      <PackageReference Include="Serilog.Extensions.Hosting" />
+      <PackageReference Include="Serilog.Extensions.Logging" />
+      <PackageReference Include="Serilog.Settings.Configuration" />
+      <PackageReference Include="Serilog.Sinks.Console" />
+      <PackageReference Include="Serilog.Sinks.File" />
+    </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MetalHeaven.ExternalDataContracts" />
+    <PackageReference Include="MetalHeaven.Agent.Shared.External" />
+  </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Integration.Common\Integration.Common.csproj" />
+      <ProjectReference Include="..\CadmanSDI.Entities\CadmanSDI.Entities.csproj" />
+      <ProjectReference Include="..\CadmanSDI.Export\CadmanSDI.Export.csproj" />
+      <ProjectReference Include="..\CadmanSDI.Import\CadmanSDI.Import.csproj" />
+      <ProjectReference Include="..\CadmanSDI.LocalData\CadmanSDI.LocalData.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Update="appsettings.Development.json">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+      <None Update="appsettings.json">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+      <None Update="Data\MaterialMapping.xlsx">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+
+</Project>

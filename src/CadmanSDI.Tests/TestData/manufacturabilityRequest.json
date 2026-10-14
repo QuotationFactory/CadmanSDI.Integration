@@ -1,0 +1,2263 @@
+{
+    "$id": "1",
+    "$type": "MetalHeaven.Agent.Shared.External.Messages.RequestManufacturabilityCheckOfPartTypeMessage, MetalHeaven.Agent.Shared.External",
+    "messageType": "RequestManufacturabilityCheckOfPartType",
+    "dateTime": "2021-09-23T15:27:03.6178909Z",
+    "projectId": "97f3a2bc-5862-463b-9cdd-0e4005be86ba",
+    "workingStepKey": {
+        "$id": "2",
+        "$type": "Versioned.ExternalDataContracts.Contracts.Resource.WorkingStepKeyV1, MetalHeaven.ExternalDataContracts",
+        "primaryWorkingStep": 3,
+        "secondaryWorkingStep": 3
+    },
+    "partType": {
+        "$id": "3",
+        "$type": "Versioned.ExternalDataContracts.Contracts.BoM.PartTypeV1, MetalHeaven.ExternalDataContracts",
+        "assemblyId": "914c9358-f2e9-4862-b2b6-32c86e2eb3af",
+        "supplierId": "00000000-0000-0000-0000-000000000000",
+        "rowNumber": 3,
+        "name": "011-0016140",
+        "originalFileName": "SheetAndBending.stp",
+        "partInstances": [
+            {
+                "$id": "4",
+                "$type": "Versioned.ExternalDataContracts.Contracts.BoM.PartInstanceV1, MetalHeaven.ExternalDataContracts",
+                "id": "8190670b-6dcd-440b-a49f-b056b9d81af2",
+                "name": "011-0016140",
+                "financial": {
+                    "$id": "5",
+                    "$type": "Versioned.ExternalDataContracts.Contracts.Financial.FinancialV1, MetalHeaven.ExternalDataContracts",
+                    "id": "ab26194a-6e9a-4c90-9ad9-8f7731b59ee2",
+                    "totalProjectQuantity": 1,
+                    "quantity": 1,
+                    "costPriceOfItems": {
+                        "$type": "Versioned.ExternalDataContracts.Contracts.Common.Money, MetalHeaven.ExternalDataContracts",
+                        "Amount": 36.213457598425289,
+                        "Currency": "EUR"
+                    },
+                    "discountOrSurchargeRatio": {
+                        "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                        "Unit": "RatioUnit.DecimalFraction",
+                        "Value": 0.22495897773453603
+                    },
+                    "costPricePerItem": {
+                        "$id": "6",
+                        "$type": "Versioned.ExternalDataContracts.Contracts.Common.Money, MetalHeaven.ExternalDataContracts",
+                        "Amount": 36.213457598425289,
+                        "Currency": "EUR"
+                    },
+                    "salesPricePerItem": {
+                        "$type": "Versioned.ExternalDataContracts.Contracts.Common.Money, MetalHeaven.ExternalDataContracts",
+                        "Amount": 44.36,
+                        "Currency": "EUR"
+                    },
+                    "discountOrSurchargeValuePerItem": {
+                        "$type": "Versioned.ExternalDataContracts.Contracts.Common.Money, MetalHeaven.ExternalDataContracts",
+                        "Amount": 8.14654240157472,
+                        "Currency": "EUR"
+                    },
+                    "discountOrSurchargeValueOfItems": {
+                        "$type": "Versioned.ExternalDataContracts.Contracts.Common.Money, MetalHeaven.ExternalDataContracts",
+                        "Amount": 8.14654240157472,
+                        "Currency": "EUR"
+                    },
+                    "salesPriceOfItems": {
+                        "$type": "Versioned.ExternalDataContracts.Contracts.Common.Money, MetalHeaven.ExternalDataContracts",
+                        "Amount": 44.36,
+                        "Currency": "EUR"
+                    }
+                }
+            }
+        ],
+        "material": {
+            "$id": "7",
+            "$type": "Versioned.ExternalDataContracts.Contracts.Article.ArticleDataV1, MetalHeaven.ExternalDataContracts",
+            "selectableArticles": {
+                "$id": "8",
+                "$type": "Versioned.ExternalDataContracts.Contracts.Article.ArticleSelectablesV1, MetalHeaven.ExternalDataContracts",
+                "selectableKeywords": {
+                    "$id": "9",
+                    "$type": "System.Collections.Generic.Dictionary`2[[System.String, System.Private.CoreLib],[System.Collections.Generic.List`1[[System.String, System.Private.CoreLib]], System.Private.CoreLib]], System.Private.CoreLib"
+                },
+                "selectableArticles": [],
+                "selectedKeywords": [
+                    "sheet",
+                    "3 mm thick",
+                    "steel",
+                    "dc01"
+                ],
+                "selectedArticle": {
+                    "$id": "10",
+                    "$type": "Versioned.ExternalDataContracts.Contracts.Article.ArticleSummaryV1, MetalHeaven.ExternalDataContracts",
+                    "id": "1000-0010-3153",
+                    "description": "koudgewalste staal plaat dc01-a-m geolied 3000x1500x3",
+                    "tokens": [
+                        "sheet",
+                        "3 mm thick",
+                        "steel",
+                        "dc01"
+                    ],
+                    "dimensions": {
+                        "$id": "11",
+                        "$type": "Versioned.ExternalDataContracts.Contracts.Article.DimensionsV1, MetalHeaven.ExternalDataContracts",
+                        "length": {
+                            "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                            "Unit": "LengthUnit.Millimeter",
+                            "Value": 3000.0
+                        },
+                        "width": {
+                            "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                            "Unit": "LengthUnit.Millimeter",
+                            "Value": 1500.0
+                        },
+                        "thickness": {
+                            "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                            "Unit": "LengthUnit.Millimeter",
+                            "Value": 3.0
+                        },
+                        "area": {
+                            "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                            "Unit": "AreaUnit.SquareMeter",
+                            "Value": 4.5
+                        }
+                    },
+                    "weightPerItem": {
+                        "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                        "Unit": "MassUnit.Kilogram",
+                        "Value": 105.975
+                    },
+                    "purchasingData": {
+                        "$id": "12",
+                        "$type": "Versioned.ExternalDataContracts.Contracts.Article.PurchasingDataV1, MetalHeaven.ExternalDataContracts",
+                        "grossPrice": {
+                            "$id": "1",
+                            "$type": "Versioned.ExternalDataContracts.UoM.MoneyPerQuantityV1`1[[UnitsNet.IQuantity, UnitsNet]], MetalHeaven.ExternalDataContracts",
+                            "money": {
+                                "$type": "Versioned.ExternalDataContracts.Contracts.Common.Money, MetalHeaven.ExternalDataContracts",
+                                "Amount": 2.72,
+                                "Currency": "EUR"
+                            },
+                            "quantity": {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "MassUnit.Kilogram",
+                                "Value": 1.0
+                            }
+                        },
+                        "grossPricePerMass": {
+                            "$id": "1",
+                            "$type": "Versioned.ExternalDataContracts.UoM.MoneyPerQuantityV1`1[[UnitsNet.Mass, UnitsNet]], MetalHeaven.ExternalDataContracts",
+                            "money": {
+                                "$type": "Versioned.ExternalDataContracts.Contracts.Common.Money, MetalHeaven.ExternalDataContracts",
+                                "Amount": 2.72,
+                                "Currency": "EUR"
+                            },
+                            "quantity": {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "MassUnit.Kilogram",
+                                "Value": 1.0
+                            }
+                        },
+                        "grossPriceUpdatedOn": "2021-09-23T15:10:32.452192Z",
+                        "grossPriceSource": 2
+                    },
+                    "grossPricePerItem": {
+                        "$id": "13",
+                        "$type": "Versioned.ExternalDataContracts.Contracts.Common.Money, MetalHeaven.ExternalDataContracts",
+                        "Amount": 288.252,
+                        "Currency": "EUR"
+                    }
+                },
+                "resourceId": "4b766c97-1e49-403a-a9f7-9dc6733c1eea"
+            },
+            "financial": {
+                "$id": "14",
+                "$type": "Versioned.ExternalDataContracts.Contracts.Financial.FinancialV1, MetalHeaven.ExternalDataContracts",
+                "id": "36f6e0d0-e1de-4f31-a252-2c6bc4817016",
+                "totalProjectQuantity": 1,
+                "quantity": 1,
+                "costPriceOfItems": {
+                    "$type": "Versioned.ExternalDataContracts.Contracts.Common.Money, MetalHeaven.ExternalDataContracts",
+                    "Amount": 27.19177199999999,
+                    "Currency": "EUR"
+                },
+                "discountOrSurchargeRatio": {
+                    "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                    "Unit": "RatioUnit.Percent",
+                    "Value": 20.0
+                },
+                "costPricePerItem": {
+                    "$id": "15",
+                    "$type": "Versioned.ExternalDataContracts.Contracts.Common.Money, MetalHeaven.ExternalDataContracts",
+                    "Amount": 27.19177199999999,
+                    "Currency": "EUR"
+                },
+                "salesPricePerItem": {
+                    "$type": "Versioned.ExternalDataContracts.Contracts.Common.Money, MetalHeaven.ExternalDataContracts",
+                    "Amount": 32.63012639999999,
+                    "Currency": "EUR"
+                },
+                "discountOrSurchargeValuePerItem": {
+                    "$type": "Versioned.ExternalDataContracts.Contracts.Common.Money, MetalHeaven.ExternalDataContracts",
+                    "Amount": 5.4383544,
+                    "Currency": "EUR"
+                },
+                "discountOrSurchargeValueOfItems": {
+                    "$type": "Versioned.ExternalDataContracts.Contracts.Common.Money, MetalHeaven.ExternalDataContracts",
+                    "Amount": 5.4383544,
+                    "Currency": "EUR"
+                },
+                "salesPriceOfItems": {
+                    "$type": "Versioned.ExternalDataContracts.Contracts.Common.Money, MetalHeaven.ExternalDataContracts",
+                    "Amount": 32.63012639999999,
+                    "Currency": "EUR"
+                }
+            },
+            "calculationDetails": "∑ \r\n€288.25 (costPrice of 1 item) * 9.43% area used* 9.43% area of cutting plan\r\n",
+            "usedRatioPerItem": {
+                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                "Unit": "RatioUnit.DecimalFraction",
+                "Value": 0.09433333333333333
+            }
+        },
+        "thumbnail3d": "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",
+        "thumbnail2d": "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",
+        "nestingDirection": 0,
+        "id": "6703290c-5684-4e3e-80e4-8b33af25c25b",
+        "labor": [
+            1,
+            3
+        ],
+        "recognizedLabor": [
+            1,
+            3
+        ],
+        "features": {
+            "$id": "16",
+            "$type": "Versioned.ExternalDataContracts.Contracts.BoM.FeaturesV1, MetalHeaven.ExternalDataContracts",
+            "measurements": {
+                "$id": "17",
+                "$type": "Versioned.ExternalDataContracts.Contracts.Features.MeasurementsV1, MetalHeaven.ExternalDataContracts",
+                "outerDiameter": {
+                    "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                    "Unit": "LengthUnit.Millimeter",
+                    "Value": 12.0
+                },
+                "innerDiameter": {
+                    "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                    "Unit": "LengthUnit.Millimeter",
+                    "Value": 6.0
+                },
+                "thickness": {
+                    "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                    "Unit": "LengthUnit.Millimeter",
+                    "Value": 3.0
+                },
+                "areasAndVolume": {
+                    "$id": "18",
+                    "$type": "Versioned.ExternalDataContracts.Contracts.Features.AreasAndVolumeV1, MetalHeaven.ExternalDataContracts",
+                    "boundingBox3d": {
+                        "$id": "19",
+                        "$type": "Versioned.ExternalDataContracts.Contracts.Features.BoundingBox3dV1, MetalHeaven.ExternalDataContracts",
+                        "length": {
+                            "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                            "Unit": "LengthUnit.Millimeter",
+                            "Value": 320.00000000000019
+                        },
+                        "width": {
+                            "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                            "Unit": "LengthUnit.Millimeter",
+                            "Value": 263.15381883127579
+                        },
+                        "height": {
+                            "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                            "Unit": "LengthUnit.Millimeter",
+                            "Value": 24.702653403747115
+                        },
+                        "volume": {
+                            "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                            "Unit": "VolumeUnit.CubicMeter",
+                            "Value": 0.0020801912251076704
+                        }
+                    },
+                    "boundingBox2d": {
+                        "$id": "20",
+                        "$type": "Versioned.ExternalDataContracts.Contracts.Features.BoundingBox2dV1, MetalHeaven.ExternalDataContracts",
+                        "length": {
+                            "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                            "Unit": "LengthUnit.Millimeter",
+                            "Value": 320.0
+                        },
+                        "width": {
+                            "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                            "Unit": "LengthUnit.Millimeter",
+                            "Value": 282.0685834705771
+                        },
+                        "area": {
+                            "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                            "Unit": "AreaUnit.SquareMeter",
+                            "Value": 0.09026194671058469
+                        }
+                    },
+                    "outerContour2d": {
+                        "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                        "Unit": "AreaUnit.SquareMillimeter",
+                        "Value": 90249.49511196709
+                    },
+                    "allHoles2d": {
+                        "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                        "Unit": "AreaUnit.SquareMillimeter",
+                        "Value": 988.5431556577238
+                    },
+                    "holes2dVersusOuterContour": {
+                        "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                        "Unit": "RatioUnit.DecimalFraction",
+                        "Value": 0.01095344804346327
+                    },
+                    "netArea": {
+                        "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                        "Unit": "AreaUnit.SquareMillimeter",
+                        "Value": 89260.95195630937
+                    },
+                    "largeHoles2d": [],
+                    "nestableArea": {
+                        "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                        "Unit": "AreaUnit.SquareMeter",
+                        "Value": 0.0
+                    },
+                    "side1In3d": {
+                        "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                        "Unit": "AreaUnit.SquareMeter",
+                        "Value": 0.0
+                    },
+                    "side2In3d": {
+                        "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                        "Unit": "AreaUnit.SquareMeter",
+                        "Value": 0.0
+                    },
+                    "walls3d": {
+                        "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                        "Unit": "AreaUnit.SquareMeter",
+                        "Value": 0.0
+                    },
+                    "volume": {
+                        "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                        "Unit": "VolumeUnit.CubicCentimeter",
+                        "Value": 272.8484558514851
+                    }
+                },
+                "weight": {
+                    "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                    "Unit": "MassUnit.Kilogram",
+                    "Value": 2.141860378434158
+                }
+            },
+            "contours": {
+                "$id": "21",
+                "$type": "Versioned.ExternalDataContracts.Contracts.Features.ContoursV1, MetalHeaven.ExternalDataContracts",
+                "amountOfPiercings": 49,
+                "totalContourLength": {
+                    "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                    "Unit": "LengthUnit.Millimeter",
+                    "Value": 2048.8242203328898
+                },
+                "contourLengths": [
+                    {
+                        "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                        "Unit": "LengthUnit.Millimeter",
+                        "Value": 1193.415926535898
+                    },
+                    {
+                        "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                        "Unit": "LengthUnit.Millimeter",
+                        "Value": 38.10511776651566
+                    },
+                    {
+                        "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                        "Unit": "LengthUnit.Millimeter",
+                        "Value": 38.10511776651566
+                    },
+                    {
+                        "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                        "Unit": "LengthUnit.Millimeter",
+                        "Value": 38.10511776651566
+                    },
+                    {
+                        "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                        "Unit": "LengthUnit.Millimeter",
+                        "Value": 38.10511776651566
+                    },
+                    {
+                        "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                        "Unit": "LengthUnit.Millimeter",
+                        "Value": 38.10511776651566
+                    },
+                    {
+                        "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                        "Unit": "LengthUnit.Millimeter",
+                        "Value": 38.10511776651566
+                    },
+                    {
+                        "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                        "Unit": "LengthUnit.Millimeter",
+                        "Value": 38.105117766515657
+                    },
+                    {
+                        "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                        "Unit": "LengthUnit.Millimeter",
+                        "Value": 38.105117766515657
+                    },
+                    {
+                        "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                        "Unit": "LengthUnit.Millimeter",
+                        "Value": 38.105117766515657
+                    },
+                    {
+                        "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                        "Unit": "LengthUnit.Millimeter",
+                        "Value": 38.105117766515657
+                    },
+                    {
+                        "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                        "Unit": "LengthUnit.Millimeter",
+                        "Value": 38.105117766515657
+                    },
+                    {
+                        "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                        "Unit": "LengthUnit.Millimeter",
+                        "Value": 38.105117766515657
+                    },
+                    {
+                        "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                        "Unit": "LengthUnit.Millimeter",
+                        "Value": 34.59999999999999
+                    },
+                    {
+                        "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                        "Unit": "LengthUnit.Millimeter",
+                        "Value": 34.59999999999999
+                    },
+                    {
+                        "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                        "Unit": "LengthUnit.Millimeter",
+                        "Value": 34.59999999999997
+                    },
+                    {
+                        "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                        "Unit": "LengthUnit.Millimeter",
+                        "Value": 34.59999999999997
+                    },
+                    {
+                        "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                        "Unit": "LengthUnit.Millimeter",
+                        "Value": 12.987344029940206
+                    },
+                    {
+                        "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                        "Unit": "LengthUnit.Millimeter",
+                        "Value": 12.987344029940206
+                    },
+                    {
+                        "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                        "Unit": "LengthUnit.Millimeter",
+                        "Value": 12.987344029940206
+                    },
+                    {
+                        "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                        "Unit": "LengthUnit.Millimeter",
+                        "Value": 12.987344029940206
+                    },
+                    {
+                        "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                        "Unit": "LengthUnit.Millimeter",
+                        "Value": 12.987344029940206
+                    },
+                    {
+                        "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                        "Unit": "LengthUnit.Millimeter",
+                        "Value": 12.987344029940206
+                    },
+                    {
+                        "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                        "Unit": "LengthUnit.Millimeter",
+                        "Value": 12.987344029940206
+                    },
+                    {
+                        "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                        "Unit": "LengthUnit.Millimeter",
+                        "Value": 12.987344029940206
+                    },
+                    {
+                        "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                        "Unit": "LengthUnit.Millimeter",
+                        "Value": 12.987344029940206
+                    },
+                    {
+                        "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                        "Unit": "LengthUnit.Millimeter",
+                        "Value": 12.987344029940206
+                    },
+                    {
+                        "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                        "Unit": "LengthUnit.Millimeter",
+                        "Value": 12.987344029940206
+                    },
+                    {
+                        "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                        "Unit": "LengthUnit.Millimeter",
+                        "Value": 12.987344029940206
+                    },
+                    {
+                        "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                        "Unit": "LengthUnit.Millimeter",
+                        "Value": 12.987344029940206
+                    },
+                    {
+                        "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                        "Unit": "LengthUnit.Millimeter",
+                        "Value": 12.987344029940206
+                    },
+                    {
+                        "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                        "Unit": "LengthUnit.Millimeter",
+                        "Value": 12.987344029940206
+                    },
+                    {
+                        "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                        "Unit": "LengthUnit.Millimeter",
+                        "Value": 12.987344029940206
+                    },
+                    {
+                        "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                        "Unit": "LengthUnit.Millimeter",
+                        "Value": 12.987344029940206
+                    },
+                    {
+                        "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                        "Unit": "LengthUnit.Millimeter",
+                        "Value": 12.987344029940206
+                    },
+                    {
+                        "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                        "Unit": "LengthUnit.Millimeter",
+                        "Value": 12.987344029940206
+                    },
+                    {
+                        "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                        "Unit": "LengthUnit.Millimeter",
+                        "Value": 12.987344029940206
+                    }
+                ],
+                "faceIds": []
+            },
+            "engravingContours": {
+                "$id": "22",
+                "$type": "Versioned.ExternalDataContracts.Contracts.Features.ContoursV1, MetalHeaven.ExternalDataContracts",
+                "amountOfPiercings": 0,
+                "totalContourLength": {
+                    "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                    "Unit": "LengthUnit.Meter",
+                    "Value": 0.0
+                },
+                "contourLengths": [],
+                "faceIds": []
+            },
+            "sawingEnds": [],
+            "bendingLines": [
+                {
+                    "$id": "23",
+                    "$type": "Versioned.ExternalDataContracts.Contracts.Features.BendingLineV1, MetalHeaven.ExternalDataContracts",
+                    "bendingLineId": 1,
+                    "bendings": [
+                        {
+                            "$id": "24",
+                            "$type": "Versioned.ExternalDataContracts.Contracts.Features.BendingV1, MetalHeaven.ExternalDataContracts",
+                            "length": {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "LengthUnit.Meter",
+                                "Value": 0.0
+                            },
+                            "angle": {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "AngleUnit.Degree",
+                                "Value": 89.9999999999997
+                            },
+                            "angleMax180": {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "AngleUnit.Degree",
+                                "Value": 89.9999999999997
+                            },
+                            "flangeHeight": {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "LengthUnit.Meter",
+                                "Value": 0.0
+                            },
+                            "innerRadius": {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "LengthUnit.Millimeter",
+                                "Value": 3.0
+                            },
+                            "faceId": "877af7f3-3bca-4baf-a81f-564816a28ff2"
+                        }
+                    ],
+                    "angle": {
+                        "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                        "Unit": "AngleUnit.Degree",
+                        "Value": 89.9999999999997
+                    }
+                }
+            ],
+            "circularHoles": [
+                {
+                    "$id": "25",
+                    "$type": "Versioned.ExternalDataContracts.Contracts.Features.CircularHoleV1, MetalHeaven.ExternalDataContracts",
+                    "number": 20,
+                    "diameter": {
+                        "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                        "Unit": "LengthUnit.Millimeter",
+                        "Value": 4.14
+                    },
+                    "faceIds": [
+                        "593c60b5-2673-450d-8824-c09cc9f810fe",
+                        "9d2c120f-38ec-4349-9df9-4d783b523d6b",
+                        "2d36f69c-11cf-4591-91f0-77822cf0f032",
+                        "5afab73c-3d41-459b-9cfb-835bb9b345ff",
+                        "55719e71-7bc4-4c9f-bf82-276cbaff49ab",
+                        "2a867c01-ad58-49c0-b786-bd8003c6e2f9",
+                        "4af4ec8a-7501-462a-a8ff-cfb69e830c51",
+                        "56dd42e4-67e5-4968-af09-725530e72c94",
+                        "265c4560-031c-4b65-beac-fc550d1c10a1",
+                        "1c5f1982-b3a0-4c3a-8a1d-de45cabf522b",
+                        "a23cb52d-1690-4ec9-9d9d-770b8f98f4f7",
+                        "f955bb3c-e46c-4242-aafe-0d2d57978bf9",
+                        "f2d86331-b7b6-4fbf-91fe-389e455ef4c3",
+                        "79469c81-8f77-4d52-8a66-57f6f6da093d",
+                        "47cc5123-ffe6-4b08-81d8-bc65cbbaa9e3",
+                        "6dd4e37d-a624-490e-9af6-8d39d1de14c8",
+                        "cefb924b-516e-4be0-88bd-2d39bbb6ac6e",
+                        "45af55de-e28c-46c7-9216-ba8317cc83e7",
+                        "795f3f90-d10b-4624-99cd-43955822244c",
+                        "27f2c3a9-6f22-4ae2-bcb6-e3fc4ffcc262"
+                    ]
+                }
+            ],
+            "bendingsSummary": {
+                "$id": "26",
+                "$type": "Versioned.ExternalDataContracts.Contracts.Features.BendingsSummaryV1, MetalHeaven.ExternalDataContracts",
+                "numberOfBendsIndividual": 1,
+                "numberOfBendsGrouped": 1,
+                "numberOfBendsIndividualOnSideOne": 1,
+                "numberOfBendsIndividualOnSideTwo": 0,
+                "numberOfBendsGroupedOnSideOne": 1,
+                "numberOfBendsGroupedOnSideTwo": 0,
+                "numberOfXTurns": 1,
+                "numberOfYTurns": 0,
+                "numberOfZTurns": 0,
+                "numberOfUniqueInnerRadii": 1
+            },
+            "counterSinks": [],
+            "threadCuttings": [],
+            "weldings": [],
+            "boltPressings": [],
+            "drillings": [],
+            "nutPressings": [],
+            "studWeldings": [],
+            "deburring": {
+                "$id": "27",
+                "$type": "Versioned.ExternalDataContracts.Contracts.Features.DeburringV1, MetalHeaven.ExternalDataContracts",
+                "sides": 0
+            },
+            "anodising": {
+                "$id": "28",
+                "$type": "Versioned.ExternalDataContracts.Contracts.Features.AnodisingV1, MetalHeaven.ExternalDataContracts",
+                "sides": 0
+            },
+            "edgeTrimming": {
+                "$id": "29",
+                "$type": "Versioned.ExternalDataContracts.Contracts.Features.EdgeTrimmingV1, MetalHeaven.ExternalDataContracts",
+                "sides": 0
+            },
+            "picklingPassivating": {
+                "$id": "30",
+                "$type": "Versioned.ExternalDataContracts.Contracts.Features.PicklingPassivatingV1, MetalHeaven.ExternalDataContracts",
+                "sides": 0
+            },
+            "polishing": {
+                "$id": "31",
+                "$type": "Versioned.ExternalDataContracts.Contracts.Features.PolishingV1, MetalHeaven.ExternalDataContracts",
+                "sides": 0
+            },
+            "powderCoating": {
+                "$id": "32",
+                "$type": "Versioned.ExternalDataContracts.Contracts.Features.PowderCoatingV1, MetalHeaven.ExternalDataContracts",
+                "sides": 0
+            },
+            "zincPlating": {
+                "$id": "33",
+                "$type": "Versioned.ExternalDataContracts.Contracts.Features.ZincPlatingV1, MetalHeaven.ExternalDataContracts",
+                "sides": 0
+            },
+            "designing": {
+                "$id": "34",
+                "$type": "Versioned.ExternalDataContracts.Contracts.Features.DesigningV1, MetalHeaven.ExternalDataContracts"
+            },
+            "certifying": {
+                "$id": "35",
+                "$type": "Versioned.ExternalDataContracts.Contracts.Features.CertifyingV1, MetalHeaven.ExternalDataContracts"
+            },
+            "shipping": {
+                "$id": "36",
+                "$type": "Versioned.ExternalDataContracts.Contracts.Features.ShippingV1, MetalHeaven.ExternalDataContracts"
+            }
+        },
+        "financial": {
+            "$id": "37",
+            "$type": "Versioned.ExternalDataContracts.Contracts.Financial.FinancialV1, MetalHeaven.ExternalDataContracts",
+            "id": "4e36a03b-77bb-463c-b7eb-38c464ca73ff",
+            "totalProjectQuantity": 1,
+            "quantity": 1,
+            "costPriceOfItems": {
+                "$type": "Versioned.ExternalDataContracts.Contracts.Common.Money, MetalHeaven.ExternalDataContracts",
+                "Amount": 36.213457598425289,
+                "Currency": "EUR"
+            },
+            "discountOrSurchargeRatio": {
+                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                "Unit": "RatioUnit.DecimalFraction",
+                "Value": 0.22495897773453603
+            },
+            "costPricePerItem": {
+                "$id": "38",
+                "$type": "Versioned.ExternalDataContracts.Contracts.Common.Money, MetalHeaven.ExternalDataContracts",
+                "Amount": 36.213457598425289,
+                "Currency": "EUR"
+            },
+            "salesPricePerItem": {
+                "$type": "Versioned.ExternalDataContracts.Contracts.Common.Money, MetalHeaven.ExternalDataContracts",
+                "Amount": 44.36,
+                "Currency": "EUR"
+            },
+            "discountOrSurchargeValuePerItem": {
+                "$type": "Versioned.ExternalDataContracts.Contracts.Common.Money, MetalHeaven.ExternalDataContracts",
+                "Amount": 8.14654240157472,
+                "Currency": "EUR"
+            },
+            "discountOrSurchargeValueOfItems": {
+                "$type": "Versioned.ExternalDataContracts.Contracts.Common.Money, MetalHeaven.ExternalDataContracts",
+                "Amount": 8.14654240157472,
+                "Currency": "EUR"
+            },
+            "salesPriceOfItems": {
+                "$type": "Versioned.ExternalDataContracts.Contracts.Common.Money, MetalHeaven.ExternalDataContracts",
+                "Amount": 44.36,
+                "Currency": "EUR"
+            }
+        },
+        "estimations": [
+            {
+                "$id": "39",
+                "$type": "Versioned.ExternalDataContracts.Contracts.BoM.EstimationsV1, MetalHeaven.ExternalDataContracts",
+                "source": {
+                    "$id": "40",
+                    "$type": "Versioned.ExternalDataContracts.Contracts.Resource.ResourceMatchV1, MetalHeaven.ExternalDataContracts",
+                    "id": "4b766c97-1e49-403a-a9f7-9dc6733c1eea",
+                    "rationale": 4,
+                    "isOutsourced": false
+                },
+                "workingStepEstimations": [
+                    {
+                        "$id": "41",
+                        "$type": "Versioned.ExternalDataContracts.Contracts.BoM.EstimationV1, MetalHeaven.ExternalDataContracts",
+                        "resourceWorkingStepKey": {
+                            "$id": "42",
+                            "$type": "Versioned.ExternalDataContracts.Contracts.Resource.ResourceWorkingStepKeyV1, MetalHeaven.ExternalDataContracts",
+                            "resourceId": "4b766c97-1e49-403a-a9f7-9dc6733c1eea",
+                            "workingStepKey": {
+                                "$id": "43",
+                                "$type": "Versioned.ExternalDataContracts.Contracts.Resource.WorkingStepKeyV1, MetalHeaven.ExternalDataContracts",
+                                "primaryWorkingStep": 1,
+                                "secondaryWorkingStep": 32
+                            }
+                        },
+                        "financial": {
+                            "$id": "44",
+                            "$type": "Versioned.ExternalDataContracts.Contracts.Financial.FinancialV1, MetalHeaven.ExternalDataContracts",
+                            "id": "aab50820-02a7-4513-9b64-8a756c19150e",
+                            "totalProjectQuantity": 1,
+                            "quantity": 1,
+                            "costPriceOfItems": {
+                                "$type": "Versioned.ExternalDataContracts.Contracts.Common.Money, MetalHeaven.ExternalDataContracts",
+                                "Amount": 4.678,
+                                "Currency": "EUR"
+                            },
+                            "discountOrSurchargeRatio": {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "RatioUnit.Percent",
+                                "Value": 30.0
+                            },
+                            "costPricePerItem": {
+                                "$id": "45",
+                                "$type": "Versioned.ExternalDataContracts.Contracts.Common.Money, MetalHeaven.ExternalDataContracts",
+                                "Amount": 4.678,
+                                "Currency": "EUR"
+                            },
+                            "salesPricePerItem": {
+                                "$type": "Versioned.ExternalDataContracts.Contracts.Common.Money, MetalHeaven.ExternalDataContracts",
+                                "Amount": 6.0814,
+                                "Currency": "EUR"
+                            },
+                            "discountOrSurchargeValuePerItem": {
+                                "$type": "Versioned.ExternalDataContracts.Contracts.Common.Money, MetalHeaven.ExternalDataContracts",
+                                "Amount": 1.4034,
+                                "Currency": "EUR"
+                            },
+                            "discountOrSurchargeValueOfItems": {
+                                "$type": "Versioned.ExternalDataContracts.Contracts.Common.Money, MetalHeaven.ExternalDataContracts",
+                                "Amount": 1.4034,
+                                "Currency": "EUR"
+                            },
+                            "salesPriceOfItems": {
+                                "$type": "Versioned.ExternalDataContracts.Contracts.Common.Money, MetalHeaven.ExternalDataContracts",
+                                "Amount": 6.0814,
+                                "Currency": "EUR"
+                            }
+                        },
+                        "productionTime": {
+                            "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                            "Unit": "DurationUnit.Second",
+                            "Value": 180.0
+                        },
+                        "additionalCosts": {
+                            "$id": "46",
+                            "$type": "Versioned.ExternalDataContracts.Contracts.Common.Money, MetalHeaven.ExternalDataContracts",
+                            "Amount": 0.0,
+                            "Currency": "EUR"
+                        },
+                        "rate": {
+                            "$id": "1",
+                            "$type": "Versioned.ExternalDataContracts.UoM.MoneyPerQuantityV1`1[[UnitsNet.IQuantity, UnitsNet]], MetalHeaven.ExternalDataContracts",
+                            "money": {
+                                "$type": "Versioned.ExternalDataContracts.Contracts.Common.Money, MetalHeaven.ExternalDataContracts",
+                                "Amount": 93.56,
+                                "Currency": "EUR"
+                            },
+                            "quantity": {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "DurationUnit.Hour",
+                                "Value": 1.0
+                            }
+                        },
+                        "costsAreShared": false
+                    },
+                    {
+                        "$id": "47",
+                        "$type": "Versioned.ExternalDataContracts.Contracts.BoM.EstimationV1, MetalHeaven.ExternalDataContracts",
+                        "resourceWorkingStepKey": {
+                            "$id": "48",
+                            "$type": "Versioned.ExternalDataContracts.Contracts.Resource.ResourceWorkingStepKeyV1, MetalHeaven.ExternalDataContracts",
+                            "resourceId": "4b766c97-1e49-403a-a9f7-9dc6733c1eea",
+                            "workingStepKey": {
+                                "$id": "49",
+                                "$type": "Versioned.ExternalDataContracts.Contracts.Resource.WorkingStepKeyV1, MetalHeaven.ExternalDataContracts",
+                                "primaryWorkingStep": 1,
+                                "secondaryWorkingStep": 1
+                            }
+                        },
+                        "financial": {
+                            "$id": "50",
+                            "$type": "Versioned.ExternalDataContracts.Contracts.Financial.FinancialV1, MetalHeaven.ExternalDataContracts",
+                            "id": "c524b5c9-853f-4781-974f-c756cb57cca6",
+                            "totalProjectQuantity": 1,
+                            "quantity": 1,
+                            "costPriceOfItems": {
+                                "$type": "Versioned.ExternalDataContracts.Contracts.Common.Money, MetalHeaven.ExternalDataContracts",
+                                "Amount": 0.7515255984252891,
+                                "Currency": "EUR"
+                            },
+                            "discountOrSurchargeRatio": {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "RatioUnit.Percent",
+                                "Value": 30.0
+                            },
+                            "costPricePerItem": {
+                                "$id": "51",
+                                "$type": "Versioned.ExternalDataContracts.Contracts.Common.Money, MetalHeaven.ExternalDataContracts",
+                                "Amount": 0.7515255984252891,
+                                "Currency": "EUR"
+                            },
+                            "salesPricePerItem": {
+                                "$type": "Versioned.ExternalDataContracts.Contracts.Common.Money, MetalHeaven.ExternalDataContracts",
+                                "Amount": 0.9769832779528761,
+                                "Currency": "EUR"
+                            },
+                            "discountOrSurchargeValuePerItem": {
+                                "$type": "Versioned.ExternalDataContracts.Contracts.Common.Money, MetalHeaven.ExternalDataContracts",
+                                "Amount": 0.225457679527587,
+                                "Currency": "EUR"
+                            },
+                            "discountOrSurchargeValueOfItems": {
+                                "$type": "Versioned.ExternalDataContracts.Contracts.Common.Money, MetalHeaven.ExternalDataContracts",
+                                "Amount": 0.225457679527587,
+                                "Currency": "EUR"
+                            },
+                            "salesPriceOfItems": {
+                                "$type": "Versioned.ExternalDataContracts.Contracts.Common.Money, MetalHeaven.ExternalDataContracts",
+                                "Amount": 0.9769832779528761,
+                                "Currency": "EUR"
+                            }
+                        },
+                        "productionTime": {
+                            "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                            "Unit": "DurationUnit.Second",
+                            "Value": 26.124875959164144
+                        },
+                        "additionalCosts": {
+                            "$id": "52",
+                            "$type": "Versioned.ExternalDataContracts.Contracts.Common.Money, MetalHeaven.ExternalDataContracts",
+                            "Amount": 0.0725690998865671,
+                            "Currency": "EUR"
+                        },
+                        "rate": {
+                            "$id": "1",
+                            "$type": "Versioned.ExternalDataContracts.UoM.MoneyPerQuantityV1`1[[UnitsNet.IQuantity, UnitsNet]], MetalHeaven.ExternalDataContracts",
+                            "money": {
+                                "$type": "Versioned.ExternalDataContracts.Contracts.Common.Money, MetalHeaven.ExternalDataContracts",
+                                "Amount": 93.56,
+                                "Currency": "EUR"
+                            },
+                            "quantity": {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "DurationUnit.Hour",
+                                "Value": 1.0
+                            }
+                        },
+                        "costsAreShared": false
+                    },
+                    {
+                        "$id": "53",
+                        "$type": "Versioned.ExternalDataContracts.Contracts.BoM.EstimationV1, MetalHeaven.ExternalDataContracts",
+                        "resourceWorkingStepKey": {
+                            "$id": "54",
+                            "$type": "Versioned.ExternalDataContracts.Contracts.Resource.ResourceWorkingStepKeyV1, MetalHeaven.ExternalDataContracts",
+                            "resourceId": "4b766c97-1e49-403a-a9f7-9dc6733c1eea",
+                            "workingStepKey": {
+                                "$id": "55",
+                                "$type": "Versioned.ExternalDataContracts.Contracts.Resource.WorkingStepKeyV1, MetalHeaven.ExternalDataContracts",
+                                "primaryWorkingStep": 1,
+                                "secondaryWorkingStep": 33
+                            }
+                        },
+                        "financial": {
+                            "$id": "56",
+                            "$type": "Versioned.ExternalDataContracts.Contracts.Financial.FinancialV1, MetalHeaven.ExternalDataContracts",
+                            "id": "40536cd2-314f-4acf-ba52-f5264421d4c7",
+                            "totalProjectQuantity": 1,
+                            "quantity": 1,
+                            "costPriceOfItems": {
+                                "$type": "Versioned.ExternalDataContracts.Contracts.Common.Money, MetalHeaven.ExternalDataContracts",
+                                "Amount": 1.80882666666667,
+                                "Currency": "EUR"
+                            },
+                            "discountOrSurchargeRatio": {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "RatioUnit.Percent",
+                                "Value": 30.0
+                            },
+                            "costPricePerItem": {
+                                "$id": "57",
+                                "$type": "Versioned.ExternalDataContracts.Contracts.Common.Money, MetalHeaven.ExternalDataContracts",
+                                "Amount": 1.80882666666667,
+                                "Currency": "EUR"
+                            },
+                            "salesPricePerItem": {
+                                "$type": "Versioned.ExternalDataContracts.Contracts.Common.Money, MetalHeaven.ExternalDataContracts",
+                                "Amount": 2.351474666666671,
+                                "Currency": "EUR"
+                            },
+                            "discountOrSurchargeValuePerItem": {
+                                "$type": "Versioned.ExternalDataContracts.Contracts.Common.Money, MetalHeaven.ExternalDataContracts",
+                                "Amount": 0.542648000000001,
+                                "Currency": "EUR"
+                            },
+                            "discountOrSurchargeValueOfItems": {
+                                "$type": "Versioned.ExternalDataContracts.Contracts.Common.Money, MetalHeaven.ExternalDataContracts",
+                                "Amount": 0.542648000000001,
+                                "Currency": "EUR"
+                            },
+                            "salesPriceOfItems": {
+                                "$type": "Versioned.ExternalDataContracts.Contracts.Common.Money, MetalHeaven.ExternalDataContracts",
+                                "Amount": 2.351474666666671,
+                                "Currency": "EUR"
+                            }
+                        },
+                        "productionTime": {
+                            "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                            "Unit": "DurationUnit.Second",
+                            "Value": 69.6
+                        },
+                        "additionalCosts": {
+                            "$id": "58",
+                            "$type": "Versioned.ExternalDataContracts.Contracts.Common.Money, MetalHeaven.ExternalDataContracts",
+                            "Amount": 0.0,
+                            "Currency": "EUR"
+                        },
+                        "rate": {
+                            "$id": "1",
+                            "$type": "Versioned.ExternalDataContracts.UoM.MoneyPerQuantityV1`1[[UnitsNet.IQuantity, UnitsNet]], MetalHeaven.ExternalDataContracts",
+                            "money": {
+                                "$type": "Versioned.ExternalDataContracts.Contracts.Common.Money, MetalHeaven.ExternalDataContracts",
+                                "Amount": 93.56,
+                                "Currency": "EUR"
+                            },
+                            "quantity": {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "DurationUnit.Hour",
+                                "Value": 1.0
+                            }
+                        },
+                        "costsAreShared": false
+                    }
+                ],
+                "financial": {
+                    "$id": "59",
+                    "$type": "Versioned.ExternalDataContracts.Contracts.Financial.FinancialV1, MetalHeaven.ExternalDataContracts",
+                    "id": "dbba990b-b3c6-4003-bdd9-1128d831c667",
+                    "totalProjectQuantity": 1,
+                    "quantity": 1,
+                    "costPriceOfItems": {
+                        "$type": "Versioned.ExternalDataContracts.Contracts.Common.Money, MetalHeaven.ExternalDataContracts",
+                        "Amount": 0.0,
+                        "Currency": "EUR"
+                    },
+                    "discountOrSurchargeRatio": {
+                        "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                        "Unit": "RatioUnit.Percent",
+                        "Value": 30.0
+                    },
+                    "costPricePerItem": {
+                        "$id": "60",
+                        "$type": "Versioned.ExternalDataContracts.Contracts.Common.Money, MetalHeaven.ExternalDataContracts",
+                        "Amount": 0.0,
+                        "Currency": "EUR"
+                    },
+                    "salesPricePerItem": {
+                        "$type": "Versioned.ExternalDataContracts.Contracts.Common.Money, MetalHeaven.ExternalDataContracts",
+                        "Amount": 0.0,
+                        "Currency": "EUR"
+                    },
+                    "discountOrSurchargeValuePerItem": {
+                        "$type": "Versioned.ExternalDataContracts.Contracts.Common.Money, MetalHeaven.ExternalDataContracts",
+                        "Amount": 0.0,
+                        "Currency": "EUR"
+                    },
+                    "discountOrSurchargeValueOfItems": {
+                        "$type": "Versioned.ExternalDataContracts.Contracts.Common.Money, MetalHeaven.ExternalDataContracts",
+                        "Amount": 0.0,
+                        "Currency": "EUR"
+                    },
+                    "salesPriceOfItems": {
+                        "$type": "Versioned.ExternalDataContracts.Contracts.Common.Money, MetalHeaven.ExternalDataContracts",
+                        "Amount": 0.0,
+                        "Currency": "EUR"
+                    }
+                }
+            },
+            {
+                "$id": "61",
+                "$type": "Versioned.ExternalDataContracts.Contracts.BoM.EstimationsV1, MetalHeaven.ExternalDataContracts",
+                "source": {
+                    "$id": "62",
+                    "$type": "Versioned.ExternalDataContracts.Contracts.Resource.ResourceMatchV1, MetalHeaven.ExternalDataContracts",
+                    "id": "1f6e27ad-ea89-404b-94c3-32efaf8deb4b",
+                    "rationale": 4,
+                    "isOutsourced": false
+                },
+                "workingStepEstimations": [
+                    {
+                        "$id": "63",
+                        "$type": "Versioned.ExternalDataContracts.Contracts.BoM.EstimationV1, MetalHeaven.ExternalDataContracts",
+                        "resourceWorkingStepKey": {
+                            "$id": "64",
+                            "$type": "Versioned.ExternalDataContracts.Contracts.Resource.ResourceWorkingStepKeyV1, MetalHeaven.ExternalDataContracts",
+                            "resourceId": "1f6e27ad-ea89-404b-94c3-32efaf8deb4b",
+                            "workingStepKey": {
+                                "$id": "65",
+                                "$type": "Versioned.ExternalDataContracts.Contracts.Resource.WorkingStepKeyV1, MetalHeaven.ExternalDataContracts",
+                                "primaryWorkingStep": 3,
+                                "secondaryWorkingStep": 32
+                            }
+                        },
+                        "financial": {
+                            "$id": "66",
+                            "$type": "Versioned.ExternalDataContracts.Contracts.Financial.FinancialV1, MetalHeaven.ExternalDataContracts",
+                            "id": "47449403-1858-47e2-8a51-82ada169ca39",
+                            "totalProjectQuantity": 1,
+                            "quantity": 1,
+                            "costPriceOfItems": {
+                                "$type": "Versioned.ExternalDataContracts.Contracts.Common.Money, MetalHeaven.ExternalDataContracts",
+                                "Amount": 0.0166666666666667,
+                                "Currency": "EUR"
+                            },
+                            "discountOrSurchargeRatio": {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "RatioUnit.DecimalFraction",
+                                "Value": 0.3
+                            },
+                            "costPricePerItem": {
+                                "$id": "67",
+                                "$type": "Versioned.ExternalDataContracts.Contracts.Common.Money, MetalHeaven.ExternalDataContracts",
+                                "Amount": 0.0166666666666667,
+                                "Currency": "EUR"
+                            },
+                            "salesPricePerItem": {
+                                "$type": "Versioned.ExternalDataContracts.Contracts.Common.Money, MetalHeaven.ExternalDataContracts",
+                                "Amount": 0.02166666666666671,
+                                "Currency": "EUR"
+                            },
+                            "discountOrSurchargeValuePerItem": {
+                                "$type": "Versioned.ExternalDataContracts.Contracts.Common.Money, MetalHeaven.ExternalDataContracts",
+                                "Amount": 0.00500000000000001,
+                                "Currency": "EUR"
+                            },
+                            "discountOrSurchargeValueOfItems": {
+                                "$type": "Versioned.ExternalDataContracts.Contracts.Common.Money, MetalHeaven.ExternalDataContracts",
+                                "Amount": 0.00500000000000001,
+                                "Currency": "EUR"
+                            },
+                            "salesPriceOfItems": {
+                                "$type": "Versioned.ExternalDataContracts.Contracts.Common.Money, MetalHeaven.ExternalDataContracts",
+                                "Amount": 0.02166666666666671,
+                                "Currency": "EUR"
+                            }
+                        },
+                        "productionTime": {
+                            "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                            "Unit": "DurationUnit.Second",
+                            "Value": 60.0
+                        },
+                        "additionalCosts": {
+                            "$id": "68",
+                            "$type": "Versioned.ExternalDataContracts.Contracts.Common.Money, MetalHeaven.ExternalDataContracts",
+                            "Amount": 0.0,
+                            "Currency": "EUR"
+                        },
+                        "rate": {
+                            "$id": "1",
+                            "$type": "Versioned.ExternalDataContracts.UoM.MoneyPerQuantityV1`1[[UnitsNet.IQuantity, UnitsNet]], MetalHeaven.ExternalDataContracts",
+                            "money": {
+                                "$type": "Versioned.ExternalDataContracts.Contracts.Common.Money, MetalHeaven.ExternalDataContracts",
+                                "Amount": 1.0,
+                                "Currency": "EUR"
+                            },
+                            "quantity": {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "DurationUnit.Hour",
+                                "Value": 1.0
+                            }
+                        },
+                        "costsAreShared": false
+                    },
+                    {
+                        "$id": "69",
+                        "$type": "Versioned.ExternalDataContracts.Contracts.BoM.EstimationV1, MetalHeaven.ExternalDataContracts",
+                        "resourceWorkingStepKey": {
+                            "$id": "70",
+                            "$type": "Versioned.ExternalDataContracts.Contracts.Resource.ResourceWorkingStepKeyV1, MetalHeaven.ExternalDataContracts",
+                            "resourceId": "1f6e27ad-ea89-404b-94c3-32efaf8deb4b",
+                            "workingStepKey": {
+                                "$id": "71",
+                                "$type": "Versioned.ExternalDataContracts.Contracts.Resource.WorkingStepKeyV1, MetalHeaven.ExternalDataContracts",
+                                "primaryWorkingStep": 3,
+                                "secondaryWorkingStep": 3
+                            }
+                        },
+                        "financial": {
+                            "$id": "72",
+                            "$type": "Versioned.ExternalDataContracts.Contracts.Financial.FinancialV1, MetalHeaven.ExternalDataContracts",
+                            "id": "71971d43-1b8e-40a4-8c83-cf9e0934474c",
+                            "totalProjectQuantity": 1,
+                            "quantity": 1,
+                            "costPriceOfItems": {
+                                "$type": "Versioned.ExternalDataContracts.Contracts.Common.Money, MetalHeaven.ExternalDataContracts",
+                                "Amount": 1.75,
+                                "Currency": "EUR"
+                            },
+                            "discountOrSurchargeRatio": {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "RatioUnit.DecimalFraction",
+                                "Value": 0.3
+                            },
+                            "costPricePerItem": {
+                                "$id": "73",
+                                "$type": "Versioned.ExternalDataContracts.Contracts.Common.Money, MetalHeaven.ExternalDataContracts",
+                                "Amount": 1.75,
+                                "Currency": "EUR"
+                            },
+                            "salesPricePerItem": {
+                                "$type": "Versioned.ExternalDataContracts.Contracts.Common.Money, MetalHeaven.ExternalDataContracts",
+                                "Amount": 2.275,
+                                "Currency": "EUR"
+                            },
+                            "discountOrSurchargeValuePerItem": {
+                                "$type": "Versioned.ExternalDataContracts.Contracts.Common.Money, MetalHeaven.ExternalDataContracts",
+                                "Amount": 0.525,
+                                "Currency": "EUR"
+                            },
+                            "discountOrSurchargeValueOfItems": {
+                                "$type": "Versioned.ExternalDataContracts.Contracts.Common.Money, MetalHeaven.ExternalDataContracts",
+                                "Amount": 0.525,
+                                "Currency": "EUR"
+                            },
+                            "salesPriceOfItems": {
+                                "$type": "Versioned.ExternalDataContracts.Contracts.Common.Money, MetalHeaven.ExternalDataContracts",
+                                "Amount": 2.275,
+                                "Currency": "EUR"
+                            }
+                        },
+                        "productionTime": {
+                            "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                            "Unit": "DurationUnit.Second",
+                            "Value": 63.0
+                        },
+                        "additionalCosts": {
+                            "$id": "74",
+                            "$type": "Versioned.ExternalDataContracts.Contracts.Common.Money, MetalHeaven.ExternalDataContracts",
+                            "Amount": 0.0,
+                            "Currency": "EUR"
+                        },
+                        "rate": {
+                            "$id": "1",
+                            "$type": "Versioned.ExternalDataContracts.UoM.MoneyPerQuantityV1`1[[UnitsNet.IQuantity, UnitsNet]], MetalHeaven.ExternalDataContracts",
+                            "money": {
+                                "$type": "Versioned.ExternalDataContracts.Contracts.Common.Money, MetalHeaven.ExternalDataContracts",
+                                "Amount": 100.0,
+                                "Currency": "EUR"
+                            },
+                            "quantity": {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "DurationUnit.Hour",
+                                "Value": 1.0
+                            }
+                        },
+                        "externalCode": "37889",
+                        "costsAreShared": false
+                    },
+                    {
+                        "$id": "75",
+                        "$type": "Versioned.ExternalDataContracts.Contracts.BoM.EstimationV1, MetalHeaven.ExternalDataContracts",
+                        "resourceWorkingStepKey": {
+                            "$id": "76",
+                            "$type": "Versioned.ExternalDataContracts.Contracts.Resource.ResourceWorkingStepKeyV1, MetalHeaven.ExternalDataContracts",
+                            "resourceId": "1f6e27ad-ea89-404b-94c3-32efaf8deb4b",
+                            "workingStepKey": {
+                                "$id": "77",
+                                "$type": "Versioned.ExternalDataContracts.Contracts.Resource.WorkingStepKeyV1, MetalHeaven.ExternalDataContracts",
+                                "primaryWorkingStep": 3,
+                                "secondaryWorkingStep": 33
+                            }
+                        },
+                        "financial": {
+                            "$id": "78",
+                            "$type": "Versioned.ExternalDataContracts.Contracts.Financial.FinancialV1, MetalHeaven.ExternalDataContracts",
+                            "id": "52ef2dd9-f1f3-49df-af09-12d89c52b864",
+                            "totalProjectQuantity": 1,
+                            "quantity": 1,
+                            "costPriceOfItems": {
+                                "$type": "Versioned.ExternalDataContracts.Contracts.Common.Money, MetalHeaven.ExternalDataContracts",
+                                "Amount": 0.0166666666666667,
+                                "Currency": "EUR"
+                            },
+                            "discountOrSurchargeRatio": {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "RatioUnit.DecimalFraction",
+                                "Value": 0.3
+                            },
+                            "costPricePerItem": {
+                                "$id": "79",
+                                "$type": "Versioned.ExternalDataContracts.Contracts.Common.Money, MetalHeaven.ExternalDataContracts",
+                                "Amount": 0.0166666666666667,
+                                "Currency": "EUR"
+                            },
+                            "salesPricePerItem": {
+                                "$type": "Versioned.ExternalDataContracts.Contracts.Common.Money, MetalHeaven.ExternalDataContracts",
+                                "Amount": 0.02166666666666671,
+                                "Currency": "EUR"
+                            },
+                            "discountOrSurchargeValuePerItem": {
+                                "$type": "Versioned.ExternalDataContracts.Contracts.Common.Money, MetalHeaven.ExternalDataContracts",
+                                "Amount": 0.00500000000000001,
+                                "Currency": "EUR"
+                            },
+                            "discountOrSurchargeValueOfItems": {
+                                "$type": "Versioned.ExternalDataContracts.Contracts.Common.Money, MetalHeaven.ExternalDataContracts",
+                                "Amount": 0.00500000000000001,
+                                "Currency": "EUR"
+                            },
+                            "salesPriceOfItems": {
+                                "$type": "Versioned.ExternalDataContracts.Contracts.Common.Money, MetalHeaven.ExternalDataContracts",
+                                "Amount": 0.02166666666666671,
+                                "Currency": "EUR"
+                            }
+                        },
+                        "productionTime": {
+                            "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                            "Unit": "DurationUnit.Second",
+                            "Value": 60.0
+                        },
+                        "additionalCosts": {
+                            "$id": "80",
+                            "$type": "Versioned.ExternalDataContracts.Contracts.Common.Money, MetalHeaven.ExternalDataContracts",
+                            "Amount": 0.0,
+                            "Currency": "EUR"
+                        },
+                        "rate": {
+                            "$id": "1",
+                            "$type": "Versioned.ExternalDataContracts.UoM.MoneyPerQuantityV1`1[[UnitsNet.IQuantity, UnitsNet]], MetalHeaven.ExternalDataContracts",
+                            "money": {
+                                "$type": "Versioned.ExternalDataContracts.Contracts.Common.Money, MetalHeaven.ExternalDataContracts",
+                                "Amount": 1.0,
+                                "Currency": "EUR"
+                            },
+                            "quantity": {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "DurationUnit.Hour",
+                                "Value": 1.0
+                            }
+                        },
+                        "costsAreShared": false
+                    }
+                ],
+                "financial": {
+                    "$id": "81",
+                    "$type": "Versioned.ExternalDataContracts.Contracts.Financial.FinancialV1, MetalHeaven.ExternalDataContracts",
+                    "id": "3d4485e5-5c0e-4cb0-974d-44c915b410ad",
+                    "totalProjectQuantity": 1,
+                    "quantity": 1,
+                    "costPriceOfItems": {
+                        "$type": "Versioned.ExternalDataContracts.Contracts.Common.Money, MetalHeaven.ExternalDataContracts",
+                        "Amount": 0.0,
+                        "Currency": "EUR"
+                    },
+                    "discountOrSurchargeRatio": {
+                        "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                        "Unit": "RatioUnit.DecimalFraction",
+                        "Value": 0.3
+                    },
+                    "costPricePerItem": {
+                        "$id": "82",
+                        "$type": "Versioned.ExternalDataContracts.Contracts.Common.Money, MetalHeaven.ExternalDataContracts",
+                        "Amount": 0.0,
+                        "Currency": "EUR"
+                    },
+                    "salesPricePerItem": {
+                        "$type": "Versioned.ExternalDataContracts.Contracts.Common.Money, MetalHeaven.ExternalDataContracts",
+                        "Amount": 0.0,
+                        "Currency": "EUR"
+                    },
+                    "discountOrSurchargeValuePerItem": {
+                        "$type": "Versioned.ExternalDataContracts.Contracts.Common.Money, MetalHeaven.ExternalDataContracts",
+                        "Amount": 0.0,
+                        "Currency": "EUR"
+                    },
+                    "discountOrSurchargeValueOfItems": {
+                        "$type": "Versioned.ExternalDataContracts.Contracts.Common.Money, MetalHeaven.ExternalDataContracts",
+                        "Amount": 0.0,
+                        "Currency": "EUR"
+                    },
+                    "salesPriceOfItems": {
+                        "$type": "Versioned.ExternalDataContracts.Contracts.Common.Money, MetalHeaven.ExternalDataContracts",
+                        "Amount": 0.0,
+                        "Currency": "EUR"
+                    }
+                }
+            }
+        ],
+        "machining": [
+            {
+                "$id": "83",
+                "$type": "Versioned.ExternalDataContracts.Contracts.BoM.MachiningDetailsV1, MetalHeaven.ExternalDataContracts",
+                "toolPaths2d": [
+                    {
+                        "$id": "84",
+                        "$type": "Versioned.ExternalDataContracts.Contracts.BoM.ToolPathV1, MetalHeaven.ExternalDataContracts",
+                        "contour": {
+                            "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                            "Unit": "LengthUnit.Millimeter",
+                            "Value": 1199.2304736361157
+                        },
+                        "fragments": [
+                            {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "LengthUnit.Millimeter",
+                                "Value": 8.12978654057316
+                            },
+                            {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "LengthUnit.Millimeter",
+                                "Value": 14.0
+                            },
+                            {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "LengthUnit.Millimeter",
+                                "Value": 7.068583470577039
+                            },
+                            {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "LengthUnit.Millimeter",
+                                "Value": 254.00000000000007
+                            },
+                            {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "LengthUnit.Millimeter",
+                                "Value": 3.4168668069075709
+                            },
+                            {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "LengthUnit.Millimeter",
+                                "Value": 316.0
+                            },
+                            {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "LengthUnit.Millimeter",
+                                "Value": 3.416866806907546
+                            },
+                            {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "LengthUnit.Millimeter",
+                                "Value": 254.00000000000007
+                            },
+                            {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "LengthUnit.Millimeter",
+                                "Value": 7.068583470577039
+                            },
+                            {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "LengthUnit.Millimeter",
+                                "Value": 14.0
+                            },
+                            {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "LengthUnit.Millimeter",
+                                "Value": 8.129786540573086
+                            },
+                            {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "LengthUnit.Millimeter",
+                                "Value": 310.0
+                            }
+                        ]
+                    },
+                    {
+                        "$id": "85",
+                        "$type": "Versioned.ExternalDataContracts.Contracts.BoM.ToolPathV1, MetalHeaven.ExternalDataContracts",
+                        "contour": {
+                            "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                            "Unit": "LengthUnit.Millimeter",
+                            "Value": 24.034169319352743
+                        },
+                        "fragments": [
+                            {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "LengthUnit.Millimeter",
+                                "Value": 12.017084659676384
+                            },
+                            {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "LengthUnit.Millimeter",
+                                "Value": 12.01708465967636
+                            }
+                        ]
+                    },
+                    {
+                        "$id": "86",
+                        "$type": "Versioned.ExternalDataContracts.Contracts.BoM.ToolPathV1, MetalHeaven.ExternalDataContracts",
+                        "contour": {
+                            "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                            "Unit": "LengthUnit.Millimeter",
+                            "Value": 24.034169319352693
+                        },
+                        "fragments": [
+                            {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "LengthUnit.Millimeter",
+                                "Value": 12.017084659676359
+                            },
+                            {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "LengthUnit.Millimeter",
+                                "Value": 12.017084659676334
+                            }
+                        ]
+                    },
+                    {
+                        "$id": "87",
+                        "$type": "Versioned.ExternalDataContracts.Contracts.BoM.ToolPathV1, MetalHeaven.ExternalDataContracts",
+                        "contour": {
+                            "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                            "Unit": "LengthUnit.Millimeter",
+                            "Value": 24.034169319352743
+                        },
+                        "fragments": [
+                            {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "LengthUnit.Millimeter",
+                                "Value": 12.017084659676378
+                            },
+                            {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "LengthUnit.Millimeter",
+                                "Value": 12.017084659676366
+                            }
+                        ]
+                    },
+                    {
+                        "$id": "88",
+                        "$type": "Versioned.ExternalDataContracts.Contracts.BoM.ToolPathV1, MetalHeaven.ExternalDataContracts",
+                        "contour": {
+                            "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                            "Unit": "LengthUnit.Millimeter",
+                            "Value": 24.034169319352718
+                        },
+                        "fragments": [
+                            {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "LengthUnit.Millimeter",
+                                "Value": 12.017084659676345
+                            },
+                            {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "LengthUnit.Millimeter",
+                                "Value": 12.017084659676373
+                            }
+                        ]
+                    },
+                    {
+                        "$id": "89",
+                        "$type": "Versioned.ExternalDataContracts.Contracts.BoM.ToolPathV1, MetalHeaven.ExternalDataContracts",
+                        "contour": {
+                            "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                            "Unit": "LengthUnit.Millimeter",
+                            "Value": 24.034169319352743
+                        },
+                        "fragments": [
+                            {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "LengthUnit.Millimeter",
+                                "Value": 12.017084659676378
+                            },
+                            {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "LengthUnit.Millimeter",
+                                "Value": 12.017084659676366
+                            }
+                        ]
+                    },
+                    {
+                        "$id": "90",
+                        "$type": "Versioned.ExternalDataContracts.Contracts.BoM.ToolPathV1, MetalHeaven.ExternalDataContracts",
+                        "contour": {
+                            "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                            "Unit": "LengthUnit.Millimeter",
+                            "Value": 24.034169319352718
+                        },
+                        "fragments": [
+                            {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "LengthUnit.Millimeter",
+                                "Value": 12.017084659676357
+                            },
+                            {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "LengthUnit.Millimeter",
+                                "Value": 12.01708465967636
+                            }
+                        ]
+                    },
+                    {
+                        "$id": "91",
+                        "$type": "Versioned.ExternalDataContracts.Contracts.BoM.ToolPathV1, MetalHeaven.ExternalDataContracts",
+                        "contour": {
+                            "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                            "Unit": "LengthUnit.Millimeter",
+                            "Value": 24.03416931935273
+                        },
+                        "fragments": [
+                            {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "LengthUnit.Millimeter",
+                                "Value": 12.017084659676371
+                            },
+                            {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "LengthUnit.Millimeter",
+                                "Value": 12.01708465967636
+                            }
+                        ]
+                    },
+                    {
+                        "$id": "92",
+                        "$type": "Versioned.ExternalDataContracts.Contracts.BoM.ToolPathV1, MetalHeaven.ExternalDataContracts",
+                        "contour": {
+                            "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                            "Unit": "LengthUnit.Millimeter",
+                            "Value": 24.03416931935272
+                        },
+                        "fragments": [
+                            {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "LengthUnit.Millimeter",
+                                "Value": 12.017084659676359
+                            },
+                            {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "LengthUnit.Millimeter",
+                                "Value": 12.017084659676364
+                            }
+                        ]
+                    },
+                    {
+                        "$id": "93",
+                        "$type": "Versioned.ExternalDataContracts.Contracts.BoM.ToolPathV1, MetalHeaven.ExternalDataContracts",
+                        "contour": {
+                            "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                            "Unit": "LengthUnit.Millimeter",
+                            "Value": 24.034169319352779
+                        },
+                        "fragments": [
+                            {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "LengthUnit.Millimeter",
+                                "Value": 12.017084659676394
+                            },
+                            {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "LengthUnit.Millimeter",
+                                "Value": 12.017084659676386
+                            }
+                        ]
+                    },
+                    {
+                        "$id": "94",
+                        "$type": "Versioned.ExternalDataContracts.Contracts.BoM.ToolPathV1, MetalHeaven.ExternalDataContracts",
+                        "contour": {
+                            "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                            "Unit": "LengthUnit.Millimeter",
+                            "Value": 24.03416931935272
+                        },
+                        "fragments": [
+                            {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "LengthUnit.Millimeter",
+                                "Value": 12.017084659676364
+                            },
+                            {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "LengthUnit.Millimeter",
+                                "Value": 12.017084659676359
+                            }
+                        ]
+                    },
+                    {
+                        "$id": "95",
+                        "$type": "Versioned.ExternalDataContracts.Contracts.BoM.ToolPathV1, MetalHeaven.ExternalDataContracts",
+                        "contour": {
+                            "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                            "Unit": "LengthUnit.Millimeter",
+                            "Value": 24.034169319352686
+                        },
+                        "fragments": [
+                            {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "LengthUnit.Millimeter",
+                                "Value": 12.017084659676329
+                            },
+                            {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "LengthUnit.Millimeter",
+                                "Value": 12.017084659676355
+                            }
+                        ]
+                    },
+                    {
+                        "$id": "96",
+                        "$type": "Versioned.ExternalDataContracts.Contracts.BoM.ToolPathV1, MetalHeaven.ExternalDataContracts",
+                        "contour": {
+                            "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                            "Unit": "LengthUnit.Millimeter",
+                            "Value": 24.034169319352736
+                        },
+                        "fragments": [
+                            {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "LengthUnit.Millimeter",
+                                "Value": 12.017084659676352
+                            },
+                            {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "LengthUnit.Millimeter",
+                                "Value": 12.017084659676386
+                            }
+                        ]
+                    },
+                    {
+                        "$id": "97",
+                        "$type": "Versioned.ExternalDataContracts.Contracts.BoM.ToolPathV1, MetalHeaven.ExternalDataContracts",
+                        "contour": {
+                            "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                            "Unit": "LengthUnit.Millimeter",
+                            "Value": 33.19999999999997
+                        },
+                        "fragments": [
+                            {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "LengthUnit.Millimeter",
+                                "Value": 14.849999999999966
+                            },
+                            {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "LengthUnit.Millimeter",
+                                "Value": 1.7500000000000007
+                            },
+                            {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "LengthUnit.Millimeter",
+                                "Value": 14.850000000000009
+                            },
+                            {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "LengthUnit.Millimeter",
+                                "Value": 1.7499999999999963
+                            }
+                        ]
+                    },
+                    {
+                        "$id": "98",
+                        "$type": "Versioned.ExternalDataContracts.Contracts.BoM.ToolPathV1, MetalHeaven.ExternalDataContracts",
+                        "contour": {
+                            "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                            "Unit": "LengthUnit.Millimeter",
+                            "Value": 33.199999999999949
+                        },
+                        "fragments": [
+                            {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "LengthUnit.Millimeter",
+                                "Value": 14.850000000000002
+                            },
+                            {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "LengthUnit.Millimeter",
+                                "Value": 1.7499999999999312
+                            },
+                            {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "LengthUnit.Millimeter",
+                                "Value": 14.850000000000009
+                            },
+                            {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "LengthUnit.Millimeter",
+                                "Value": 1.7500000000000036
+                            }
+                        ]
+                    },
+                    {
+                        "$id": "99",
+                        "$type": "Versioned.ExternalDataContracts.Contracts.BoM.ToolPathV1, MetalHeaven.ExternalDataContracts",
+                        "contour": {
+                            "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                            "Unit": "LengthUnit.Millimeter",
+                            "Value": 33.20000000000001
+                        },
+                        "fragments": [
+                            {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "LengthUnit.Millimeter",
+                                "Value": 14.850000000000002
+                            },
+                            {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "LengthUnit.Millimeter",
+                                "Value": 1.7500000000000007
+                            },
+                            {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "LengthUnit.Millimeter",
+                                "Value": 14.850000000000014
+                            },
+                            {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "LengthUnit.Millimeter",
+                                "Value": 1.7499999999999963
+                            }
+                        ]
+                    },
+                    {
+                        "$id": "100",
+                        "$type": "Versioned.ExternalDataContracts.Contracts.BoM.ToolPathV1, MetalHeaven.ExternalDataContracts",
+                        "contour": {
+                            "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                            "Unit": "LengthUnit.Millimeter",
+                            "Value": 33.19999999999984
+                        },
+                        "fragments": [
+                            {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "LengthUnit.Millimeter",
+                                "Value": 14.849999999999979
+                            },
+                            {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "LengthUnit.Millimeter",
+                                "Value": 1.7499999999999312
+                            },
+                            {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "LengthUnit.Millimeter",
+                                "Value": 14.849999999999968
+                            },
+                            {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "LengthUnit.Millimeter",
+                                "Value": 1.7499999999999639
+                            }
+                        ]
+                    },
+                    {
+                        "$id": "101",
+                        "$type": "Versioned.ExternalDataContracts.Contracts.BoM.ToolPathV1, MetalHeaven.ExternalDataContracts",
+                        "contour": {
+                            "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                            "Unit": "LengthUnit.Millimeter",
+                            "Value": 11.885274386283723
+                        },
+                        "fragments": [
+                            {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "LengthUnit.Millimeter",
+                                "Value": 5.942637193141914
+                            },
+                            {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "LengthUnit.Millimeter",
+                                "Value": 5.942637193141809
+                            }
+                        ]
+                    },
+                    {
+                        "$id": "102",
+                        "$type": "Versioned.ExternalDataContracts.Contracts.BoM.ToolPathV1, MetalHeaven.ExternalDataContracts",
+                        "contour": {
+                            "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                            "Unit": "LengthUnit.Millimeter",
+                            "Value": 11.885274386283763
+                        },
+                        "fragments": [
+                            {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "LengthUnit.Millimeter",
+                                "Value": 5.942637193141945
+                            },
+                            {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "LengthUnit.Millimeter",
+                                "Value": 5.9426371931418189
+                            }
+                        ]
+                    },
+                    {
+                        "$id": "103",
+                        "$type": "Versioned.ExternalDataContracts.Contracts.BoM.ToolPathV1, MetalHeaven.ExternalDataContracts",
+                        "contour": {
+                            "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                            "Unit": "LengthUnit.Millimeter",
+                            "Value": 11.885274386283794
+                        },
+                        "fragments": [
+                            {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "LengthUnit.Millimeter",
+                                "Value": 5.942637193141925
+                            },
+                            {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "LengthUnit.Millimeter",
+                                "Value": 5.942637193141868
+                            }
+                        ]
+                    },
+                    {
+                        "$id": "104",
+                        "$type": "Versioned.ExternalDataContracts.Contracts.BoM.ToolPathV1, MetalHeaven.ExternalDataContracts",
+                        "contour": {
+                            "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                            "Unit": "LengthUnit.Millimeter",
+                            "Value": 11.88527438628377
+                        },
+                        "fragments": [
+                            {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "LengthUnit.Millimeter",
+                                "Value": 5.942637193141924
+                            },
+                            {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "LengthUnit.Millimeter",
+                                "Value": 5.942637193141846
+                            }
+                        ]
+                    },
+                    {
+                        "$id": "105",
+                        "$type": "Versioned.ExternalDataContracts.Contracts.BoM.ToolPathV1, MetalHeaven.ExternalDataContracts",
+                        "contour": {
+                            "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                            "Unit": "LengthUnit.Millimeter",
+                            "Value": 11.885274386283687
+                        },
+                        "fragments": [
+                            {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "LengthUnit.Millimeter",
+                                "Value": 5.942637193141881
+                            },
+                            {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "LengthUnit.Millimeter",
+                                "Value": 5.942637193141806
+                            }
+                        ]
+                    },
+                    {
+                        "$id": "106",
+                        "$type": "Versioned.ExternalDataContracts.Contracts.BoM.ToolPathV1, MetalHeaven.ExternalDataContracts",
+                        "contour": {
+                            "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                            "Unit": "LengthUnit.Millimeter",
+                            "Value": 11.885274386283758
+                        },
+                        "fragments": [
+                            {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "LengthUnit.Millimeter",
+                                "Value": 5.942637193141914
+                            },
+                            {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "LengthUnit.Millimeter",
+                                "Value": 5.942637193141843
+                            }
+                        ]
+                    },
+                    {
+                        "$id": "107",
+                        "$type": "Versioned.ExternalDataContracts.Contracts.BoM.ToolPathV1, MetalHeaven.ExternalDataContracts",
+                        "contour": {
+                            "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                            "Unit": "LengthUnit.Millimeter",
+                            "Value": 11.885274386283728
+                        },
+                        "fragments": [
+                            {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "LengthUnit.Millimeter",
+                                "Value": 5.942637193141882
+                            },
+                            {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "LengthUnit.Millimeter",
+                                "Value": 5.942637193141845
+                            }
+                        ]
+                    },
+                    {
+                        "$id": "108",
+                        "$type": "Versioned.ExternalDataContracts.Contracts.BoM.ToolPathV1, MetalHeaven.ExternalDataContracts",
+                        "contour": {
+                            "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                            "Unit": "LengthUnit.Millimeter",
+                            "Value": 11.885274386283733
+                        },
+                        "fragments": [
+                            {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "LengthUnit.Millimeter",
+                                "Value": 5.942637193141916
+                            },
+                            {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "LengthUnit.Millimeter",
+                                "Value": 5.942637193141817
+                            }
+                        ]
+                    },
+                    {
+                        "$id": "109",
+                        "$type": "Versioned.ExternalDataContracts.Contracts.BoM.ToolPathV1, MetalHeaven.ExternalDataContracts",
+                        "contour": {
+                            "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                            "Unit": "LengthUnit.Millimeter",
+                            "Value": 11.885274386283797
+                        },
+                        "fragments": [
+                            {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "LengthUnit.Millimeter",
+                                "Value": 5.942637193141904
+                            },
+                            {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "LengthUnit.Millimeter",
+                                "Value": 5.942637193141893
+                            }
+                        ]
+                    },
+                    {
+                        "$id": "110",
+                        "$type": "Versioned.ExternalDataContracts.Contracts.BoM.ToolPathV1, MetalHeaven.ExternalDataContracts",
+                        "contour": {
+                            "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                            "Unit": "LengthUnit.Millimeter",
+                            "Value": 11.88527438628378
+                        },
+                        "fragments": [
+                            {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "LengthUnit.Millimeter",
+                                "Value": 5.942637193141918
+                            },
+                            {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "LengthUnit.Millimeter",
+                                "Value": 5.942637193141863
+                            }
+                        ]
+                    },
+                    {
+                        "$id": "111",
+                        "$type": "Versioned.ExternalDataContracts.Contracts.BoM.ToolPathV1, MetalHeaven.ExternalDataContracts",
+                        "contour": {
+                            "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                            "Unit": "LengthUnit.Millimeter",
+                            "Value": 11.885274386283655
+                        },
+                        "fragments": [
+                            {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "LengthUnit.Millimeter",
+                                "Value": 5.942637193141876
+                            },
+                            {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "LengthUnit.Millimeter",
+                                "Value": 5.9426371931417789
+                            }
+                        ]
+                    },
+                    {
+                        "$id": "112",
+                        "$type": "Versioned.ExternalDataContracts.Contracts.BoM.ToolPathV1, MetalHeaven.ExternalDataContracts",
+                        "contour": {
+                            "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                            "Unit": "LengthUnit.Millimeter",
+                            "Value": 11.885274386283726
+                        },
+                        "fragments": [
+                            {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "LengthUnit.Millimeter",
+                                "Value": 5.942637193141884
+                            },
+                            {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "LengthUnit.Millimeter",
+                                "Value": 5.9426371931418429
+                            }
+                        ]
+                    },
+                    {
+                        "$id": "113",
+                        "$type": "Versioned.ExternalDataContracts.Contracts.BoM.ToolPathV1, MetalHeaven.ExternalDataContracts",
+                        "contour": {
+                            "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                            "Unit": "LengthUnit.Millimeter",
+                            "Value": 11.885274386283772
+                        },
+                        "fragments": [
+                            {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "LengthUnit.Millimeter",
+                                "Value": 5.9426371931419059
+                            },
+                            {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "LengthUnit.Millimeter",
+                                "Value": 5.9426371931418668
+                            }
+                        ]
+                    },
+                    {
+                        "$id": "114",
+                        "$type": "Versioned.ExternalDataContracts.Contracts.BoM.ToolPathV1, MetalHeaven.ExternalDataContracts",
+                        "contour": {
+                            "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                            "Unit": "LengthUnit.Millimeter",
+                            "Value": 11.885274386283769
+                        },
+                        "fragments": [
+                            {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "LengthUnit.Millimeter",
+                                "Value": 5.942637193141936
+                            },
+                            {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "LengthUnit.Millimeter",
+                                "Value": 5.942637193141833
+                            }
+                        ]
+                    },
+                    {
+                        "$id": "115",
+                        "$type": "Versioned.ExternalDataContracts.Contracts.BoM.ToolPathV1, MetalHeaven.ExternalDataContracts",
+                        "contour": {
+                            "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                            "Unit": "LengthUnit.Millimeter",
+                            "Value": 11.885274386283707
+                        },
+                        "fragments": [
+                            {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "LengthUnit.Millimeter",
+                                "Value": 5.942637193141882
+                            },
+                            {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "LengthUnit.Millimeter",
+                                "Value": 5.942637193141824
+                            }
+                        ]
+                    },
+                    {
+                        "$id": "116",
+                        "$type": "Versioned.ExternalDataContracts.Contracts.BoM.ToolPathV1, MetalHeaven.ExternalDataContracts",
+                        "contour": {
+                            "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                            "Unit": "LengthUnit.Millimeter",
+                            "Value": 11.885274386283708
+                        },
+                        "fragments": [
+                            {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "LengthUnit.Millimeter",
+                                "Value": 5.942637193141833
+                            },
+                            {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "LengthUnit.Millimeter",
+                                "Value": 5.942637193141875
+                            }
+                        ]
+                    },
+                    {
+                        "$id": "117",
+                        "$type": "Versioned.ExternalDataContracts.Contracts.BoM.ToolPathV1, MetalHeaven.ExternalDataContracts",
+                        "contour": {
+                            "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                            "Unit": "LengthUnit.Millimeter",
+                            "Value": 11.885274386283788
+                        },
+                        "fragments": [
+                            {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "LengthUnit.Millimeter",
+                                "Value": 5.942637193141937
+                            },
+                            {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "LengthUnit.Millimeter",
+                                "Value": 5.942637193141851
+                            }
+                        ]
+                    },
+                    {
+                        "$id": "118",
+                        "$type": "Versioned.ExternalDataContracts.Contracts.BoM.ToolPathV1, MetalHeaven.ExternalDataContracts",
+                        "contour": {
+                            "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                            "Unit": "LengthUnit.Millimeter",
+                            "Value": 11.885274386283795
+                        },
+                        "fragments": [
+                            {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "LengthUnit.Millimeter",
+                                "Value": 5.942637193141934
+                            },
+                            {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "LengthUnit.Millimeter",
+                                "Value": 5.942637193141861
+                            }
+                        ]
+                    },
+                    {
+                        "$id": "119",
+                        "$type": "Versioned.ExternalDataContracts.Contracts.BoM.ToolPathV1, MetalHeaven.ExternalDataContracts",
+                        "contour": {
+                            "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                            "Unit": "LengthUnit.Millimeter",
+                            "Value": 11.885274386283733
+                        },
+                        "fragments": [
+                            {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "LengthUnit.Millimeter",
+                                "Value": 5.942637193141891
+                            },
+                            {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "LengthUnit.Millimeter",
+                                "Value": 5.942637193141841
+                            }
+                        ]
+                    },
+                    {
+                        "$id": "120",
+                        "$type": "Versioned.ExternalDataContracts.Contracts.BoM.ToolPathV1, MetalHeaven.ExternalDataContracts",
+                        "contour": {
+                            "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                            "Unit": "LengthUnit.Millimeter",
+                            "Value": 11.885274386283678
+                        },
+                        "fragments": [
+                            {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "LengthUnit.Millimeter",
+                                "Value": 5.9426371931418739
+                            },
+                            {
+                                "$type": "UnitsNet.Serialization.JsonNet.UnitsNetJsonConverter+ValueUnit, UnitsNet.Serialization.JsonNet",
+                                "Unit": "LengthUnit.Millimeter",
+                                "Value": 5.942637193141804
+                            }
+                        ]
+                    }
+                ],
+                "workingStepKey": {
+                    "$id": "121",
+                    "$type": "Versioned.ExternalDataContracts.Contracts.Resource.WorkingStepKeyV1, MetalHeaven.ExternalDataContracts",
+                    "primaryWorkingStep": 1,
+                    "secondaryWorkingStep": 1
+                }
+            }
+        ],
+        "attachments": [],
+        "isManufacturable": false,
+        "manufacturableStatus": 1,
+        "manufacturableResult": "",
+        "isExportedToErp": false,
+        "exportedToErpStatus": 0
+    },
+    "stepFileUrl": "https://rh24stgdatabaseuat.blob.core.windows.net/metalheaven/d68bf7d7-128b-43cd-b0d8-1589d34eb35f/6703290c-5684-4e3e-80e4-8b33af25c25b.step?sv=2020-08-04&se=2021-09-23T15%3A57%3A02Z&sr=b&sp=r&sig=M85tiNmoK36IU0c0SYPO%2BRIfZiLbFUWwNpk1PMPIY6A%3D"
+}
