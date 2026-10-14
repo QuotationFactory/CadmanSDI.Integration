@@ -23,8 +23,8 @@ public class ManufacturabilityRequestRepository : IManufacturabilityRequestRepos
         // Find the original request in the LVD CADMAN-SDI\Output\Processed folder
         // Retrieve the project and part id from the request
 
-        var processedPath = Path.Combine(_settings.RootDirectory, Entities.Constants.AgentIntegrationName, "Output", "Processed");
-        var requestFilePathName = Path.Combine(processedPath, $"{requestId}.json");
+        //var processedPath = Path.Combine(_settings.CadmanSdiResultsProcessedFolder, Entities.Constants.AgentIntegrationName, "Output", "Processed");
+        var requestFilePathName = Path.Combine(_settings.CadmanSdiResultsProcessedFolder, $"{requestId}.json");
         if (!File.Exists(requestFilePathName))
         {
             return null;
