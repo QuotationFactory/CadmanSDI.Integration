@@ -48,7 +48,7 @@ public class SdiImportTests
 
         var cadmanSdiResultsFolder = string.Empty;
 
-        return CadmanSdiImportFactory.FromRequest(request, "testSdiImport.xml", partTypeId, materialId, cadmanSdiResultsFolder );
+        return CadmanSdiImportFactory.FromRequest(request, "testSdiImport.xml", partTypeId, materialId, cadmanSdiResultsFolder, string.Empty);
     }
 
     private static T GetDeserializedXml<T>(string filePath)
