@@ -86,12 +86,11 @@ public static class Program
             services.AddTransient<IManufacturabilityRequestRepository, ManufacturabilityRequestRepository>();
             services.AddTransient<IMaterialMappingRepository, MaterialMappingRepository>();
 
-            // register agent output file watcher service
+            // register file processing handlers and watcher services
+            services.AddScoped<OutputFileCreatedHandler>();
+            services.AddScoped<CadmanSdiResultFileCreatedHandler>();
             services.AddHostedService<OutputFileWatcherService>();
             services.AddHostedService<CadmanSdiResultFileWatcherService>();
-
-            // register MediatR with current assembly
-            services.AddMediatR(x => x.RegisterServicesFromAssemblyContaining(typeof(OutputFileWatcherService)));
         });
         return hostBuilder;
     }

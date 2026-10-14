@@ -8,7 +8,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="MediatR" />
       <PackageReference Include="Microsoft.Extensions.Hosting" />
       <PackageReference Include="Microsoft.Extensions.Hosting.WindowsServices" />
       <PackageReference Include="Microsoft.Extensions.Options" />

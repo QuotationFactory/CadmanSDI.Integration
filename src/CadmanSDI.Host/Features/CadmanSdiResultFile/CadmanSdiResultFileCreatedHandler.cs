@@ -1,13 +1,12 @@
 ﻿using CadmanSDI.Entities;
 using CadmanSDI.Host.Features.CadmanSdiResult;
 using CadmanSDI.Host.Features.OutputFile;
-using MediatR;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
 namespace CadmanSDI.Host.Features.CadmanSdiResultFile;
 
-public class CadmanSdiResultFileCreatedHandler : INotificationHandler<CadmanSdiResultFileCreated>
+public class CadmanSdiResultFileCreatedHandler
 {
     private readonly CadmanSdiIntegrationSettings _settings;
     private readonly ILogger<CadmanSdiResultFileCreatedHandler> _logger;
@@ -23,15 +22,15 @@ public class CadmanSdiResultFileCreatedHandler : INotificationHandler<CadmanSdiR
         _cadmanSdiResult = cadmanSdiResult;
     }
 
-    public async Task Handle(CadmanSdiResultFileCreated notification, CancellationToken cancellationToken)
+    public async Task Handle(string filePath, CancellationToken cancellationToken)
     {
-        _logger.LogInformation("File created: {FilePath}", notification.FilePath);
+        _logger.LogInformation("File created: {FilePath}", filePath);
 
         // default file creation timeout
         await Task.Delay(500, cancellationToken);
 
         // define file paths
-        var jsonFilePath = notification.FilePath;
+        var jsonFilePath = filePath;
 
         _logger.LogInformation("Start processing request file: {JsonFilePath}", jsonFilePath);
         await _cadmanSdiResult.ProcessResult(jsonFilePath);
