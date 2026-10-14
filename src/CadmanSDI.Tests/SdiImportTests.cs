@@ -44,7 +44,7 @@ public class SdiImportTests
 
         var partTypeId = request.PartType.Name;
 
-        var materialId = request.PartType.Material.SelectableArticles.SelectedArticle.Id;
+        var materialId = request.PartType.Material.SelectableArticles.SelectedArticle?.Id ?? string.Empty;
 
         var cadmanSdiResultsFolder = string.Empty;
 

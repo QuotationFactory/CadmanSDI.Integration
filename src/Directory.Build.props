@@ -3,14 +3,15 @@
     <Authors>Quotation Factory B.V.</Authors>
     <Copyright>Quotation Factory B.V</Copyright>
     <IsPackable>false</IsPackable>
-    <LangVersion>12</LangVersion>
+	<LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
     <PublishUrl Condition="'$(PublishBaseUrl)' != '' and '$(PublishUrl)' == ''">$(PublishBaseUrl)\$(MSBuildProjectName)\</PublishUrl>
   </PropertyGroup>
   <PropertyGroup>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
-    <NoWarn>$(NoWarn);1591;VSTHRD200;SYSLIB0050;SYSLIB0051</NoWarn>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <NoWarn>$(NoWarn);1591;VSTHRD200</NoWarn>
     <!--
     1591: Missing XML comment for publicly visible type or member
     VSTHRD200: Use Async suffix for async methods

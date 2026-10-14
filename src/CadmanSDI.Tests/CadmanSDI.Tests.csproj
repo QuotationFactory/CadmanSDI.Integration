@@ -4,13 +4,7 @@
       <TargetFramework>net10.0</TargetFramework>
       <IsTestProject>true</IsTestProject>
   </PropertyGroup>
-
-  <PropertyGroup>
-    <Nullable>enable</Nullable>
-    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
-  </PropertyGroup>
-
-    <ItemGroup>
+      <ItemGroup>
         <PackageReference Include="Microsoft.NET.Test.Sdk" />
         <PackageReference Include="Moq" />
         <PackageReference Include="xunit"/>

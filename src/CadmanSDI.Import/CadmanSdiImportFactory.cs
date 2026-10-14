@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.Globalization;
+using System.Text.RegularExpressions;
 using CadmanSDI.Entities;
 using CadmanSDI.Entities.Models;
 using CadmanSDI.Entities.Repositories;
@@ -9,7 +10,7 @@ using UnitsNet.Units;
 
 namespace CadmanSDI.Import;
 
-public class CadmanSdiImportFactory : ICadmanSdiImportFactory
+public partial class CadmanSdiImportFactory : ICadmanSdiImportFactory
 {
     private const string NumberOnly = "[^0-9.]";
 
@@ -49,7 +50,7 @@ public class CadmanSdiImportFactory : ICadmanSdiImportFactory
                 : request.PartType.Id.ToString();
         }
 
-        var materialId = GetMaterialCode(request);
+        var materialId = GetMaterialCode(request) ?? string.Empty;
         return FromRequest(request, importFileName, partTypeName, materialId, _settings.CadmanSdiResultsFolder, _settings.CadmanSdiMacroName);
     }
 
@@ -76,7 +77,12 @@ public class CadmanSdiImportFactory : ICadmanSdiImportFactory
             partTypeName = request.PartType.Name;
 
         if (string.IsNullOrWhiteSpace(materialId))
-            materialId = request.PartType.Material.SelectableArticles.SelectedArticle.Id;
+        {
+            if (request.PartType.Material.SelectableArticles.SelectedArticle != null)
+            {
+                materialId = request.PartType.Material.SelectableArticles.SelectedArticle.Id;
+            }
+        }
 
         var response = new SdiImport
         {
@@ -92,14 +98,6 @@ public class CadmanSdiImportFactory : ICadmanSdiImportFactory
                             Comment = request.ProjectId.ToString(),
                             Description = request.PartType.Id.ToString(),
                             MaterialId = materialId,
-                            Thickness =
-                                Regex.Replace(
-                                    request.PartType.Material.SelectableArticles.SelectedArticle.Dimensions.Thickness
-                                        .Value.ToString(), NumberOnly, ""),
-                            Unit =
-                                s_lengthUnits[
-                                    request.PartType.Material.SelectableArticles.SelectedArticle.Dimensions.Thickness
-                                        .Value.Unit],
                             Importfilename = importFileName
                         }
                     }
@@ -111,27 +109,47 @@ public class CadmanSdiImportFactory : ICadmanSdiImportFactory
                 {
                     new()
                     {
-                        CommandString = string.IsNullOrWhiteSpace(macroName)? "HANDLEFILE_BATCH" : macroName,
+                        CommandString = string.IsNullOrWhiteSpace(macroName) ? "HANDLEFILE_BATCH" : macroName,
                         Parameters =
                         [
-                            new Parameter { Id = "PARTTYPEID", Value = partTypeName },
-                            new Parameter { Id = "OUTPUTPATH", Value =  cadmanSdiResultsFolder }
+                            new Parameter
+                            {
+                                Id = "PARTTYPEID",
+                                Value = partTypeName
+                            },
+                            new Parameter
+                            {
+                                Id = "OUTPUTPATH",
+                                Value = cadmanSdiResultsFolder
+                            }
                         ]
                     }
                 }
             }
         };
 
+        if (request.PartType.Material.SelectableArticles.SelectedArticle == null)
+        {
+            return response;
+        }
+
+        var selectedArticle = request.PartType.Material.SelectableArticles.SelectedArticle;
+        var thicknessHasValue = selectedArticle.Dimensions.Thickness is not null;
+        var thickness = thicknessHasValue ? selectedArticle.Dimensions.Thickness!.Value : default;
+
+        response.PartTypeImport.PartTypeList.PartTypes.First().Thickness = MyRegex().Replace(thickness.Value.ToString(CultureInfo.InvariantCulture), "");
+        response.PartTypeImport.PartTypeList.PartTypes.First().Unit = s_lengthUnits[thickness.Unit];
+
         return response;
     }
 
-    private string GetMaterialCode(RequestManufacturabilityCheckOfPartTypeMessage request)
+    private string? GetMaterialCode(RequestManufacturabilityCheckOfPartTypeMessage request)
     {
         var useMaterialMappingWithKeywords = _settings.MaterialMappingWithKeywords;
 
         if (useMaterialMappingWithKeywords)
         {
-            var rhodiumMaterialKeywords = request.PartType.Material.SelectableArticles.SelectedArticle.Tokens.ToArray();
+            var rhodiumMaterialKeywords = request.PartType.Material.SelectableArticles.SelectedArticle?.Tokens.ToArray() ?? [];
             var machineId = _materialMappingRepository.GetMaterialIdFromKeywords(rhodiumMaterialKeywords);
             if (string.IsNullOrWhiteSpace(machineId))
             {
@@ -144,7 +162,7 @@ public class CadmanSdiImportFactory : ICadmanSdiImportFactory
         }
         else
         {
-            var rhodiumMaterialId = request.PartType.Material.SelectableArticles.SelectedArticle.Id;
+            var rhodiumMaterialId = request.PartType.Material.SelectableArticles.SelectedArticle?.Id ?? string.Empty;
             var machineId = _materialMappingRepository.GetMaterialIdFromArticle(rhodiumMaterialId);
             if (string.IsNullOrWhiteSpace(machineId))
             {
@@ -156,4 +174,7 @@ public class CadmanSdiImportFactory : ICadmanSdiImportFactory
             return machineId;
         }
     }
+
+    [GeneratedRegex(NumberOnly)]
+    private static partial Regex MyRegex();
 }

@@ -25,7 +25,7 @@ public class CadmanSdiRequestManufacturabilityResponseFactory : ICadmanSdiReques
         SdiExport result,
         string resultFilePathName)
     {
-        ArgumentNullException.ThrowIfNull(nameof(result));
+        ArgumentNullException.ThrowIfNull(result);
 
         var response = new RequestManufacturabilityCheckOfPartTypeMessageResponse();
 
@@ -51,9 +51,6 @@ public class CadmanSdiRequestManufacturabilityResponseFactory : ICadmanSdiReques
                 nameof(result.PARTTYPELIST.PARTSHEETMETALTYPE.PARTSHEETMETALMODELLIST.PARTSHEETMETALMODEL.Comment),
                 "Could not retrieve project id from part comment.");
         }
-
-        // Assume bending/bending
-        response.WorkingStepKey = new WorkingStepKeyV1(WorkingStepTypeV1.SheetBending, WorkingStepTypeV1.SheetBending);
 
         // response.EventLogs = GetLogs(result, response.ProjectId, response.PartTypeId);
         response.EventLogs = Array.Empty<EventLog>();
