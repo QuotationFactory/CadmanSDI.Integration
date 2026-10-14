@@ -17,7 +17,7 @@ public class OutputFileCreatedHandler
         _cadmanSdiImport = cadmanSdiImport;
     }
 
-    public async Task Handle(string filePath, CancellationToken cancellationToken)
+    public async Task HandleAsync(string filePath, CancellationToken cancellationToken)
     {
         _logger.LogInformation("File created: {FilePath}", filePath);
 
