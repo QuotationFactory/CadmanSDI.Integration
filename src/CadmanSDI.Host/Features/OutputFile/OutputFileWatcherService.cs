@@ -1,6 +1,6 @@
-﻿using CadmanSDI.Entities;
+using CadmanSDI.Entities;
 using Integration.Common.FileWatcher;
-using MediatR;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
@@ -8,19 +8,19 @@ namespace CadmanSDI.Host.Features.OutputFile;
 
 /// <summary>
 /// Service that watches on the output directory of the agent for *.json files
-/// Publishes an AgentOutputFileCreated notification if a file is created
+/// Processes JSON files created in the agent output directory
 /// </summary>
 public class OutputFileWatcherService : FileWatcherService
 {
-    private readonly IMediator _mediator;
+    private readonly IServiceScopeFactory _scopeFactory;
     private readonly ILogger<OutputFileWatcherService> _logger;
 
     public OutputFileWatcherService(
-        IMediator mediator,
+        IServiceScopeFactory scopeFactory,
         IOptions<CadmanSdiIntegrationSettings> integrationSettings,
         ILogger<OutputFileWatcherService> logger)
     {
-        _mediator = mediator;
+        _scopeFactory = scopeFactory;
         _logger = logger;
 
         // add file watcher to the agent output directory
@@ -41,8 +41,15 @@ public class OutputFileWatcherService : FileWatcherService
 
         foreach (var file in existingFiles)
         {
-            _mediator.Publish(new OutputFileCreated(file)).ConfigureAwait(false).GetAwaiter().GetResult();
+            ProcessFile(file);
         }
+    }
+
+    private void ProcessFile(string filePath)
+    {
+        using var scope = _scopeFactory.CreateScope();
+        var handler = scope.ServiceProvider.GetRequiredService<OutputFileCreatedHandler>();
+        handler.Handle(filePath, CancellationToken.None).ConfigureAwait(false).GetAwaiter().GetResult();
     }
 
     protected override void OnAllChanges(object sender, FileSystemEventArgs e)
@@ -52,7 +59,7 @@ public class OutputFileWatcherService : FileWatcherService
             switch (e.ChangeType)
             {
                 case WatcherChangeTypes.Created:
-                    _mediator.Publish(new OutputFileCreated(e.FullPath)).ConfigureAwait(false).GetAwaiter().GetResult();
+                    ProcessFile(e.FullPath);
                     break;
                 case WatcherChangeTypes.Deleted:
                 case WatcherChangeTypes.Changed:
