@@ -7,7 +7,7 @@ $buildVersion
 New-Item -ItemType Directory -Force -Path ".\build-published"
 # Remove files/folders inside the published folder
 Remove-Item ".\build-published\*" -Recurse -Force
-dotnet publish ../src/CadmanSDI.Host -r win-x64 -p:PublishSingleFile=true /p:Version=$buildVersion -f net8.0 -p:IncludeAllContentForSelfExtract=true -c Release /p:DebugType=none /p:DebugSymbols=false -o ./build-published/cadman-sdi-integration
+dotnet publish ../src/CadmanSDI.Host -r win-x64 -p:PublishSingleFile=true /p:Version=$buildVersion -f net10.0 -p:IncludeAllContentForSelfExtract=true -c Release /p:DebugType=none /p:DebugSymbols=false -o ./build-published/cadman-sdi-integration
 Copy-Item "../src/CadmanSDI.Host/appsettings.json" -Destination "./build-published/cadman-sdi-integration"
 
 New-Item -ItemType Directory -Force -Path "./build-published/cadman-sdi-integration/data"
