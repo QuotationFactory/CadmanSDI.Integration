@@ -14,6 +14,7 @@ public class CadmanSdiResultFileWatcherService : FileWatcherService
 {
     private readonly IServiceScopeFactory _scopeFactory;
     private readonly ILogger<CadmanSdiResultFileWatcherService> _logger;
+    private readonly SemaphoreSlim _semaphore = new(1, 1);
 
     public CadmanSdiResultFileWatcherService(
         IOptions<CadmanSdiIntegrationSettings> settings,
@@ -28,41 +29,28 @@ public class CadmanSdiResultFileWatcherService : FileWatcherService
         {
             Directory.CreateDirectory(cadmanSdiResultsFolder);
         }
-        ProcessExistingFiles(cadmanSdiResultsFolder, ".xml");
         AddFileWatcher(cadmanSdiResultsFolder, "*.xml", true);
         _logger.LogInformation("File watch added on: '{Directory}' with filter: *.xml", cadmanSdiResultsFolder);
     }
 
-    private void ProcessExistingFiles(string directory, string extensionfilter)
-    {
-        var existingFiles = Directory.EnumerateFiles(directory).Where(x => Path.GetExtension(x) == extensionfilter).ToArray();
-        if (!existingFiles.Any())
-        {
-            return;
-        }
-
-        foreach (var file in existingFiles)
-        {
-            ProcessFile(file);
-        }
-    }
-
-    private void ProcessFile(string filePath)
+    private async Task HandleCreatedFileAsync(string filePath, CancellationToken cancellationToken)
     {
         using var scope = _scopeFactory.CreateScope();
         var handler = scope.ServiceProvider.GetRequiredService<CadmanSdiResultFileCreatedHandler>();
-        handler.Handle(filePath, CancellationToken.None).ConfigureAwait(false).GetAwaiter().GetResult();
+        await handler.HandleAsync(filePath, cancellationToken);
     }
 
-    protected override void OnAllChanges(object sender, FileSystemEventArgs e)
+#pragma warning disable VSTHRD100
+    protected override async void OnAllChanges(object sender, FileSystemEventArgs e)
+#pragma warning restore VSTHRD100
     {
         try
-        {
+        {   await _semaphore.WaitAsync();
             switch (e.ChangeType)
             {
                 case WatcherChangeTypes.Created:
                 case WatcherChangeTypes.Changed:
-                    ProcessFile(e.FullPath);
+                    await HandleCreatedFileAsync(e.FullPath, CancellationToken.None);
                     break;
                 case WatcherChangeTypes.Deleted:
                 case WatcherChangeTypes.Renamed:
@@ -75,6 +63,39 @@ public class CadmanSdiResultFileWatcherService : FileWatcherService
         catch (Exception ex)
         {
             _logger.LogError(ex, "Error while processing {Event} for file {FilePath}", e.ChangeType, e.FullPath);
+        }finally
+        {
+            _semaphore.Release();
+        }
+    }
+#pragma warning disable VSTHRD100
+    protected override async void OnExistingFile(object sender, FileSystemEventArgs e)
+#pragma warning restore VSTHRD100
+    {
+        try
+        {
+            await _semaphore.WaitAsync();
+            switch (e.ChangeType)
+            {
+                case WatcherChangeTypes.Created:
+                case WatcherChangeTypes.Deleted:
+                case WatcherChangeTypes.Changed:
+                case WatcherChangeTypes.Renamed:
+                    break;
+                case WatcherChangeTypes.All:
+                    await HandleCreatedFileAsync(e.FullPath, CancellationToken.None);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error while processing {Event} for file {FilePath}", e.ChangeType, e.FullPath);
+        }
+        finally
+        {
+            _semaphore.Release();
         }
     }
 }

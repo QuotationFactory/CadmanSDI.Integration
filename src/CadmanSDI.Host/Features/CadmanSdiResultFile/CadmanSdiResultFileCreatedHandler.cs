@@ -22,7 +22,7 @@ public class CadmanSdiResultFileCreatedHandler
         _cadmanSdiResult = cadmanSdiResult;
     }
 
-    public async Task Handle(string filePath, CancellationToken cancellationToken)
+    public async Task HandleAsync(string filePath, CancellationToken cancellationToken)
     {
         _logger.LogInformation("File created: {FilePath}", filePath);
 

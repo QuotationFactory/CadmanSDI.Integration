@@ -12,54 +12,35 @@ namespace CadmanSDI.Host.Features.OutputFile;
 /// </summary>
 public class OutputFileWatcherService : FileWatcherService
 {
-    private readonly IServiceScopeFactory _scopeFactory;
+    private readonly IServiceScopeFactory _serviceScopeFactory;
     private readonly ILogger<OutputFileWatcherService> _logger;
+    private readonly SemaphoreSlim _semaphore = new(1, 1);
 
     public OutputFileWatcherService(
-        IServiceScopeFactory scopeFactory,
+        IServiceScopeFactory serviceScopeFactory,
         IOptions<CadmanSdiIntegrationSettings> integrationSettings,
         ILogger<OutputFileWatcherService> logger)
     {
-        _scopeFactory = scopeFactory;
+        _serviceScopeFactory = serviceScopeFactory;
         _logger = logger;
 
         // add file watcher to the agent output directory
 
         var integrationOutputFolder = integrationSettings.Value.IntegrationOutputFolder;
-        ProcessExistingFiles(integrationOutputFolder, ".json");
         AddFileWatcher(integrationOutputFolder, "*.json");
         _logger.LogInformation("File watch added on: '{Directory}' with filter: *.json", integrationOutputFolder);
     }
-
-    private void ProcessExistingFiles(string directory, string extensionfilter)
-    {
-        var existingFiles = Directory.EnumerateFiles(directory).Where(x => Path.GetExtension(x) == extensionfilter).ToArray();
-        if (!existingFiles.Any())
-        {
-            return;
-        }
-
-        foreach (var file in existingFiles)
-        {
-            ProcessFile(file);
-        }
-    }
-
-    private void ProcessFile(string filePath)
-    {
-        using var scope = _scopeFactory.CreateScope();
-        var handler = scope.ServiceProvider.GetRequiredService<OutputFileCreatedHandler>();
-        handler.Handle(filePath, CancellationToken.None).ConfigureAwait(false).GetAwaiter().GetResult();
-    }
-
-    protected override void OnAllChanges(object sender, FileSystemEventArgs e)
+#pragma warning disable VSTHRD100
+    protected override async void OnAllChanges(object sender, FileSystemEventArgs e)
+#pragma warning restore VSTHRD100
     {
         try
         {
+            await _semaphore.WaitAsync();
             switch (e.ChangeType)
             {
                 case WatcherChangeTypes.Created:
-                    ProcessFile(e.FullPath);
+                    await HandleCreatedFileAsync(e.FullPath, CancellationToken.None);
                     break;
                 case WatcherChangeTypes.Deleted:
                 case WatcherChangeTypes.Changed:
@@ -74,5 +55,48 @@ public class OutputFileWatcherService : FileWatcherService
         {
             _logger.LogError(ex, "Error while processing {Event} for file {FilePath}", e.ChangeType, e.FullPath);
         }
+        finally
+        {
+            _semaphore.Release();
+        }
+    }
+
+#pragma warning disable VSTHRD100
+    protected override async void OnExistingFile(object sender, FileSystemEventArgs e)
+#pragma warning restore VSTHRD100
+    {
+        try
+        {
+            await _semaphore.WaitAsync();
+            switch (e.ChangeType)
+            {
+                case WatcherChangeTypes.Created:
+                case WatcherChangeTypes.Deleted:
+                case WatcherChangeTypes.Changed:
+                case WatcherChangeTypes.Renamed:
+                    break;
+                case WatcherChangeTypes.All:
+                    await HandleCreatedFileAsync(e.FullPath, CancellationToken.None);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error while processing {Event} for file {FilePath}", e.ChangeType, e.FullPath);
+        }
+        finally
+        {
+            _semaphore.Release();
+        }
+    }
+
+
+    private async Task HandleCreatedFileAsync(string filePath, CancellationToken cancellationToken)
+    {
+        using var scope = _serviceScopeFactory.CreateScope();
+        var handler = scope.ServiceProvider.GetRequiredService<OutputFileCreatedHandler>();
+        await handler.HandleAsync(filePath, cancellationToken);
     }
 }
