@@ -22,6 +22,12 @@ namespace Integration.Common.FileWatcher;
 public class BufferingFileSystemWatcher : Component
 {
     private readonly System.IO.FileSystemWatcher _containedFsw;
+    private readonly object _eventLock = new();
+    private readonly object _lifecycleLock = new();
+    private bool _createdSubscribed;
+    private bool _changedSubscribed;
+    private bool _deletedSubscribed;
+    private bool _renamedSubscribed;
 
     private FileSystemEventHandler _onExistedHandler;
     private FileSystemEventHandler _onAllChangesHandler;
@@ -34,8 +40,7 @@ public class BufferingFileSystemWatcher : Component
     private ErrorEventHandler _onErrorHandler;
 
     //We use a single buffer for all change types. Alternatively we could use one buffer per event type, costing additional enumerate tasks.
-    private BlockingCollection<FileSystemEventArgs> _fileSystemEventBuffer;
-    private CancellationTokenSource _cancellationTokenSource;
+    private EventPump _activePump;
 
     #region Contained FileSystemWatcher
     public BufferingFileSystemWatcher()
@@ -61,17 +66,37 @@ public class BufferingFileSystemWatcher : Component
         }
         set
         {
-            if (_containedFsw.EnableRaisingEvents == value) return;
+            lock (_lifecycleLock)
+            {
+                if (_containedFsw.EnableRaisingEvents == value) return;
 
-            StopRaisingBufferedEvents();
-            _cancellationTokenSource = new CancellationTokenSource();
-
-            //We EnableRaisingEvents, before NotifyExistingFiles
-            //  to prevent missing any events
-            //  accepting more duplicates (which may occure anyway).
-            _containedFsw.EnableRaisingEvents = value;
-            if (value)
-                RaiseBufferedEventsUntilCancelled();
+                if (value)
+                {
+                    var pump = new EventPump(EventQueueCapacity);
+                    _activePump = pump;
+                    try
+                    {
+                        // Enable first so changes during the existing-file scan are also buffered.
+                        _containedFsw.EnableRaisingEvents = true;
+                        RaiseBufferedEventsUntilCancelled(pump);
+                    }
+                    catch
+                    {
+                        _containedFsw.EnableRaisingEvents = false;
+                        _activePump = null;
+                        pump.Cancel();
+                        pump.Dispose();
+                        throw;
+                    }
+                }
+                else
+                {
+                    _containedFsw.EnableRaisingEvents = false;
+                    var pump = _activePump;
+                    _activePump = null;
+                    pump?.Cancel();
+                }
+            }
         }
     }
 
@@ -131,11 +156,13 @@ public class BufferingFileSystemWatcher : Component
     {
         add
         {
-            _onExistedHandler += value;
+            lock (_eventLock)
+                _onExistedHandler += value;
         }
         remove
         {
-            _onExistedHandler -= value;
+            lock (_eventLock)
+                _onExistedHandler -= value;
         }
     }
 
@@ -143,22 +170,19 @@ public class BufferingFileSystemWatcher : Component
     {
         add
         {
-            if (_onAllChangesHandler == null)
+            lock (_eventLock)
             {
-                _containedFsw.Created += BufferEvent;
-                _containedFsw.Changed += BufferEvent;
-                _containedFsw.Renamed += BufferEvent;
-                _containedFsw.Deleted += BufferEvent;
+                _onAllChangesHandler += value;
+                UpdateUnderlyingSubscriptions();
             }
-            _onAllChangesHandler += value;
         }
         remove
         {
-            _containedFsw.Created -= BufferEvent;
-            _containedFsw.Changed -= BufferEvent;
-            _containedFsw.Renamed -= BufferEvent;
-            _containedFsw.Deleted -= BufferEvent;
-            _onAllChangesHandler -= value;
+            lock (_eventLock)
+            {
+                _onAllChangesHandler -= value;
+                UpdateUnderlyingSubscriptions();
+            }
         }
     }
 
@@ -171,14 +195,19 @@ public class BufferingFileSystemWatcher : Component
     {
         add
         {
-            if (_onCreatedHandler == null)
-                _containedFsw.Created += BufferEvent;
-            _onCreatedHandler += value;
+            lock (_eventLock)
+            {
+                _onCreatedHandler += value;
+                UpdateUnderlyingSubscriptions();
+            }
         }
         remove
         {
-            _containedFsw.Created -= BufferEvent;
-            _onCreatedHandler -= value;
+            lock (_eventLock)
+            {
+                _onCreatedHandler -= value;
+                UpdateUnderlyingSubscriptions();
+            }
         }
     }
 
@@ -186,14 +215,19 @@ public class BufferingFileSystemWatcher : Component
     {
         add
         {
-            if (_onChangedHandler == null)
-                _containedFsw.Changed += BufferEvent;
-            _onChangedHandler += value;
+            lock (_eventLock)
+            {
+                _onChangedHandler += value;
+                UpdateUnderlyingSubscriptions();
+            }
         }
         remove
         {
-            _containedFsw.Changed -= BufferEvent;
-            _onChangedHandler -= value;
+            lock (_eventLock)
+            {
+                _onChangedHandler -= value;
+                UpdateUnderlyingSubscriptions();
+            }
         }
     }
 
@@ -201,16 +235,19 @@ public class BufferingFileSystemWatcher : Component
     {
         add
         {
-            if (_onDeletedHandler == null)
+            lock (_eventLock)
             {
-                _containedFsw.Deleted += BufferEvent;
                 _onDeletedHandler += value;
+                UpdateUnderlyingSubscriptions();
             }
         }
         remove
         {
-            _containedFsw.Deleted -= BufferEvent;
-            _onDeletedHandler -= value;
+            lock (_eventLock)
+            {
+                _onDeletedHandler -= value;
+                UpdateUnderlyingSubscriptions();
+            }
         }
     }
 
@@ -218,97 +255,153 @@ public class BufferingFileSystemWatcher : Component
     {
         add
         {
-            if (_onRenamedHandler == null)
-                _containedFsw.Renamed += BufferEvent;
-            _onRenamedHandler += value;
+            lock (_eventLock)
+            {
+                _onRenamedHandler += value;
+                UpdateUnderlyingSubscriptions();
+            }
         }
         remove
         {
-            _containedFsw.Renamed -= BufferEvent;
-            _onRenamedHandler -= value;
+            lock (_eventLock)
+            {
+                _onRenamedHandler -= value;
+                UpdateUnderlyingSubscriptions();
+            }
         }
     }
 
     private void BufferEvent(object _, FileSystemEventArgs e)
     {
-        if (!_fileSystemEventBuffer.TryAdd(e))
+        EventPump pump;
+        lock (_lifecycleLock)
+            pump = _activePump;
+
+        if (pump != null && !pump.TryAdd(e))
         {
-            var ex = new EventQueueOverflowException($"Event queue size {_fileSystemEventBuffer.BoundedCapacity} events exceeded.");
-            InvokeHandler(_onErrorHandler, new ErrorEventArgs(ex));
+            ReportError(new EventQueueOverflowException($"Event queue size {pump.Capacity} events exceeded."));
         }
     }
 
-    private void StopRaisingBufferedEvents(object _ = null, EventArgs __ = null)
+    private void UpdateUnderlyingSubscriptions()
     {
-        _cancellationTokenSource?.Cancel();
-        _fileSystemEventBuffer = new BlockingCollection<FileSystemEventArgs>(EventQueueCapacity);
+        var all = _onAllChangesHandler != null;
+        SetSubscription(ref _createdSubscribed, all || _onCreatedHandler != null,
+            () => _containedFsw.Created += BufferEvent, () => _containedFsw.Created -= BufferEvent);
+        SetSubscription(ref _changedSubscribed, all || _onChangedHandler != null,
+            () => _containedFsw.Changed += BufferEvent, () => _containedFsw.Changed -= BufferEvent);
+        SetSubscription(ref _deletedSubscribed, all || _onDeletedHandler != null,
+            () => _containedFsw.Deleted += BufferEvent, () => _containedFsw.Deleted -= BufferEvent);
+        SetSubscription(ref _renamedSubscribed, all || _onRenamedHandler != null,
+            () => _containedFsw.Renamed += BufferEvent, () => _containedFsw.Renamed -= BufferEvent);
+    }
+
+    private static void SetSubscription(ref bool subscribed, bool shouldSubscribe, Action subscribe, Action unsubscribe)
+    {
+        if (subscribed == shouldSubscribe) return;
+
+        if (shouldSubscribe)
+            subscribe();
+        else
+            unsubscribe();
+
+        subscribed = shouldSubscribe;
     }
 
     public event ErrorEventHandler Error
     {
         add
         {
-            if (_onErrorHandler == null)
-                _containedFsw.Error += BufferingFileSystemWatcher_Error;
-            _onErrorHandler += value;
+            lock (_eventLock)
+            {
+                var wasUnsubscribed = _onErrorHandler == null;
+                _onErrorHandler += value;
+                if (wasUnsubscribed && _onErrorHandler != null)
+                    _containedFsw.Error += BufferingFileSystemWatcher_Error;
+            }
         }
         remove
         {
-            if (_onErrorHandler == null)
-                _containedFsw.Error -= BufferingFileSystemWatcher_Error;
-            _onErrorHandler -= value;
+            lock (_eventLock)
+            {
+                _onErrorHandler -= value;
+                if (_onErrorHandler == null)
+                    _containedFsw.Error -= BufferingFileSystemWatcher_Error;
+            }
         }
     }
 
     private void BufferingFileSystemWatcher_Error(object sender, ErrorEventArgs e)
     {
-        InvokeHandler(_onErrorHandler, e);
+        ReportError(e.GetException());
     }
     #endregion
 
-    private void RaiseBufferedEventsUntilCancelled()
+    private void RaiseBufferedEventsUntilCancelled(EventPump pump)
     {
         _ = Task.Run(() =>
         {
             try
             {
-                if (_onExistedHandler != null || _onAllChangesHandler != null)
-                    NotifyExistingFiles();
+                if (!pump.Token.IsCancellationRequested && (_onExistedHandler != null || _onAllChangesHandler != null))
+                {
+                    try
+                    {
+                        NotifyExistingFiles(pump.Token);
+                    }
+                    catch (OperationCanceledException) when (pump.Token.IsCancellationRequested)
+                    {
+                        throw;
+                    }
+                    catch (Exception ex)
+                    {
+                        ReportError(ex);
+                    }
+                }
 
                 foreach (
                     FileSystemEventArgs e in
-                    _fileSystemEventBuffer.GetConsumingEnumerable(_cancellationTokenSource.Token))
+                    pump.Events.GetConsumingEnumerable(pump.Token))
                 {
-                    if (_onAllChangesHandler != null)
-                        InvokeHandler(_onAllChangesHandler, e);
-                    else
-                    {
-                        switch (e.ChangeType)
-                        {
-                            case WatcherChangeTypes.Created:
-                                InvokeHandler(_onCreatedHandler, e);
-                                break;
-                            case WatcherChangeTypes.Changed:
-                                InvokeHandler(_onChangedHandler, e);
-                                break;
-                            case WatcherChangeTypes.Deleted:
-                                InvokeHandler(_onDeletedHandler, e);
-                                break;
-                            case WatcherChangeTypes.Renamed:
-                                InvokeHandler(_onRenamedHandler, e as RenamedEventArgs);
-                                break;
-                        }
-                    }
+                    DispatchBufferedEvent(e);
                 }
+            }
+            catch (OperationCanceledException) when (pump.Token.IsCancellationRequested)
+            {
             }
             catch (Exception ex)
             {
-                BufferingFileSystemWatcher_Error(this, new ErrorEventArgs(ex));
+                ReportError(ex);
+            }
+            finally
+            {
+                pump.Dispose();
             }
         });
     }
 
-    private void NotifyExistingFiles()
+    private void DispatchBufferedEvent(FileSystemEventArgs e)
+    {
+        InvokeHandler(_onAllChangesHandler, e);
+
+        switch (e.ChangeType)
+        {
+            case WatcherChangeTypes.Created:
+                InvokeHandler(_onCreatedHandler, e);
+                break;
+            case WatcherChangeTypes.Changed:
+                InvokeHandler(_onChangedHandler, e);
+                break;
+            case WatcherChangeTypes.Deleted:
+                InvokeHandler(_onDeletedHandler, e);
+                break;
+            case WatcherChangeTypes.Renamed:
+                InvokeHandler(_onRenamedHandler, e as RenamedEventArgs);
+                break;
+        }
+    }
+
+    private void NotifyExistingFiles(CancellationToken cancellationToken)
     {
         var directoryInfo = new DirectoryInfo(Path);
         var searchOption = IncludeSubdirectories ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly;
@@ -320,19 +413,19 @@ public class BufferingFileSystemWatcher : Component
 
         foreach (var fileInfo in existingFiles)
         {
-            InvokeHandler(_onExistedHandler, new FileSystemEventArgs(WatcherChangeTypes.All, Path, fileInfo.Name));
-            InvokeHandler(_onAllChangesHandler, new FileSystemEventArgs(WatcherChangeTypes.All, Path, fileInfo.Name));
+            cancellationToken.ThrowIfCancellationRequested();
+            InvokeHandler(_onExistedHandler, new FileSystemEventArgs(WatcherChangeTypes.All, fileInfo.DirectoryName ?? Path, fileInfo.Name));
+            InvokeHandler(_onAllChangesHandler, new FileSystemEventArgs(WatcherChangeTypes.All, fileInfo.DirectoryName ?? Path, fileInfo.Name));
         }
     }
 
     public IEnumerable<string> GetAllFilters()
     {
         var allFilters = Filters?.ToList() ?? new List<string>();
-
-        if(!string.IsNullOrEmpty(Filter))
+        if (allFilters.Count == 0 && !string.IsNullOrEmpty(Filter))
             allFilters.Add(Filter);
 
-        if(!allFilters.Any())
+        if (allFilters.Count == 0)
             throw new ArgumentNullException("Filter(s) are not set.");
 
         return allFilters;
@@ -342,33 +435,65 @@ public class BufferingFileSystemWatcher : Component
     //Automatically raise event in calling thread when _fsw.SynchronizingObject is set. Ex: When used as a component in Win Forms.
     private void InvokeHandler(FileSystemEventHandler eventHandler, FileSystemEventArgs e)
     {
-        if (eventHandler != null)
+        if (eventHandler == null) return;
+
+        foreach (FileSystemEventHandler handler in eventHandler.GetInvocationList())
         {
-            if (_containedFsw.SynchronizingObject != null && _containedFsw.SynchronizingObject.InvokeRequired)
-                _containedFsw.SynchronizingObject.BeginInvoke(eventHandler, new object[] { this, e });
-            else
-                eventHandler(this, e);
+            try
+            {
+                if (_containedFsw.SynchronizingObject != null && _containedFsw.SynchronizingObject.InvokeRequired)
+                    _containedFsw.SynchronizingObject.BeginInvoke(handler, new object[] { this, e });
+                else
+                    handler(this, e);
+            }
+            catch (Exception ex)
+            {
+                ReportError(ex);
+            }
         }
     }
     private void InvokeHandler(RenamedEventHandler eventHandler, RenamedEventArgs e)
     {
-        if (eventHandler != null)
+        if (eventHandler == null) return;
+
+        foreach (RenamedEventHandler handler in eventHandler.GetInvocationList())
         {
-            if (_containedFsw.SynchronizingObject != null && _containedFsw.SynchronizingObject.InvokeRequired)
-                _containedFsw.SynchronizingObject.BeginInvoke(eventHandler, new object[] { this, e });
-            else
-                eventHandler(this, e);
+            try
+            {
+                if (_containedFsw.SynchronizingObject != null && _containedFsw.SynchronizingObject.InvokeRequired)
+                    _containedFsw.SynchronizingObject.BeginInvoke(handler, new object[] { this, e });
+                else
+                    handler(this, e);
+            }
+            catch (Exception ex)
+            {
+                ReportError(ex);
+            }
         }
     }
     private void InvokeHandler(ErrorEventHandler eventHandler, ErrorEventArgs e)
     {
-        if (eventHandler != null)
+        if (eventHandler == null) return;
+
+        foreach (ErrorEventHandler handler in eventHandler.GetInvocationList())
         {
-            if (_containedFsw.SynchronizingObject != null && _containedFsw.SynchronizingObject.InvokeRequired)
-                _containedFsw.SynchronizingObject.BeginInvoke(eventHandler, new object[] { this, e });
-            else
-                eventHandler(this, e);
+            try
+            {
+                if (_containedFsw.SynchronizingObject != null && _containedFsw.SynchronizingObject.InvokeRequired)
+                    _containedFsw.SynchronizingObject.BeginInvoke(handler, new object[] { this, e });
+                else
+                    handler(this, e);
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Trace.TraceError("An exception was thrown by a BufferingFileSystemWatcher Error handler: {0}", ex);
+            }
         }
+    }
+
+    private void ReportError(Exception exception)
+    {
+        InvokeHandler(_onErrorHandler, new ErrorEventArgs(exception));
     }
     #endregion
 
@@ -376,9 +501,60 @@ public class BufferingFileSystemWatcher : Component
     {
         if (disposing)
         {
-            _cancellationTokenSource?.Cancel();
+            lock (_lifecycleLock)
+            {
+                _containedFsw.EnableRaisingEvents = false;
+                var pump = _activePump;
+                _activePump = null;
+                pump?.Cancel();
+            }
             _containedFsw?.Dispose();
         }
         base.Dispose(disposing);
+    }
+
+    private sealed class EventPump : IDisposable
+    {
+        private readonly object _syncRoot = new();
+        private readonly CancellationTokenSource _cancellationTokenSource = new();
+        private bool _disposed;
+
+        public EventPump(int capacity)
+        {
+            Events = new BlockingCollection<FileSystemEventArgs>(capacity);
+            Capacity = capacity;
+        }
+
+        public BlockingCollection<FileSystemEventArgs> Events { get; }
+        public int Capacity { get; }
+        public CancellationToken Token => _cancellationTokenSource.Token;
+
+        public bool TryAdd(FileSystemEventArgs e)
+        {
+            lock (_syncRoot)
+            {
+                return _disposed || _cancellationTokenSource.IsCancellationRequested || Events.TryAdd(e);
+            }
+        }
+
+        public void Cancel()
+        {
+            lock (_syncRoot)
+            {
+                if (!_disposed)
+                    _cancellationTokenSource.Cancel();
+            }
+        }
+
+        public void Dispose()
+        {
+            lock (_syncRoot)
+            {
+                if (_disposed) return;
+                _disposed = true;
+                Events.Dispose();
+                _cancellationTokenSource.Dispose();
+            }
+        }
     }
 }
