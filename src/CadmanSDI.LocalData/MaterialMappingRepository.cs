@@ -29,23 +29,29 @@ public class MaterialMappingRepository : IMaterialMappingRepository
             workbook = new XLWorkbook(fileStream);
         }
 
-        IXLWorksheet worksheet = workbook.Worksheets.FirstOrDefault();
+        IXLWorksheet worksheet = workbook.Worksheets.FirstOrDefault() ?? throw new InvalidOperationException("No worksheet found in the workbook.");
 
         // select range with used data in the sheet
         var rangeUsed = worksheet.RangeUsed();
 
         // first column has the Rhodium Material id's
-        var column1 = rangeUsed.Column(1);
-        // search for the
-        var foundCells = column1.Search(rhodiumMaterialId, CompareOptions.IgnoreCase);
-        if (foundCells != null && foundCells.Any() )
+        if (rangeUsed != null)
         {
-            var firstCell = foundCells.FirstOrDefault();
-            var rowNumber = firstCell.Address.RowNumber;
-            // get the cadman Material id
-            var column2 = rangeUsed.Column(2);
-            var cadmanMaterialId = column2.Cell(rowNumber:rowNumber).Value.ToString();
-            return cadmanMaterialId;
+            var column1 = rangeUsed.Column(1);
+            // search for the
+            var foundCells = column1.Search(rhodiumMaterialId, CompareOptions.IgnoreCase);
+            if (foundCells != null && foundCells.Any() )
+            {
+                var firstCell = foundCells.FirstOrDefault();
+                if (firstCell != null)
+                {
+                    var rowNumber = firstCell.Address.RowNumber;
+                    // get the cadman Material id
+                    var column2 = rangeUsed.Column(2);
+                    var cadmanMaterialId = column2.Cell(rowNumber:rowNumber).Value.ToString();
+                    return cadmanMaterialId;
+                }
+            }
         }
 
         return string.Empty;
@@ -82,7 +88,7 @@ public class MaterialMappingRepository : IMaterialMappingRepository
             workbook = new XLWorkbook(fileStream);
         }
 
-        IXLWorksheet worksheet = workbook.Worksheets.FirstOrDefault();
+        IXLWorksheet worksheet = workbook.Worksheets.FirstOrDefault() ?? throw new InvalidOperationException("No worksheet found in the workbook.");
 
         // select range with used data in the sheet
         var rangeUsed = worksheet.RangeUsed();
@@ -92,24 +98,28 @@ public class MaterialMappingRepository : IMaterialMappingRepository
         var colCadmanBId = 3;
 
         // Get all rows where all 3 cells have a value
-        var mappingRows = rangeUsed.AsTable().DataRange.Rows()
-            .Where(row => row.Cell(colMaterialGroup).GetString().Trim().Length > 0
-                          && row.Cell(colKeyword).GetString().Trim().Length > 0
-                          && row.Cell(colCadmanBId).GetString().Trim().Length > 0);
-
-        var mappingList = new List<MaterialMapModel>();
-        foreach (var xlTableRow in mappingRows)
+        if (rangeUsed != null)
         {
-            var newMapping = new MaterialMapModel
-            {
-                MaterialGroup = xlTableRow.Cell(colMaterialGroup).Value.ToString(),
-                Keyword = xlTableRow.Cell(colKeyword).Value.ToString(),
-                CadmanBId = xlTableRow.Cell(colCadmanBId).Value.ToString()
-            };
-            mappingList.Add(newMapping);
-        }
+            var mappingRows = rangeUsed.AsTable().DataRange.Rows()
+                .Where(row => row.Cell(colMaterialGroup).GetString().Trim().Length > 0
+                              && row.Cell(colKeyword).GetString().Trim().Length > 0
+                              && row.Cell(colCadmanBId).GetString().Trim().Length > 0);
 
-        return mappingList;
+            var mappingList = new List<MaterialMapModel>();
+            foreach (var xlTableRow in mappingRows)
+            {
+                var newMapping = new MaterialMapModel
+                {
+                    MaterialGroup = xlTableRow.Cell(colMaterialGroup).Value.ToString(),
+                    Keyword = xlTableRow.Cell(colKeyword).Value.ToString(),
+                    CadmanBId = xlTableRow.Cell(colCadmanBId).Value.ToString()
+                };
+                mappingList.Add(newMapping);
+            }
+
+            return mappingList;
+        }
+        return new List<MaterialMapModel>();
     }
 
     private static string GetCadmanBMaterialIdFromKeywords(string[] keywords, IEnumerable<MaterialMapModel> mappingList)

@@ -13,7 +13,6 @@ public static class Helper
         {
             ProjectId = projectId,
             PartTypeId = partTypeId,
-            WorkingStepKey = new WorkingStepKeyV1(WorkingStepTypeV1.SheetBending, WorkingStepTypeV1.SheetBending),
             IsManufacturable = false
         };
         var logs = new List<EventLog>

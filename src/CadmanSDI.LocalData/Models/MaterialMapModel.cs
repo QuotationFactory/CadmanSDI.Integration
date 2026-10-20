@@ -2,8 +2,8 @@
 
 public class MaterialMapModel
 {
-    public string MaterialGroup { get; set; }
-    public string Keyword { get; set; }
-    public string CadmanBId { get; set; }
+    public required string MaterialGroup { get; set; }
+    public required string Keyword { get; set; }
+    public required string CadmanBId { get; set; }
 }
 

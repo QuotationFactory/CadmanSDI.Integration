@@ -93,7 +93,7 @@ public static class SettingsExtension
 
         while (File.Exists(result))
         {
-            result = Path.Combine(Path.GetDirectoryName(destinationFilePath), $"{Path.GetFileNameWithoutExtension(destinationFilePath)} (1){Path.GetExtension(destinationFilePath)}");
+            result = Path.Combine(Path.GetDirectoryName(destinationFilePath) ?? "", $"{Path.GetFileNameWithoutExtension(destinationFilePath)} (1){Path.GetExtension(destinationFilePath)}");
         }
 
         File.Move(filePath, result);

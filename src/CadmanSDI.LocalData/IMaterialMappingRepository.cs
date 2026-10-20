@@ -2,8 +2,8 @@
 
 public interface IMaterialMappingRepository
 {
-    string GetMaterialIdFromKeywords(string[] keywords);
+    string? GetMaterialIdFromKeywords(string[] keywords);
 
-    string GetMaterialIdFromArticle(string rhodiumMaterialId);
+    string? GetMaterialIdFromArticle(string rhodiumMaterialId);
 
 }

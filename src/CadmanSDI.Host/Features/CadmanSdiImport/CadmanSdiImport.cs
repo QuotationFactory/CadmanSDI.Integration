@@ -32,10 +32,14 @@ public class CadmanSdiImport : ICadmanSdiImport
 
     public async Task Import(string jsonFilePath)
     {
-        RequestManufacturabilityCheckOfPartTypeMessage request = null!;
+        RequestManufacturabilityCheckOfPartTypeMessage? request = null;
         try
         {
             request = await GetRequestManufacturabilityCheckOfPartTypeMessage(jsonFilePath);
+            if (request == null)
+            {
+                throw new ApplicationException($"Failed to deserialize request from file: '{jsonFilePath}'.");
+            }
 
             // The file name is a GUID, we use it as the request ID, the files will be all named with the same name
             // we can use this later while reading the result, so that we know to which request a response belongs
@@ -49,7 +53,7 @@ public class CadmanSdiImport : ICadmanSdiImport
             SaveImportFileInWatchFolder(requestId, import);
 
             _logger.LogInformation("Finished import cadman-sdi: {Id}", request.ProjectId);
-            _settings.MoveFileToProcessed(string.Empty, jsonFilePath);
+            _settings.MoveFileToProcessed(Constants.AgentIntegrationName, jsonFilePath);
         }
         catch (Exception ex)
         {
