@@ -2,6 +2,8 @@
 
 public class CadmanSdiIntegrationSettings
 {
+    public string CadmanSdiVersion { get; set; } = "8.7";
+
     public required string RootDirectory { get; set; }
 
     // The folder where the MetalHeaven agent saves it's downloads.

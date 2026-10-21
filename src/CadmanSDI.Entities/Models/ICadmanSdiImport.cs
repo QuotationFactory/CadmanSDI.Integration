@@ -1,5 +1,3 @@
 ﻿namespace CadmanSDI.Entities.Models;
 
-public interface ICadmanSdiImport
-{
-}
+public interface ICadmanSdiImport;

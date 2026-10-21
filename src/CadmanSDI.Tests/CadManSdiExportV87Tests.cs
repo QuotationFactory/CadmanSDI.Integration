@@ -1,7 +1,7 @@
 ﻿using System.Xml;
 using System.Xml.Serialization;
 using CadmanSDI.Entities;
-using CadmanSDI.Entities.Models.V8_7;
+using CadmanSDI.Entities.Models.V87;
 using CadmanSDI.Export;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
@@ -32,7 +32,7 @@ public class CadManSdiExportV87Tests
                 settings: settings,
                 logger: new Mock<ILogger<CadmanSdiRequestManufacturabilityResponseFactory>>().Object);
 
-        var result = GetDeserializedXml<CadManSdiExportV8_7>(ResultSuccessfulPath);
+        var result = GetDeserializedXml<CadManSdiExportV87>(ResultSuccessfulPath);
 
         // Act
         var response = await manufacturabilityResponseFactory.CreateFromResult(result, ResultSuccessfulPath);
@@ -58,7 +58,7 @@ public class CadManSdiExportV87Tests
                 settings: settings,
                 logger: new Mock<ILogger<CadmanSdiRequestManufacturabilityResponseFactory>>().Object);
 
-        var result = GetDeserializedXml<CadManSdiExportV8_7>(ResultFailedPath);
+        var result = GetDeserializedXml<CadManSdiExportV87>(ResultFailedPath);
 
         // Act
         var response = await manufacturabilityResponseFactory.CreateFromResult(result, ResultFailedPath);
@@ -84,7 +84,7 @@ public class CadManSdiExportV87Tests
                 settings: settings,
                 logger: new Mock<ILogger<CadmanSdiRequestManufacturabilityResponseFactory>>().Object);
 
-        var result = GetDeserializedXml<CadManSdiExportV8_7>(@"TestData\NotManufacturable\1a3bb73e-0ee0-479e-b6a5-19c28a5d0dfe.xml");
+        var result = GetDeserializedXml<CadManSdiExportV87>(@"TestData\NotManufacturable\1a3bb73e-0ee0-479e-b6a5-19c28a5d0dfe.xml");
 
         // Act
         var response = await manufacturabilityResponseFactory.CreateFromResult(result, ResultFailedPath);
@@ -97,7 +97,7 @@ public class CadManSdiExportV87Tests
     [Fact]
     private void GetDeserializedSdiExport()
     {
-        var sdiExport = GetDeserializedXml<CadManSdiExportV8_7>(ResultSuccessfulPath);
+        var sdiExport = GetDeserializedXml<CadManSdiExportV87>(ResultSuccessfulPath);
 
         Assert.NotNull(sdiExport.PARTTYPELIST.PARTSHEETMETALTYPE.MaterialID);
     }

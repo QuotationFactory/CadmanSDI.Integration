@@ -1,5 +1,5 @@
 ﻿using CadmanSDI.Entities;
-using CadmanSDI.Entities.Models.V8_7;
+using CadmanSDI.Entities.Models.V87;
 using MetalHeaven.Agent.Shared.External.Messages;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
@@ -19,7 +19,7 @@ public class CadmanSdiRequestManufacturabilityResponseFactory : ICadmanSdiReques
         _logger = logger;
     }
 
-    public Task<RequestManufacturabilityCheckOfPartTypeMessageResponse> CreateFromResult(CadManSdiExportV8_7 result, string resultFilePathName)
+    public Task<RequestManufacturabilityCheckOfPartTypeMessageResponse> CreateFromResult(CadManSdiExportV87 result, string resultFilePathName)
     {
         ArgumentNullException.ThrowIfNull(result);
 
@@ -64,7 +64,7 @@ public class CadmanSdiRequestManufacturabilityResponseFactory : ICadmanSdiReques
         return Task.FromResult(response);
     }
 
-    private bool TryGetIsManufacturable(CadManSdiExportV8_7 result, RequestManufacturabilityCheckOfPartTypeMessageResponse response, out List<EventLog> eventLogs)
+    private bool TryGetIsManufacturable(CadManSdiExportV87 result, RequestManufacturabilityCheckOfPartTypeMessageResponse response, out List<EventLog> eventLogs)
     {
         eventLogs = new List<EventLog>();
         if (result.JOBOSMCONVERTLIST.JOBOSMCONVERT.JobStatus != "Finished")

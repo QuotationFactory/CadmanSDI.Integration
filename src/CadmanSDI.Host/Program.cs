@@ -72,15 +72,12 @@ public static class Program
 
         hostBuilder.ConfigureServices((hostContext, services) =>
         {
-            // register cadman-sdi integration settings
-            services.AddOptions<CadmanSdiIntegrationSettings>()
-                .Bind(hostContext.Configuration.GetSection("CadmanSdiIntegrationSettings")).ValidateDataAnnotations();
+            services.AddCadmanSdiImport(hostContext.Configuration);
 
             // register agent message serialization helper
             services.AddTransient<IAgentMessageSerializationHelper, ExternalAgentMessageSerializationHelper>();
 
             services.AddTransient<ICadmanSdiImport, CadmanSdiImport>();
-            services.AddTransient<ICadmanSdiImportFactory, CadmanSdiImportFactory>();
             services.AddTransient<ICadmanSdiResult, CadmanSdiResult>();
             services.AddTransient<ICadmanSdiRequestManufacturabilityResponseFactory, CadmanSdiRequestManufacturabilityResponseFactory>();
             services.AddTransient<IManufacturabilityRequestRepository, ManufacturabilityRequestRepository>();

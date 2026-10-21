@@ -1,35 +1,26 @@
-﻿using System.Globalization;
-using System.Text.RegularExpressions;
-using CadmanSDI.Entities;
+﻿using CadmanSDI.Entities;
 using CadmanSDI.Entities.Models;
-using CadmanSDI.Entities.Models.V8_7;
-using CadmanSDI.Entities.Models.V8_9;
 using CadmanSDI.Entities.Repositories;
 using MetalHeaven.Agent.Shared.External.Messages;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using UnitsNet.Units;
 
 namespace CadmanSDI.Import;
 
-public partial class CadmanSdiImportFactory : ICadmanSdiImportFactory
+public class CadmanSdiImportFactory : ICadmanSdiImportFactory
 {
-    private const string NumberOnly = "[^0-9.]";
-
-    private static readonly Dictionary<LengthUnit, string> s_lengthUnits = new()
-    {
-        { LengthUnit.Millimeter, "MM" }
-    };
-
+    private readonly ICadmanSdiImportMapper _mapper;
     private readonly IMaterialMappingRepository _materialMappingRepository;
     private readonly CadmanSdiIntegrationSettings _settings;
     private readonly ILogger<CadmanSdiImportFactory> _logger;
 
     public CadmanSdiImportFactory(
+        ICadmanSdiImportMapper mapper,
         IMaterialMappingRepository materialMappingRepository,
         IOptions<CadmanSdiIntegrationSettings> settings,
         ILogger<CadmanSdiImportFactory> logger)
     {
+        _mapper = mapper;
         _materialMappingRepository = materialMappingRepository;
         _settings = settings.Value;
         _logger = logger;
@@ -53,7 +44,7 @@ public partial class CadmanSdiImportFactory : ICadmanSdiImportFactory
         }
 
         var materialId = GetMaterialCode(request) ?? string.Empty;
-        return FromRequest(request, importFileName, partTypeName, materialId, _settings.CadmanSdiResultsFolder, _settings.CadmanSdiMacroName);
+        return _mapper.FromRequest(request, importFileName, partTypeName, materialId, _settings.CadmanSdiResultsFolder, _settings.CadmanSdiMacroName);
     }
 
     private string ToFileName(string? description)
@@ -62,90 +53,6 @@ public partial class CadmanSdiImportFactory : ICadmanSdiImportFactory
         filename = string.Join("_", filename.Split(Path.GetInvalidFileNameChars()));
         return filename;
     }
-
-    public static ICadmanSdiImport FromRequest(
-        RequestManufacturabilityCheckOfPartTypeMessage request,
-        string importFileName,
-        string partTypeName,
-        string materialId,
-        string cadmanSdiResultsFolder,
-        string macroName
-        )
-    {
-        if (string.IsNullOrWhiteSpace(importFileName))
-            throw new ArgumentNullException(nameof(importFileName));
-
-        if (string.IsNullOrWhiteSpace(partTypeName))
-            partTypeName = request.PartType.Name;
-
-        if (string.IsNullOrWhiteSpace(materialId))
-        {
-            if (request.PartType.Material.SelectableArticles.SelectedArticle != null)
-            {
-                materialId = request.PartType.Material.SelectableArticles.SelectedArticle.Id;
-            }
-        }
-
-        var response = new CadManSdiImportV8_7
-        {
-            PartTypeImport = new PartTypeImport
-            {
-                PartTypeList = new PartTypeList
-                {
-                    PartTypes = new List<PartType>
-                    {
-                        new()
-                        {
-                            Id = partTypeName,
-                            Comment = request.ProjectId.ToString(),
-                            Description = request.PartType.Id.ToString(),
-                            MaterialId = materialId,
-                            Importfilename = importFileName
-                        }
-                    }
-                }
-            },
-            Batch = new Batch
-            {
-                Commands = new List<Command>
-                {
-                    new()
-                    {
-                        CommandString = string.IsNullOrWhiteSpace(macroName) ? "HANDLEFILE_BATCH" : macroName,
-                        Parameters =
-                        [
-                            new Parameter
-                            {
-                                Id = "PARTTYPEID",
-                                Value = partTypeName
-                            },
-                            new Parameter
-                            {
-                                Id = "OUTPUTPATH",
-                                Value = cadmanSdiResultsFolder
-                            }
-                        ]
-                    }
-                }
-            }
-        };
-
-        if (request.PartType.Material.SelectableArticles.SelectedArticle == null)
-        {
-            return response;
-        }
-
-        var selectedArticle = request.PartType.Material.SelectableArticles.SelectedArticle;
-        var thicknessHasValue = selectedArticle.Dimensions.Thickness is not null;
-        var thickness = thicknessHasValue ? selectedArticle.Dimensions.Thickness!.Value : default;
-
-        response.PartTypeImport.PartTypeList.PartTypes.First().Thickness = MyRegex().Replace(thickness.Value.ToString(CultureInfo.InvariantCulture), "");
-        response.PartTypeImport.PartTypeList.PartTypes.First().Unit = s_lengthUnits[thickness.Unit];
-
-        return response;
-    }
-
-
 
     private string? GetMaterialCode(RequestManufacturabilityCheckOfPartTypeMessage request)
     {
@@ -178,7 +85,4 @@ public partial class CadmanSdiImportFactory : ICadmanSdiImportFactory
             return machineId;
         }
     }
-
-    [GeneratedRegex(NumberOnly)]
-    private static partial Regex MyRegex();
 }

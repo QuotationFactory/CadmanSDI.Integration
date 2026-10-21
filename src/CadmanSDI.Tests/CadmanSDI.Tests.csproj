@@ -18,6 +18,7 @@
       <ProjectReference Include="..\CadmanSDI.Entities\CadmanSDI.Entities.csproj" />
       <ProjectReference Include="..\CadmanSDI.Export\CadmanSDI.Export.csproj" />
       <ProjectReference Include="..\CadmanSDI.Import\CadmanSDI.Import.csproj" />
+      <ProjectReference Include="..\CadmanSDI.Host\CadmanSDI.Host.csproj" />
       <ProjectReference Include="..\CadmanSDI.LocalData\CadmanSDI.LocalData.csproj" />
     </ItemGroup>
 

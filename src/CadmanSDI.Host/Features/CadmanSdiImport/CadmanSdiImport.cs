@@ -72,17 +72,10 @@ public class CadmanSdiImport : ICadmanSdiImport
         var fileNameOnly = requestId + ".xml";
         var fullFileName = Path.Combine(_settings.CadmanSdiWatchFolder, fileNameOnly);
         // save
-        XmlSerializer xmlSerializer = new XmlSerializer(typeof(ICadmanSdiImport));
+        var xmlSerializer = new XmlSerializer(import.GetType());
 
-        if (File.Exists(fullFileName))
-        {
-            File.Delete(fullFileName);
-        }
-
-        FileStream file = File.Create(fullFileName);
-
+        using var file = File.Create(fullFileName);
         xmlSerializer.Serialize(file, import);
-        file.Close();
         _logger.LogInformation("Saved batch input file: {FullFileName}", fullFileName);
     }
 

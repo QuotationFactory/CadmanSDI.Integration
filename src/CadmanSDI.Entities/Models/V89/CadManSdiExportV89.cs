@@ -1,6 +1,6 @@
 ﻿using System.Xml.Serialization;
 
-namespace CadmanSDI.Entities.Models.V8_7;
+namespace CadmanSDI.Entities.Models.V89;
 
 [XmlRoot(ElementName="OSMCONVERTORDER")]
 public class OSMCONVERTORDER {
@@ -459,7 +459,7 @@ public class MATERIALLIST {
 }
 
 [XmlRoot(ElementName="CADMAN")]
-public class CadManSdiExportV8_7 : ICadmanSdiExport {
+public class CadManSdiExportV89 : ICadmanSdiExport {
 	[XmlElement(ElementName="JOBOSMCONVERTLIST")]
 	public JOBOSMCONVERTLIST JOBOSMCONVERTLIST { get; set; }
 	[XmlElement(ElementName="JOBPARTPREPARATIONLIST")]

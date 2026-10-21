@@ -1,7 +1,7 @@
 ﻿using System.Text;
 using System.Xml.Serialization;
 using CadmanSDI.Entities;
-using CadmanSDI.Entities.Models.V8_7;
+using CadmanSDI.Entities.Models.V87;
 using CadmanSDI.Export;
 using CadmanSDI.Host.Features.OutputFile;
 using CadmanSDI.Host.Helpers;
@@ -31,7 +31,7 @@ public class CadmanSdiResult : ICadmanSdiResult
 
     public async Task ProcessResult(string resultFilePathName)
     {
-        CadManSdiExportV8_7? cadmanSdiResult = null;
+        CadManSdiExportV87? cadmanSdiResult = null;
         try
         {
             cadmanSdiResult = GetCadmanSdiResult(resultFilePathName);
@@ -53,9 +53,9 @@ public class CadmanSdiResult : ICadmanSdiResult
         }
     }
 
-    private CadManSdiExportV8_7 GetCadmanSdiResult(string resultFilePathName)
+    private CadManSdiExportV87 GetCadmanSdiResult(string resultFilePathName)
     {
-        CadManSdiExportV8_7 cadmanCadManSdiResult;
+        CadManSdiExportV87 cadmanCadManSdiResult;
         if (resultFilePathName == null)
         {
             throw new ArgumentNullException(nameof(resultFilePathName));
@@ -77,11 +77,11 @@ public class CadmanSdiResult : ICadmanSdiResult
         Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
 
         // Deserialize xml result file to poco classes
-        XmlSerializer serializer = new XmlSerializer(typeof(CadManSdiExportV8_7));
+        XmlSerializer serializer = new XmlSerializer(typeof(CadManSdiExportV87));
 
         using (Stream reader = new FileStream(resultFilePathName, FileMode.Open))
         {
-            cadmanCadManSdiResult = (CadManSdiExportV8_7)serializer.Deserialize(reader)! ??
+            cadmanCadManSdiResult = (CadManSdiExportV87)serializer.Deserialize(reader)! ??
                               throw new ApplicationException("Deserializing CADMAN-SDI result failed");;
         }
 
@@ -99,7 +99,7 @@ public class CadmanSdiResult : ICadmanSdiResult
         _logger.LogInformation("Response for Rhodium24 saved in: {ResponseFile}", responseFile);
     }
 
-    private void ReportException(Exception ex, CadManSdiExportV8_7? cadmanSdiResult = null)
+    private void ReportException(Exception ex, CadManSdiExportV87? cadmanSdiResult = null)
     {
         if (cadmanSdiResult == null)
         {

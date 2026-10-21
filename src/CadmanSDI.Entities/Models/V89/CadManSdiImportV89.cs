@@ -1,9 +1,9 @@
 ﻿using System.Xml.Serialization;
 
-namespace CadmanSDI.Entities.Models.V8_7;
+namespace CadmanSDI.Entities.Models.V89;
 
 [XmlRoot(ElementName="CADMAN")]
-public class CadManSdiImportV8_7 : ICadmanSdiImport {
+public class CadManSdiImportV89 : ICadmanSdiImport {
     [XmlElement(ElementName="PARTTYPEIMPORT")]
     public PartTypeImport PartTypeImport { get; set; }
 
@@ -77,10 +77,10 @@ public class PartType {
 	public string MaterialId { get; set; }
 
 	[XmlElement(ElementName="THICKNESS")]
-	public string Thickness { get; set; }
+	public string? Thickness { get; set; }
 
 	[XmlElement(ElementName="UNIT")]
-	public string Unit { get; set; }
+	public string? Unit { get; set; }
 
 	[XmlElement(ElementName="IMPORTFILENAME")]
 	public string Importfilename { get; set; }

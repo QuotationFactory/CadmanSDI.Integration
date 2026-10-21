@@ -1,7 +1,7 @@
 using System.Xml;
 using System.Xml.Serialization;
 using CadmanSDI.Entities.Models;
-using CadmanSDI.Entities.Models.V8_7;
+using CadmanSDI.Entities.Models.V87;
 using CadmanSDI.Import;
 using MetalHeaven.Agent.Shared.External.Messages;
 using Newtonsoft.Json;
@@ -18,7 +18,7 @@ public class CadManSdiImportV87Tests
     [Fact]
     private void GetDeserializedSdiImport()
     {
-        var sdiImport = GetDeserializedXml<CadManSdiImportV8_7>(SdiInputPath);
+        var sdiImport = GetDeserializedXml<CadManSdiImportV87>(SdiInputPath);
 
         Assert.Contains("demoLVD.sat", sdiImport.PartTypeImport.PartTypeList.PartTypes[0].Importfilename);
     }
@@ -49,7 +49,7 @@ public class CadManSdiImportV87Tests
 
         var cadmanSdiResultsFolder = string.Empty;
 
-        return CadmanSdiImportFactory.FromRequest(request, "testSdiImport.xml", partTypeId, materialId, cadmanSdiResultsFolder, string.Empty);
+        return new CadmanSdiImportMapperV87().FromRequest(request, "testSdiImport.xml", partTypeId, materialId, cadmanSdiResultsFolder, string.Empty);
     }
 
     private static T GetDeserializedXml<T>(string filePath)
@@ -68,12 +68,12 @@ public class CadManSdiImportV87Tests
     {
         var sdiImport = GetSdiImportFromManufacturabilityCheckOfPartTypeMessage();
 
-        var serializer = new XmlSerializer(typeof(CadManSdiImportV8_7));
+        var serializer = new XmlSerializer(typeof(CadManSdiImportV87));
 
         var file = File.Create("SdiImportTest.xml");
         serializer.Serialize(file, sdiImport);
         file.Close();
 
-        Assert.NotNull(GetDeserializedXml<CadManSdiImportV8_7>(file.Name));
+        Assert.NotNull(GetDeserializedXml<CadManSdiImportV87>(file.Name));
     }
 }
