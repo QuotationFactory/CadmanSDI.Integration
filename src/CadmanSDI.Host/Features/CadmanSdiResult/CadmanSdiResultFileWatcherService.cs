@@ -4,7 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
-namespace CadmanSDI.Host.Features.CadmanSdiResultFile;
+namespace CadmanSDI.Host.Features.CadmanSdiResult;
 
 /// <summary>
 /// Service that watches on the output directory of the agent for *.json files

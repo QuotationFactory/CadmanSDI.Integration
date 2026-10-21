@@ -3,9 +3,7 @@ using System.Runtime.InteropServices;
 using CadmanSDI.Entities;
 using CadmanSDI.Entities.Repositories;
 using CadmanSDI.Export;
-using CadmanSDI.Host.Features.CadmanSdiImport;
 using CadmanSDI.Host.Features.CadmanSdiResult;
-using CadmanSDI.Host.Features.CadmanSdiResultFile;
 using CadmanSDI.Host.Features.OutputFile;
 using CadmanSDI.Import;
 using CadmanSDI.LocalData;
@@ -77,7 +75,7 @@ public static class Program
             // register agent message serialization helper
             services.AddTransient<IAgentMessageSerializationHelper, ExternalAgentMessageSerializationHelper>();
 
-            services.AddTransient<ICadmanSdiImport, CadmanSdiImport>();
+            services.AddTransient<IRequestForManufacturability, RequestForManufacturability>();
             services.AddTransient<ICadmanSdiResult, CadmanSdiResult>();
             services.AddTransient<ICadmanSdiRequestManufacturabilityResponseFactory, CadmanSdiRequestManufacturabilityResponseFactory>();
             services.AddTransient<IManufacturabilityRequestRepository, ManufacturabilityRequestRepository>();

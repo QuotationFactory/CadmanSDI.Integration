@@ -1,10 +1,9 @@
 ﻿using CadmanSDI.Entities;
-using CadmanSDI.Host.Features.CadmanSdiResult;
 using CadmanSDI.Host.Features.OutputFile;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
-namespace CadmanSDI.Host.Features.CadmanSdiResultFile;
+namespace CadmanSDI.Host.Features.CadmanSdiResult;
 
 public class CadmanSdiResultFileCreatedHandler
 {

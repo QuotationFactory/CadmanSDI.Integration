@@ -1,7 +1,6 @@
 ﻿using System.Net;
 using System.Xml.Serialization;
 using CadmanSDI.Entities;
-using CadmanSDI.Host.Features.OutputFile;
 using CadmanSDI.Host.Helpers;
 using CadmanSDI.Import;
 using Integration.Common.Serialization;
@@ -11,17 +10,17 @@ using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using Versioned.ExternalDataContracts;
 
-namespace CadmanSDI.Host.Features.CadmanSdiImport;
+namespace CadmanSDI.Host.Features.OutputFile;
 
-public class CadmanSdiImport : ICadmanSdiImport
+public class RequestForManufacturability : IRequestForManufacturability
 {
     private readonly CadmanSdiIntegrationSettings _settings;
     private readonly ICadmanSdiImportFactory _inputFactory;
-    private readonly ILogger<CadmanSdiImport> _logger;
+    private readonly ILogger<RequestForManufacturability> _logger;
 
-    public CadmanSdiImport(
+    public RequestForManufacturability(
         ICadmanSdiImportFactory inputFactory,
-        ILogger<CadmanSdiImport> logger,
+        ILogger<RequestForManufacturability> logger,
         IOptions<CadmanSdiIntegrationSettings> settings)
     {
         _inputFactory = inputFactory;
