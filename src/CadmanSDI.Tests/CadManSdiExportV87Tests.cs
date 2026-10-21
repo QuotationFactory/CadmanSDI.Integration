@@ -13,7 +13,7 @@ using Xunit;
 
 namespace CadmanSDI.Tests;
 
-public class SdiExportTests
+public class CadManSdiExportV87Tests
 {
     private const string ResultSuccessfulPath =
         @"TestData\Test15062022-1.xml";
@@ -35,7 +35,7 @@ public class SdiExportTests
                 settings: settings,
                 logger: new Mock<ILogger<CadmanSdiRequestManufacturabilityResponseFactory>>().Object);
 
-        var result = GetDeserializedXml<SdiExport>(ResultSuccessfulPath);
+        var result = GetDeserializedXml<CadManSdiExportV8_7>(ResultSuccessfulPath);
 
         // Act
         var response = await manufacturabilityResponseFactory.CreateFromResult(result, ResultSuccessfulPath);
@@ -61,7 +61,7 @@ public class SdiExportTests
                 settings: settings,
                 logger: new Mock<ILogger<CadmanSdiRequestManufacturabilityResponseFactory>>().Object);
 
-        var result = GetDeserializedXml<SdiExport>(ResultFailedPath);
+        var result = GetDeserializedXml<CadManSdiExportV8_7>(ResultFailedPath);
 
         // Act
         var response = await manufacturabilityResponseFactory.CreateFromResult(result, ResultFailedPath);
@@ -87,7 +87,7 @@ public class SdiExportTests
                 settings: settings,
                 logger: new Mock<ILogger<CadmanSdiRequestManufacturabilityResponseFactory>>().Object);
 
-        var result = GetDeserializedXml<SdiExport>(@"TestData\NotManufacturable\1a3bb73e-0ee0-479e-b6a5-19c28a5d0dfe.xml");
+        var result = GetDeserializedXml<CadManSdiExportV8_7>(@"TestData\NotManufacturable\1a3bb73e-0ee0-479e-b6a5-19c28a5d0dfe.xml");
 
         // Act
         var response = await manufacturabilityResponseFactory.CreateFromResult(result, ResultFailedPath);
@@ -100,7 +100,7 @@ public class SdiExportTests
     [Fact]
     private void GetDeserializedSdiExport()
     {
-        var sdiExport = GetDeserializedXml<SdiExport>(ResultSuccessfulPath);
+        var sdiExport = GetDeserializedXml<CadManSdiExportV8_7>(ResultSuccessfulPath);
 
         Assert.NotNull(sdiExport.PARTTYPELIST.PARTSHEETMETALTYPE.MaterialID);
     }

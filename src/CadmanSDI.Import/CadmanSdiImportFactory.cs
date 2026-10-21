@@ -33,7 +33,7 @@ public partial class CadmanSdiImportFactory : ICadmanSdiImportFactory
         _logger = logger;
     }
 
-    SdiImport ICadmanSdiImportFactory.FromRequest(RequestManufacturabilityCheckOfPartTypeMessage request, string importFileName)
+    CadManSdiImportV8_7 ICadmanSdiImportFactory.FromRequest(RequestManufacturabilityCheckOfPartTypeMessage request, string importFileName)
     {
         string partTypeName;
         if (_settings.SaveAsUniqueInclPartName)
@@ -61,7 +61,7 @@ public partial class CadmanSdiImportFactory : ICadmanSdiImportFactory
         return filename;
     }
 
-    public static SdiImport FromRequest(
+    public static CadManSdiImportV8_7 FromRequest(
         RequestManufacturabilityCheckOfPartTypeMessage request,
         string importFileName,
         string partTypeName,
@@ -84,7 +84,7 @@ public partial class CadmanSdiImportFactory : ICadmanSdiImportFactory
             }
         }
 
-        var response = new SdiImport
+        var response = new CadManSdiImportV8_7
         {
             PartTypeImport = new PartTypeImport
             {

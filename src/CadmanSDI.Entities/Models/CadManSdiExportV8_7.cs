@@ -459,7 +459,7 @@ public class MATERIALLIST {
 }
 
 [XmlRoot(ElementName="CADMAN")]
-public class SdiExport {
+public class CadManSdiExportV8_7 : ICadmanSdiExport {
 	[XmlElement(ElementName="JOBOSMCONVERTLIST")]
 	public JOBOSMCONVERTLIST JOBOSMCONVERTLIST { get; set; }
 	[XmlElement(ElementName="JOBPARTPREPARATIONLIST")]

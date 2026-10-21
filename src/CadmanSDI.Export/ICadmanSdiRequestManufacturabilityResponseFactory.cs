@@ -6,7 +6,7 @@ namespace CadmanSDI.Export;
 public interface ICadmanSdiRequestManufacturabilityResponseFactory
 {
     Task<RequestManufacturabilityCheckOfPartTypeMessageResponse> CreateFromResult(
-        SdiExport result,
+        CadManSdiExportV8_7 result,
         string resultFilePathName);
 }
 

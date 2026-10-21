@@ -3,7 +3,7 @@
 namespace CadmanSDI.Entities.Models;
 
 [XmlRoot(ElementName="CADMAN")]
-public class SdiImport {
+public class CadManSdiImportV8_7 : ICadmanSdiImport {
     [XmlElement(ElementName="PARTTYPEIMPORT")]
     public PartTypeImport PartTypeImport { get; set; }
 

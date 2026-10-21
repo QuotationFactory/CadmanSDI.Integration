@@ -31,7 +31,7 @@ public class CadmanSdiResult : ICadmanSdiResult
 
     public async Task ProcessResult(string resultFilePathName)
     {
-        SdiExport? cadmanSdiResult = null;
+        CadManSdiExportV8_7? cadmanSdiResult = null;
         try
         {
             cadmanSdiResult = GetCadmanSdiResult(resultFilePathName);
@@ -53,9 +53,9 @@ public class CadmanSdiResult : ICadmanSdiResult
         }
     }
 
-    private static SdiExport GetCadmanSdiResult(string resultFilePathName)
+    private static CadManSdiExportV8_7 GetCadmanSdiResult(string resultFilePathName)
     {
-        SdiExport cadmanSdiResult;
+        CadManSdiExportV8_7 cadmanCadManSdiResult;
         if (resultFilePathName == null)
         {
             throw new ArgumentNullException(nameof(resultFilePathName));
@@ -77,15 +77,15 @@ public class CadmanSdiResult : ICadmanSdiResult
         Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
 
         // Deserialize xml result file to poco classes
-        XmlSerializer serializer = new XmlSerializer(typeof(SdiExport));
+        XmlSerializer serializer = new XmlSerializer(typeof(CadManSdiExportV8_7));
 
         using (Stream reader = new FileStream(resultFilePathName, FileMode.Open))
         {
-            cadmanSdiResult = (SdiExport)serializer.Deserialize(reader)! ??
+            cadmanCadManSdiResult = (CadManSdiExportV8_7)serializer.Deserialize(reader)! ??
                               throw new ApplicationException("Deserializing CADMAN-SDI result failed");;
         }
 
-        return cadmanSdiResult;
+        return cadmanCadManSdiResult;
     }
 
     private async Task SaveResultToAgentInputFolder(RequestManufacturabilityCheckOfPartTypeMessageResponse result)
@@ -99,7 +99,7 @@ public class CadmanSdiResult : ICadmanSdiResult
         _logger.LogInformation("Response for Rhodium24 saved in: {ResponseFile}", responseFile);
     }
 
-    private void ReportException(Exception ex, SdiExport? cadmanSdiResult = null)
+    private void ReportException(Exception ex, CadManSdiExportV8_7? cadmanSdiResult = null)
     {
         if (cadmanSdiResult == null)
         {

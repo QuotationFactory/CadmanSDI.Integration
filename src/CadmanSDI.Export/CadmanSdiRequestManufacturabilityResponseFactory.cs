@@ -22,7 +22,7 @@ public class CadmanSdiRequestManufacturabilityResponseFactory : ICadmanSdiReques
     }
 
     public Task<RequestManufacturabilityCheckOfPartTypeMessageResponse> CreateFromResult(
-        SdiExport result,
+        CadManSdiExportV8_7 result,
         string resultFilePathName)
     {
         ArgumentNullException.ThrowIfNull(result);
@@ -68,7 +68,7 @@ public class CadmanSdiRequestManufacturabilityResponseFactory : ICadmanSdiReques
         return Task.FromResult(response);
     }
 
-    private bool TryGetIsManufacturable(SdiExport result, RequestManufacturabilityCheckOfPartTypeMessageResponse response, out List<EventLog> eventLogs)
+    private bool TryGetIsManufacturable(CadManSdiExportV8_7 result, RequestManufacturabilityCheckOfPartTypeMessageResponse response, out List<EventLog> eventLogs)
     {
         eventLogs = new List<EventLog>();
         if (result.JOBOSMCONVERTLIST.JOBOSMCONVERT.JobStatus != "Finished")
