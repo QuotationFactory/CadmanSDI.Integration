@@ -2,6 +2,8 @@
 using System.Text.RegularExpressions;
 using CadmanSDI.Entities;
 using CadmanSDI.Entities.Models;
+using CadmanSDI.Entities.Models.V8_7;
+using CadmanSDI.Entities.Models.V8_9;
 using CadmanSDI.Entities.Repositories;
 using MetalHeaven.Agent.Shared.External.Messages;
 using Microsoft.Extensions.Logging;
@@ -33,7 +35,7 @@ public partial class CadmanSdiImportFactory : ICadmanSdiImportFactory
         _logger = logger;
     }
 
-    CadManSdiImportV8_7 ICadmanSdiImportFactory.FromRequest(RequestManufacturabilityCheckOfPartTypeMessage request, string importFileName)
+    ICadmanSdiImport ICadmanSdiImportFactory.FromRequest(RequestManufacturabilityCheckOfPartTypeMessage request, string importFileName)
     {
         string partTypeName;
         if (_settings.SaveAsUniqueInclPartName)
@@ -61,7 +63,7 @@ public partial class CadmanSdiImportFactory : ICadmanSdiImportFactory
         return filename;
     }
 
-    public static CadManSdiImportV8_7 FromRequest(
+    public static ICadmanSdiImport FromRequest(
         RequestManufacturabilityCheckOfPartTypeMessage request,
         string importFileName,
         string partTypeName,
@@ -142,6 +144,8 @@ public partial class CadmanSdiImportFactory : ICadmanSdiImportFactory
 
         return response;
     }
+
+
 
     private string? GetMaterialCode(RequestManufacturabilityCheckOfPartTypeMessage request)
     {

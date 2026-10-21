@@ -1,7 +1,7 @@
 ﻿using System.Text;
 using System.Xml.Serialization;
 using CadmanSDI.Entities;
-using CadmanSDI.Entities.Models;
+using CadmanSDI.Entities.Models.V8_7;
 using CadmanSDI.Export;
 using CadmanSDI.Host.Features.OutputFile;
 using CadmanSDI.Host.Helpers;
@@ -53,7 +53,7 @@ public class CadmanSdiResult : ICadmanSdiResult
         }
     }
 
-    private static CadManSdiExportV8_7 GetCadmanSdiResult(string resultFilePathName)
+    private CadManSdiExportV8_7 GetCadmanSdiResult(string resultFilePathName)
     {
         CadManSdiExportV8_7 cadmanCadManSdiResult;
         if (resultFilePathName == null)

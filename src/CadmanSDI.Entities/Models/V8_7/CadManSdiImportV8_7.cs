@@ -1,6 +1,6 @@
 ﻿using System.Xml.Serialization;
 
-namespace CadmanSDI.Entities.Models;
+namespace CadmanSDI.Entities.Models.V8_7;
 
 [XmlRoot(ElementName="CADMAN")]
 public class CadManSdiImportV8_7 : ICadmanSdiImport {

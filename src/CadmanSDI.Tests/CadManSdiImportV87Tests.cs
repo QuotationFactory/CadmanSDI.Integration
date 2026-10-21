@@ -1,6 +1,7 @@
 using System.Xml;
 using System.Xml.Serialization;
 using CadmanSDI.Entities.Models;
+using CadmanSDI.Entities.Models.V8_7;
 using CadmanSDI.Import;
 using MetalHeaven.Agent.Shared.External.Messages;
 using Newtonsoft.Json;
@@ -38,7 +39,7 @@ public class CadManSdiImportV87Tests
         return JsonConvert.DeserializeObject<RequestManufacturabilityCheckOfPartTypeMessage>(json, settings)!;
     }
 
-    private CadManSdiImportV8_7 GetSdiImportFromManufacturabilityCheckOfPartTypeMessage()
+    private ICadmanSdiImport GetSdiImportFromManufacturabilityCheckOfPartTypeMessage()
     {
         var request = GetDeserializedManufacturabilityCheckOfPartTypeMessage();
 

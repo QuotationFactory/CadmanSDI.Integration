@@ -1,11 +1,8 @@
 ﻿using System.Xml;
 using System.Xml.Serialization;
 using CadmanSDI.Entities;
-using CadmanSDI.Entities.Models;
-using CadmanSDI.Entities.Repositories;
+using CadmanSDI.Entities.Models.V8_7;
 using CadmanSDI.Export;
-using CadmanSDI.LocalData;
-using CadmanSDI.LocalData.Models;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Moq;
@@ -16,7 +13,7 @@ namespace CadmanSDI.Tests;
 public class CadManSdiExportV87Tests
 {
     private const string ResultSuccessfulPath =
-        @"TestData\Test15062022-1.xml";
+        @"TestData\XML goed.xml";
     private const string ResultFailedPath =
         @"TestData\XML afkeur.xml";
 

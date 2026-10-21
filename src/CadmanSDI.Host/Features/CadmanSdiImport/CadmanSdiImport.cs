@@ -1,7 +1,6 @@
 ﻿using System.Net;
 using System.Xml.Serialization;
 using CadmanSDI.Entities;
-using CadmanSDI.Entities.Models;
 using CadmanSDI.Host.Features.OutputFile;
 using CadmanSDI.Host.Helpers;
 using CadmanSDI.Import;
@@ -66,14 +65,14 @@ public class CadmanSdiImport : ICadmanSdiImport
         }
     }
 
-    private void SaveImportFileInWatchFolder(string requestId, CadManSdiImportV8_7 importV87)
+    private void SaveImportFileInWatchFolder(string requestId, Entities.Models.ICadmanSdiImport import)
     {
         // Save import file in cadman-sdi watch folder
         // Make the name the request-id, then we can use this as a reference when reading the file
         var fileNameOnly = requestId + ".xml";
         var fullFileName = Path.Combine(_settings.CadmanSdiWatchFolder, fileNameOnly);
         // save
-        XmlSerializer xmlSerializer = new XmlSerializer(typeof(CadManSdiImportV8_7));
+        XmlSerializer xmlSerializer = new XmlSerializer(typeof(ICadmanSdiImport));
 
         if (File.Exists(fullFileName))
         {
@@ -82,7 +81,7 @@ public class CadmanSdiImport : ICadmanSdiImport
 
         FileStream file = File.Create(fullFileName);
 
-        xmlSerializer.Serialize(file, importV87);
+        xmlSerializer.Serialize(file, import);
         file.Close();
         _logger.LogInformation("Saved batch input file: {FullFileName}", fullFileName);
     }

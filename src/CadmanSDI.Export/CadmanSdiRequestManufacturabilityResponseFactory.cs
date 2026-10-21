@@ -1,10 +1,8 @@
 ﻿using CadmanSDI.Entities;
-using CadmanSDI.Entities.Models;
+using CadmanSDI.Entities.Models.V8_7;
 using MetalHeaven.Agent.Shared.External.Messages;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using Versioned.ExternalDataContracts.Contracts.Resource;
-using Versioned.ExternalDataContracts.Enums;
 
 namespace CadmanSDI.Export;
 
@@ -21,9 +19,7 @@ public class CadmanSdiRequestManufacturabilityResponseFactory : ICadmanSdiReques
         _logger = logger;
     }
 
-    public Task<RequestManufacturabilityCheckOfPartTypeMessageResponse> CreateFromResult(
-        CadManSdiExportV8_7 result,
-        string resultFilePathName)
+    public Task<RequestManufacturabilityCheckOfPartTypeMessageResponse> CreateFromResult(CadManSdiExportV8_7 result, string resultFilePathName)
     {
         ArgumentNullException.ThrowIfNull(result);
 
