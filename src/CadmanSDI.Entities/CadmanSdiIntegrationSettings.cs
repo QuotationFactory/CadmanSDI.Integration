@@ -6,10 +6,10 @@ public class CadmanSdiIntegrationSettings
 
     public required string RootDirectory { get; set; }
 
-    // The folder where the MetalHeaven agent saves it's downloads.
+    // The folder where the Edge connector saves its downloads.
     public string IntegrationOutputFolder { get; set; }
 
-    // The folder where the MetalHeaven agent watches for files to upload.
+    // The folder where the Edge connector watches for files to upload.
     public string IntegrationInputFolder { get; set; }
 
     // The folder where CADMAN-SDI watches for files to process.

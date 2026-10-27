@@ -1,13 +1,13 @@
 # Cadman SDI Integration
 
-This Windows service connects the MetalHeaven agent to CADMAN-SDI. It imports
+This Windows service connects the Edge connector to CADMAN-SDI. It imports
 manufacturability requests into CADMAN-SDI, processes the resulting XML files,
 and sends the response and configured documents back to the agent.
 
 ## Requirements
 
 - .NET 10 SDK to build and run the service.
-- Access to the MetalHeaven agent input and output folders.
+- Access to the Edge connector input and output folders.
 - Access to CADMAN-SDI's watch and results folders.
 - A CADMAN-SDI material mapping workbook at `CadmanSDI.Host\Data\MaterialMapping.xlsx`.
 
