@@ -10,6 +10,7 @@ ProjectSection(SolutionItems) = preProject
 	..\publish\data\MaterialMapping_example_Keywords.xlsx = ..\publish\data\MaterialMapping_example_Keywords.xlsx
 	..\publish\published-latest-version.txt = ..\publish\published-latest-version.txt
 	..\publish\build-publish-cadman-sdi-integration.ps1 = ..\publish\build-publish-cadman-sdi-integration.ps1
+	README.md = README.md
 EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CadmanSDI.Host", "CadmanSDI.Host\CadmanSDI.Host.csproj", "{27CB1AFF-B53C-4495-923E-3D73AA05E27C}"
