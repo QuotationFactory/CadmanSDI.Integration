@@ -131,7 +131,7 @@ public class TAG {
 [XmlRoot(ElementName="TAGS")]
 public class TAGS {
 	[XmlElement(ElementName="TAG")]
-	public TAG TAG { get; set; }
+	public List<TAG> TAG { get; set; } = new();
 }
 
 [XmlRoot(ElementName="PARTSHEETMETALMODEL")]

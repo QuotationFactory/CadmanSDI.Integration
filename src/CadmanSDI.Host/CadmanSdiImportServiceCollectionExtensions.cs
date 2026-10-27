@@ -1,4 +1,5 @@
 using CadmanSDI.Entities;
+using CadmanSDI.Host.Features.CadmanSdiResult;
 using CadmanSDI.Import;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -21,6 +22,19 @@ public static class CadmanSdiImportServiceCollectionExtensions
             .ValidateOnStart();
 
         services.AddTransient<ICadmanSdiImportFactory, CadmanSdiImportFactory>();
+        services.AddTransient<CadmanSdiResultMapperV87>();
+        services.AddTransient<CadmanSdiResultMapperV89>();
+        services.AddTransient<ICadmanSdiResultMapper>(provider =>
+        {
+            var settings = provider.GetRequiredService<IOptions<CadmanSdiIntegrationSettings>>().Value;
+            return settings.CadmanSdiVersion switch
+            {
+                "8.7" => provider.GetRequiredService<CadmanSdiResultMapperV87>(),
+                "8.9" => provider.GetRequiredService<CadmanSdiResultMapperV89>(),
+                _ => throw new InvalidOperationException(
+                    $"Unsupported CADMAN-SDI version: '{settings.CadmanSdiVersion}'.")
+            };
+        });
         services.AddTransient<CadmanSdiImportMapperV87>();
         services.AddTransient<CadmanSdiImportMapperV89>();
         services.AddTransient<ICadmanSdiImportMapper>(provider =>

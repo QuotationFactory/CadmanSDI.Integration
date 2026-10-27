@@ -1,5 +1,5 @@
 ﻿using CadmanSDI.Entities;
-using CadmanSDI.Entities.Models.V87;
+using CadmanSDI.Entities.Models;
 using MetalHeaven.Agent.Shared.External.Messages;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
@@ -19,33 +19,34 @@ public class CadmanSdiRequestManufacturabilityResponseFactory : ICadmanSdiReques
         _logger = logger;
     }
 
-    public Task<RequestManufacturabilityCheckOfPartTypeMessageResponse> CreateFromResult(CadManSdiExportV87 result, string resultFilePathName)
+    public Task<RequestManufacturabilityCheckOfPartTypeMessageResponse> CreateFromResult(
+        CadmanSdiResultData result,
+        string resultFilePathName)
     {
         ArgumentNullException.ThrowIfNull(result);
 
         var response = new RequestManufacturabilityCheckOfPartTypeMessageResponse();
 
-        if (Guid.TryParse(result.PARTTYPELIST.PARTSHEETMETALTYPE.PARTSHEETMETALMODELLIST.PARTSHEETMETALMODEL.Description, out var foundPartTypeGuid))
+        if (Guid.TryParse(result.PartTypeId, out var foundPartTypeGuid))
         {
             response.PartTypeId = foundPartTypeGuid;
         }
         else
         {
             throw new ArgumentNullException(
-                nameof(result.PARTTYPELIST.PARTSHEETMETALTYPE.PARTSHEETMETALMODELLIST.PARTSHEETMETALMODEL.Description),
-                "Could not retrieve partType id from part.");
+                nameof(result.PartTypeId),
+                "Could not retrieve partType id from result.");
         }
 
-        if (Guid.TryParse(result.PARTTYPELIST.PARTSHEETMETALTYPE.PARTSHEETMETALMODELLIST.PARTSHEETMETALMODEL.Comment,
-                out var foundProjectIdGuid))
+        if (Guid.TryParse(result.ProjectId, out var foundProjectIdGuid))
         {
             response.ProjectId = foundProjectIdGuid;
         }
         else
         {
             throw new ArgumentNullException(
-                nameof(result.PARTTYPELIST.PARTSHEETMETALTYPE.PARTSHEETMETALMODELLIST.PARTSHEETMETALMODEL.Comment),
-                "Could not retrieve project id from part comment.");
+                nameof(result.ProjectId),
+                "Could not retrieve project id from result.");
         }
 
         // response.EventLogs = GetLogs(result, response.ProjectId, response.PartTypeId);
@@ -64,36 +65,37 @@ public class CadmanSdiRequestManufacturabilityResponseFactory : ICadmanSdiReques
         return Task.FromResult(response);
     }
 
-    private bool TryGetIsManufacturable(CadManSdiExportV87 result, RequestManufacturabilityCheckOfPartTypeMessageResponse response, out List<EventLog> eventLogs)
+    private bool TryGetIsManufacturable(
+        CadmanSdiResultData result,
+        RequestManufacturabilityCheckOfPartTypeMessageResponse response,
+        out List<EventLog> eventLogs)
     {
         eventLogs = new List<EventLog>();
-        if (result.JOBOSMCONVERTLIST.JOBOSMCONVERT.JobStatus != "Finished")
+        if (result.JobStatus != "Finished")
         {
             eventLogs.Add(new EventLog()
             {
                 ProjectId = response.ProjectId,
                 PartTypeId = response.PartTypeId,
-                Message = result.JOBOSMCONVERTLIST.JOBOSMCONVERT.JobStatusReason,
+                Message = result.JobStatusReason,
                 Level = EventLogLevel.Error
             });
             return false;
         }
 
-        var jobPreparation = result.JOBPARTPREPARATIONLIST.JOBPARTPREPARATION.FirstOrDefault();
-        if (jobPreparation is not null && jobPreparation.JobStatus != "Finished")
+        if (result.PreparationJobStatus is not null && result.PreparationJobStatus != "Finished")
         {
             eventLogs.Add(new EventLog()
             {
                 ProjectId = response.ProjectId,
                 PartTypeId = response.PartTypeId,
-                Message = jobPreparation.JobStatusReason,
+                Message = result.PreparationJobStatusReason,
                 Level = EventLogLevel.Error
             });
             return false;
         }
 
-        var partStepBendingExecution = result.EXECUTIONPLANPROPOSALLIST.EXECUTIONPLANPROPOSAL.PATHLIST.PATH.STEPLIST.STEP.FirstOrDefault(x=>x.Kind == "BENDINGEXEC");
-        if (partStepBendingExecution is null)
+        if (result.BendingExecutionValid is null)
         {
             eventLogs.Add(new EventLog()
             {
@@ -105,16 +107,16 @@ public class CadmanSdiRequestManufacturabilityResponseFactory : ICadmanSdiReques
             return false;
         }
 
-        if (partStepBendingExecution.Valid != "1")
+        if (result.BendingExecutionValid != "1")
         {
-            var jobType = partStepBendingExecution.JOBTYPELIST.JOBTYPE.FirstOrDefault();
-            if (jobType is not null && jobType.SUMMARY.Valid != "1")
+            if (result.BendingExecutionSummaryValid is not null &&
+                result.BendingExecutionSummaryValid != "1")
             {
                 eventLogs.Add(new EventLog()
                 {
                     ProjectId = response.ProjectId,
                     PartTypeId = response.PartTypeId,
-                    Message = jobType.SUMMARY.Reason,
+                    Message = result.BendingExecutionSummaryReason,
                     Level = EventLogLevel.Error
                 });
                 return false;

@@ -1,7 +1,5 @@
-﻿using System.Text;
-using System.Xml.Serialization;
-using CadmanSDI.Entities;
-using CadmanSDI.Entities.Models.V87;
+﻿using CadmanSDI.Entities;
+using CadmanSDI.Entities.Models;
 using CadmanSDI.Export;
 using CadmanSDI.Host.Features.OutputFile;
 using CadmanSDI.Host.Helpers;
@@ -15,29 +13,29 @@ namespace CadmanSDI.Host.Features.CadmanSdiResult;
 public class CadmanSdiResult : ICadmanSdiResult
 {
     private readonly ICadmanSdiRequestManufacturabilityResponseFactory _responseFactory;
+    private readonly ICadmanSdiResultMapper _resultMapper;
     private readonly ILogger<CadmanSdiResult> _logger;
     private readonly CadmanSdiIntegrationSettings _integrationSettings;
 
     public CadmanSdiResult(
         ICadmanSdiRequestManufacturabilityResponseFactory responseFactory,
+        ICadmanSdiResultMapper resultMapper,
         ILogger<CadmanSdiResult> logger,
         IOptions<CadmanSdiIntegrationSettings> integrationSettings
     )
     {
         _logger = logger;
         _responseFactory = responseFactory;
+        _resultMapper = resultMapper;
         _integrationSettings = integrationSettings.Value;
     }
 
     public async Task ProcessResult(string resultFilePathName)
     {
-        CadManSdiExportV87? cadmanSdiResult = null;
+        CadmanSdiResultData? cadmanSdiResult = null;
         try
         {
-            cadmanSdiResult = GetCadmanSdiResult(resultFilePathName);
-
-            var resultsPath = Path.GetDirectoryName(resultFilePathName) ??
-                              throw new InvalidOperationException("Could not get results path");
+            cadmanSdiResult = _resultMapper.FromResultFile(resultFilePathName);
 
             var result = await _responseFactory.CreateFromResult(cadmanSdiResult, resultFilePathName);
 
@@ -53,41 +51,6 @@ public class CadmanSdiResult : ICadmanSdiResult
         }
     }
 
-    private CadManSdiExportV87 GetCadmanSdiResult(string resultFilePathName)
-    {
-        CadManSdiExportV87 cadmanCadManSdiResult;
-        if (resultFilePathName == null)
-        {
-            throw new ArgumentNullException(nameof(resultFilePathName));
-        }
-
-        // check if json file exists
-        if (!File.Exists(resultFilePathName))
-        {
-            throw new ApplicationException($"Result file does not exists. {resultFilePathName}");
-        }
-
-        // Cadman-b produces on some machines XML files with encoding="windows-1252"
-        // windows-1252 is not supported out of the box by .net core 5
-        // To support other "exotic" encodings we need to include the nuget package:
-        // https://www.nuget.org/packages/System.Text.Encoding.CodePages/
-        // And register it with: Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
-        // This will allow reading of xml files with "exotic" encodings
-        // More info: https://docs.microsoft.com/en-us/dotnet/api/system.text.codepagesencodingprovider?view=net-5.0
-        Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
-
-        // Deserialize xml result file to poco classes
-        XmlSerializer serializer = new XmlSerializer(typeof(CadManSdiExportV87));
-
-        using (Stream reader = new FileStream(resultFilePathName, FileMode.Open))
-        {
-            cadmanCadManSdiResult = (CadManSdiExportV87)serializer.Deserialize(reader)! ??
-                              throw new ApplicationException("Deserializing CADMAN-SDI result failed");;
-        }
-
-        return cadmanCadManSdiResult;
-    }
-
     private async Task SaveResultToAgentInputFolder(RequestManufacturabilityCheckOfPartTypeMessageResponse result)
     {
         var agentUploadFolder = _integrationSettings.IntegrationInputFolder;
@@ -99,7 +62,7 @@ public class CadmanSdiResult : ICadmanSdiResult
         _logger.LogInformation("Response for Rhodium24 saved in: {ResponseFile}", responseFile);
     }
 
-    private void ReportException(Exception ex, CadManSdiExportV87? cadmanSdiResult = null)
+    private void ReportException(Exception ex, CadmanSdiResultData? cadmanSdiResult = null)
     {
         if (cadmanSdiResult == null)
         {
@@ -107,8 +70,8 @@ public class CadmanSdiResult : ICadmanSdiResult
             return;
         }
 
-        var foundProjectId = Guid.TryParse(cadmanSdiResult.JOBOSMCONVERTLIST.JOBOSMCONVERT.OrderID, out var projectId);
-        var foundPartId = Guid.TryParse(cadmanSdiResult.JOBOSMCONVERTLIST.JOBOSMCONVERT.OSMCONVERTRESULT.PartTypeID, out var partTypeId);
+        var foundProjectId = Guid.TryParse(cadmanSdiResult.ProjectId, out var projectId);
+        var foundPartId = Guid.TryParse(cadmanSdiResult.PartTypeId, out var partTypeId);
 
         if (!foundProjectId || !foundPartId)
         {

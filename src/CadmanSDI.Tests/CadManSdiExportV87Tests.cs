@@ -3,6 +3,7 @@ using System.Xml.Serialization;
 using CadmanSDI.Entities;
 using CadmanSDI.Entities.Models.V87;
 using CadmanSDI.Export;
+using CadmanSDI.Host.Features.CadmanSdiResult;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Moq;
@@ -32,7 +33,7 @@ public class CadManSdiExportV87Tests
                 settings: settings,
                 logger: new Mock<ILogger<CadmanSdiRequestManufacturabilityResponseFactory>>().Object);
 
-        var result = GetDeserializedXml<CadManSdiExportV87>(ResultSuccessfulPath);
+        var result = new CadmanSdiResultMapperV87().FromResultFile(ResultSuccessfulPath);
 
         // Act
         var response = await manufacturabilityResponseFactory.CreateFromResult(result, ResultSuccessfulPath);
@@ -44,7 +45,7 @@ public class CadManSdiExportV87Tests
     }
 
     [Fact]
-    private async Task CreateRequestManufacturabilityCheckOfPartTypeMessageResponseFromResult_Failed()
+    private async Task CreateRequestManufacturabilityCheckOfPartTypeMessageResponseFromResult_WithoutIds()
     {
         // Arrange
         var settings = Mock.Of<IOptions<CadmanSdiIntegrationSettings>>(s =>
@@ -58,14 +59,11 @@ public class CadManSdiExportV87Tests
                 settings: settings,
                 logger: new Mock<ILogger<CadmanSdiRequestManufacturabilityResponseFactory>>().Object);
 
-        var result = GetDeserializedXml<CadManSdiExportV87>(ResultFailedPath);
+        var result = new CadmanSdiResultMapperV87().FromResultFile(ResultFailedPath);
 
         // Act
-        var response = await manufacturabilityResponseFactory.CreateFromResult(result, ResultFailedPath);
-
-        // Assert
-        Assert.False(response.IsManufacturable);
-        Assert.Contains(response.Documents, d => d.DocumentName.Contains(".xml"));
+        await Assert.ThrowsAsync<ArgumentNullException>(
+            () => manufacturabilityResponseFactory.CreateFromResult(result, ResultFailedPath));
     }
 
     [Fact]
@@ -84,7 +82,8 @@ public class CadManSdiExportV87Tests
                 settings: settings,
                 logger: new Mock<ILogger<CadmanSdiRequestManufacturabilityResponseFactory>>().Object);
 
-        var result = GetDeserializedXml<CadManSdiExportV87>(@"TestData\NotManufacturable\1a3bb73e-0ee0-479e-b6a5-19c28a5d0dfe.xml");
+        var result = new CadmanSdiResultMapperV87()
+            .FromResultFile(@"TestData\NotManufacturable\1a3bb73e-0ee0-479e-b6a5-19c28a5d0dfe.xml");
 
         // Act
         var response = await manufacturabilityResponseFactory.CreateFromResult(result, ResultFailedPath);
