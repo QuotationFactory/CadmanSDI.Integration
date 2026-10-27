@@ -17,10 +17,14 @@ public class CadmanSdiResultMapperV89 : ICadmanSdiResultMapper
         var bendingJobType = bendingExecution?.JOBTYPELIST?.JOBTYPE?.FirstOrDefault();
         var preparationJob = result.JOBPARTPREPARATIONLIST?.JOBPARTPREPARATION?.FirstOrDefault();
 
+        // Prefer tags over comment and description for project and part type IDs
+        // If tags are not present, fall back to comment and description
+        var projectId = Prefer(tags.FirstOrDefault(tag => tag.Type == "ProjectId")?.Text, Prefer(model?.Comment, job?.OrderID));
+        var partTypeId = Prefer(tags.FirstOrDefault(tag => tag.Type == "PartTypeId")?.Text, Prefer(model?.Description, job?.OSMCONVERTRESULT?.PartTypeID));
+
         return new CadmanSdiResultData(
-            Prefer(tags.FirstOrDefault(tag => tag.Type == "ProjectId")?.Text, Prefer(model?.Comment, job?.OrderID)),
-            Prefer(tags.FirstOrDefault(tag => tag.Type == "PartTypeId")?.Text,
-                Prefer(model?.Description, job?.OSMCONVERTRESULT?.PartTypeID)),
+            projectId,
+            partTypeId,
             job?.JobStatus,
             job?.JobStatusReason,
             preparationJob?.JobStatus,
