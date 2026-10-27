@@ -1,4 +1,5 @@
 using CadmanSDI.Host;
+using CadmanSDI.Host.Features;
 using CadmanSDI.Result;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -21,7 +22,7 @@ public class CadmanSdiResultMappingTests
             })
             .Build();
         var services = new ServiceCollection();
-        services.AddCadmanSdiImport(configuration);
+        services.AddCadmanSdiResult(configuration);
         using var provider = services.BuildServiceProvider();
 
         Assert.IsType(mapperType, provider.GetRequiredService<ICadmanSdiResultMapper>());

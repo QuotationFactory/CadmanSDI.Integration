@@ -1,12 +1,11 @@
 ﻿using System.Diagnostics;
 using System.Runtime.InteropServices;
-using CadmanSDI.Entities.Repositories;
-using CadmanSDI.Export;
+using CadmanSDI.Host.Features;
 using CadmanSDI.Host.Features.OutputFile;
 using CadmanSDI.Host.Features.ProcessResult;
 using CadmanSDI.Host.Features.RFM;
+using CadmanSDI.Host.Features.RFMR;
 using CadmanSDI.LocalData;
-using CadmanSDI.Result;
 using MetalHeaven.Agent.Shared.External.Classes;
 using MetalHeaven.Agent.Shared.External.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
@@ -71,13 +70,14 @@ public static class Program
         hostBuilder.ConfigureServices((hostContext, services) =>
         {
             services.AddCadmanSdiImport(hostContext.Configuration);
+            services.AddCadmanSdiResult(hostContext.Configuration);
 
             // register agent message serialization helper
             services.AddTransient<IAgentMessageSerializationHelper, ExternalAgentMessageSerializationHelper>();
 
             services.AddTransient<IRequestForManufacturability, RequestForManufacturability>();
-            services.AddTransient<ICadmanSdiResult, CadmanSdiResult>();
-            services.AddTransient<ICadmanSdiRequestManufacturabilityResponseFactory, CadmanSdiRequestManufacturabilityResponseFactory>();
+            services.AddTransient<ICadmanSdiResult, CadmanSdiResultHandler>();
+            services.AddTransient<IRequestManufacturabilityResponse, RequestManufacturabilityResponse>();
             services.AddTransient<IManufacturabilityRequestRepository, ManufacturabilityRequestRepository>();
             services.AddTransient<IMaterialMappingRepository, MaterialMappingRepository>();
 

@@ -1,9 +1,9 @@
 using CadmanSDI.Result;
 using MetalHeaven.Agent.Shared.External.Messages;
 
-namespace CadmanSDI.Export;
+namespace CadmanSDI.Host.Features.RFMR;
 
-public interface ICadmanSdiRequestManufacturabilityResponseFactory
+public interface IRequestManufacturabilityResponse
 {
     Task<RequestManufacturabilityCheckOfPartTypeMessageResponse> CreateFromResult(
         CadmanSdiResultData result,

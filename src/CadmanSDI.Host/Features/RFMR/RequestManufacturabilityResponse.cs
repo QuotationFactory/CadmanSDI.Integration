@@ -4,16 +4,16 @@ using MetalHeaven.Agent.Shared.External.Messages;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
-namespace CadmanSDI.Export;
+namespace CadmanSDI.Host.Features.RFMR;
 
-public class CadmanSdiRequestManufacturabilityResponseFactory : ICadmanSdiRequestManufacturabilityResponseFactory
+public class RequestManufacturabilityResponse : IRequestManufacturabilityResponse
 {
     private readonly CadmanSdiIntegrationSettings _settings;
-    private readonly ILogger<CadmanSdiRequestManufacturabilityResponseFactory> _logger;
+    private readonly ILogger<RequestManufacturabilityResponse> _logger;
 
-    public CadmanSdiRequestManufacturabilityResponseFactory(
+    public RequestManufacturabilityResponse(
         IOptions<CadmanSdiIntegrationSettings> settings,
-        ILogger<CadmanSdiRequestManufacturabilityResponseFactory> logger)
+        ILogger<RequestManufacturabilityResponse> logger)
     {
         _settings = settings.Value;
         _logger = logger;

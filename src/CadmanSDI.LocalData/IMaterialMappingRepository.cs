@@ -1,4 +1,4 @@
-﻿namespace CadmanSDI.Entities.Repositories;
+﻿namespace CadmanSDI.LocalData;
 
 public interface IMaterialMappingRepository
 {

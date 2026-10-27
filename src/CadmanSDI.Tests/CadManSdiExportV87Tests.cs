@@ -2,7 +2,7 @@
 using System.Xml.Serialization;
 using CadmanSDI.Entities;
 using CadmanSDI.Entities.Models.V87;
-using CadmanSDI.Export;
+using CadmanSDI.Host.Features.RFMR;
 using CadmanSDI.Result;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
@@ -28,15 +28,15 @@ public class CadManSdiExportV87Tests
             s.Value.SaveAsPartName == true &&
             s.Value.UploadResultXmlFile == true);
 
-        ICadmanSdiRequestManufacturabilityResponseFactory manufacturabilityResponseFactory =
-            new CadmanSdiRequestManufacturabilityResponseFactory(
+        IRequestManufacturabilityResponse manufacturabilityResponse =
+            new RequestManufacturabilityResponse(
                 settings: settings,
-                logger: new Mock<ILogger<CadmanSdiRequestManufacturabilityResponseFactory>>().Object);
+                logger: new Mock<ILogger<RequestManufacturabilityResponse>>().Object);
 
         var result = new CadmanSdiResultMapperV87().FromResultFile(ResultSuccessfulPath);
 
         // Act
-        var response = await manufacturabilityResponseFactory.CreateFromResult(result, ResultSuccessfulPath);
+        var response = await manufacturabilityResponse.CreateFromResult(result, ResultSuccessfulPath);
 
         // Assert
         Assert.True(response.IsManufacturable);
@@ -54,16 +54,16 @@ public class CadManSdiExportV87Tests
             s.Value.SaveAsPartName == true &&
             s.Value.UploadResultXmlFile == true);
 
-        ICadmanSdiRequestManufacturabilityResponseFactory manufacturabilityResponseFactory =
-            new CadmanSdiRequestManufacturabilityResponseFactory(
+        IRequestManufacturabilityResponse manufacturabilityResponse =
+            new RequestManufacturabilityResponse(
                 settings: settings,
-                logger: new Mock<ILogger<CadmanSdiRequestManufacturabilityResponseFactory>>().Object);
+                logger: new Mock<ILogger<RequestManufacturabilityResponse>>().Object);
 
         var result = new CadmanSdiResultMapperV87().FromResultFile(ResultFailedPath);
 
         // Act
         await Assert.ThrowsAsync<ArgumentNullException>(
-            () => manufacturabilityResponseFactory.CreateFromResult(result, ResultFailedPath));
+            () => manufacturabilityResponse.CreateFromResult(result, ResultFailedPath));
     }
 
     [Fact]
@@ -77,16 +77,16 @@ public class CadManSdiExportV87Tests
             s.Value.SaveAsPartName == true &&
             s.Value.UploadResultXmlFile == true);
 
-        ICadmanSdiRequestManufacturabilityResponseFactory manufacturabilityResponseFactory =
-            new CadmanSdiRequestManufacturabilityResponseFactory(
+        IRequestManufacturabilityResponse manufacturabilityResponse =
+            new RequestManufacturabilityResponse(
                 settings: settings,
-                logger: new Mock<ILogger<CadmanSdiRequestManufacturabilityResponseFactory>>().Object);
+                logger: new Mock<ILogger<RequestManufacturabilityResponse>>().Object);
 
         var result = new CadmanSdiResultMapperV87()
             .FromResultFile(@"TestData\NotManufacturable\1a3bb73e-0ee0-479e-b6a5-19c28a5d0dfe.xml");
 
         // Act
-        var response = await manufacturabilityResponseFactory.CreateFromResult(result, ResultFailedPath);
+        var response = await manufacturabilityResponse.CreateFromResult(result, ResultFailedPath);
 
         // Assert
         Assert.False(response.IsManufacturable);

@@ -1,6 +1,6 @@
 ﻿using CadmanSDI.Entities;
-using CadmanSDI.Export;
 using CadmanSDI.Host.Features.OutputFile;
+using CadmanSDI.Host.Features.RFMR;
 using CadmanSDI.Host.Helpers;
 using CadmanSDI.Result;
 using MetalHeaven.Agent.Shared.External.Messages;
@@ -10,22 +10,22 @@ using Newtonsoft.Json;
 
 namespace CadmanSDI.Host.Features.ProcessResult;
 
-public class CadmanSdiResult : ICadmanSdiResult
+public class CadmanSdiResultHandler : ICadmanSdiResult
 {
-    private readonly ICadmanSdiRequestManufacturabilityResponseFactory _responseFactory;
+    private readonly IRequestManufacturabilityResponse _response;
     private readonly ICadmanSdiResultMapper _resultMapper;
-    private readonly ILogger<CadmanSdiResult> _logger;
+    private readonly ILogger<CadmanSdiResultHandler> _logger;
     private readonly CadmanSdiIntegrationSettings _integrationSettings;
 
-    public CadmanSdiResult(
-        ICadmanSdiRequestManufacturabilityResponseFactory responseFactory,
+    public CadmanSdiResultHandler(
+        IRequestManufacturabilityResponse response,
         ICadmanSdiResultMapper resultMapper,
-        ILogger<CadmanSdiResult> logger,
+        ILogger<CadmanSdiResultHandler> logger,
         IOptions<CadmanSdiIntegrationSettings> integrationSettings
     )
     {
         _logger = logger;
-        _responseFactory = responseFactory;
+        _response = response;
         _resultMapper = resultMapper;
         _integrationSettings = integrationSettings.Value;
     }
@@ -37,7 +37,7 @@ public class CadmanSdiResult : ICadmanSdiResult
         {
             cadmanSdiResult = _resultMapper.FromResultFile(resultFilePathName);
 
-            var result = await _responseFactory.CreateFromResult(cadmanSdiResult, resultFilePathName);
+            var result = await _response.CreateFromResult(cadmanSdiResult, resultFilePathName);
 
             await SaveResultToAgentInputFolder(result);
             // TODO: move files to processed

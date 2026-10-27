@@ -1,6 +1,6 @@
 ﻿using CadmanSDI.Entities;
 using CadmanSDI.Entities.Models;
-using CadmanSDI.Entities.Repositories;
+using CadmanSDI.LocalData;
 using MetalHeaven.Agent.Shared.External.Messages;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
