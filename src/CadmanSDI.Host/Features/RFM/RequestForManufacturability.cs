@@ -1,6 +1,7 @@
 ﻿using System.Net;
 using System.Xml.Serialization;
 using CadmanSDI.Entities;
+using CadmanSDI.Host.Features.OutputFile;
 using CadmanSDI.Host.Helpers;
 using CadmanSDI.Import;
 using Integration.Common.Serialization;
@@ -10,10 +11,11 @@ using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using Versioned.ExternalDataContracts;
 
-namespace CadmanSDI.Host.Features.OutputFile;
+namespace CadmanSDI.Host.Features.RFM;
 
 public class RequestForManufacturability : IRequestForManufacturability
 {
+    private static readonly HttpClient s_httpClient = new();
     private readonly CadmanSdiIntegrationSettings _settings;
     private readonly ICadmanSdiImportFactory _inputFactory;
     private readonly ILogger<RequestForManufacturability> _logger;
@@ -125,11 +127,9 @@ public class RequestForManufacturability : IRequestForManufacturability
         if (!Uri.TryCreate(uri, UriKind.Absolute, out _))
             throw new InvalidOperationException("URI is invalid.");
 
-        var httpClient = new HttpClient();
-
         try
         {
-            var fileBytes = await httpClient.GetByteArrayAsync(uri);
+            var fileBytes = await s_httpClient.GetByteArrayAsync(uri);
             await File.WriteAllBytesAsync(outputPath, fileBytes);
         }
         catch (HttpRequestException e)

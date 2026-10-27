@@ -3,7 +3,7 @@ using System.Xml.Serialization;
 using CadmanSDI.Entities;
 using CadmanSDI.Entities.Models.V87;
 using CadmanSDI.Export;
-using CadmanSDI.Host.Features.CadmanSdiResult;
+using CadmanSDI.Result;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Moq;

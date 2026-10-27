@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using CadmanSDI.Host.Features.RFM;
+using Microsoft.Extensions.Logging;
 
 namespace CadmanSDI.Host.Features.OutputFile;
 
@@ -23,10 +24,7 @@ public class OutputFileCreatedHandler
         // default file creation timeout
         await Task.Delay(500, cancellationToken);
 
-        // define file paths
-        var jsonFilePath = filePath;
-
-        _logger.LogInformation("Start processing request file: {JsonFilePath}", jsonFilePath);
-        await _requestForManufacturability.Import(jsonFilePath);
+        _logger.LogInformation("Start processing request file: {FilePath}", filePath);
+        await _requestForManufacturability.Import(filePath);
     }
 }

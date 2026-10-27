@@ -1,6 +1,5 @@
-using CadmanSDI.Host.Features.CadmanSdiResult;
 using CadmanSDI.Host;
-using CadmanSDI.Entities.Models;
+using CadmanSDI.Result;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Xunit;

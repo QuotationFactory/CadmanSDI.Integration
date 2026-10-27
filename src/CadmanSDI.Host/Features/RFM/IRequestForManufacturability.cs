@@ -1,4 +1,4 @@
-﻿namespace CadmanSDI.Host.Features.OutputFile;
+﻿namespace CadmanSDI.Host.Features.RFM;
 
 public interface IRequestForManufacturability
 {

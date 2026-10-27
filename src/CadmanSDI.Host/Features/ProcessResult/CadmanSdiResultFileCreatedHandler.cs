@@ -3,7 +3,7 @@ using CadmanSDI.Host.Features.OutputFile;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
-namespace CadmanSDI.Host.Features.CadmanSdiResult;
+namespace CadmanSDI.Host.Features.ProcessResult;
 
 public class CadmanSdiResultFileCreatedHandler
 {

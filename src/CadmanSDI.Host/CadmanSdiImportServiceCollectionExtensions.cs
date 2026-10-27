@@ -1,6 +1,6 @@
 using CadmanSDI.Entities;
-using CadmanSDI.Host.Features.CadmanSdiResult;
 using CadmanSDI.Import;
+using CadmanSDI.Result;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;

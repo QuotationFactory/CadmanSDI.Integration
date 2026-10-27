@@ -26,6 +26,7 @@
   </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\CadmanSDI.Result\CadmanSDI.Result.csproj" />
       <ProjectReference Include="..\Integration.Common\Integration.Common.csproj" />
       <ProjectReference Include="..\CadmanSDI.Entities\CadmanSDI.Entities.csproj" />
       <ProjectReference Include="..\CadmanSDI.Export\CadmanSDI.Export.csproj" />

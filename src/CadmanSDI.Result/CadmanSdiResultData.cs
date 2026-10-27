@@ -1,4 +1,4 @@
-namespace CadmanSDI.Entities.Models;
+namespace CadmanSDI.Result;
 
 public sealed record CadmanSdiResultData(
     string? ProjectId,

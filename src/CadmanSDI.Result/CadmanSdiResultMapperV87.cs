@@ -1,9 +1,8 @@
 using System.Text;
 using System.Xml.Serialization;
-using CadmanSDI.Entities.Models;
 using CadmanSDI.Entities.Models.V87;
 
-namespace CadmanSDI.Host.Features.CadmanSdiResult;
+namespace CadmanSDI.Result;
 
 public class CadmanSdiResultMapperV87 : ICadmanSdiResultMapper
 {

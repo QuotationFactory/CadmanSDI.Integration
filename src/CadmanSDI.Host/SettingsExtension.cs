@@ -1,6 +1,6 @@
 using CadmanSDI.Entities;
 
-namespace CadmanSDI.Host.Features.OutputFile;
+namespace CadmanSDI.Host;
 
 public static class SettingsExtension
 {

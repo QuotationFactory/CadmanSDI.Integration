@@ -1,14 +1,14 @@
 ﻿using CadmanSDI.Entities;
-using CadmanSDI.Entities.Models;
 using CadmanSDI.Export;
 using CadmanSDI.Host.Features.OutputFile;
 using CadmanSDI.Host.Helpers;
+using CadmanSDI.Result;
 using MetalHeaven.Agent.Shared.External.Messages;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 
-namespace CadmanSDI.Host.Features.CadmanSdiResult;
+namespace CadmanSDI.Host.Features.ProcessResult;
 
 public class CadmanSdiResult : ICadmanSdiResult
 {

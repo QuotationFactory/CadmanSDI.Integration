@@ -1,5 +1,5 @@
 ﻿using CadmanSDI.Entities;
-using CadmanSDI.Entities.Models;
+using CadmanSDI.Result;
 using MetalHeaven.Agent.Shared.External.Messages;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;

@@ -1,6 +1,4 @@
-using CadmanSDI.Entities.Models;
-
-namespace CadmanSDI.Host.Features.CadmanSdiResult;
+namespace CadmanSDI.Result;
 
 public interface ICadmanSdiResultMapper
 {
