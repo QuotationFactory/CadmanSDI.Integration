@@ -1,5 +1,4 @@
 ﻿using CadmanSDI.Entities;
-using CadmanSDI.Host.Features.OutputFile;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
@@ -9,16 +8,16 @@ public class CadmanSdiResultFileCreatedHandler
 {
     private readonly CadmanSdiIntegrationSettings _settings;
     private readonly ILogger<CadmanSdiResultFileCreatedHandler> _logger;
-    private readonly ICadmanSdiResult _cadmanSdiResult;
+    private readonly ICadmanSdiResult _cadManSdiResult;
 
     public CadmanSdiResultFileCreatedHandler(
         ILogger<CadmanSdiResultFileCreatedHandler> logger,
-        ICadmanSdiResult cadmanSdiResult,
+        ICadmanSdiResult cadManSdiResult,
         IOptions<CadmanSdiIntegrationSettings> settings)
     {
         _settings = settings.Value;
         _logger = logger;
-        _cadmanSdiResult = cadmanSdiResult;
+        _cadManSdiResult = cadManSdiResult;
     }
 
     public async Task HandleAsync(string filePath, CancellationToken cancellationToken)
@@ -28,13 +27,10 @@ public class CadmanSdiResultFileCreatedHandler
         // default file creation timeout
         await Task.Delay(500, cancellationToken);
 
-        // define file paths
-        var jsonFilePath = filePath;
+        _logger.LogInformation("Start processing request file: {FilePath}", filePath);
+        await _cadManSdiResult.ProcessResult(filePath);
 
-        _logger.LogInformation("Start processing request file: {JsonFilePath}", jsonFilePath);
-        await _cadmanSdiResult.ProcessResult(jsonFilePath);
-
-        var directory = Path.GetDirectoryName(jsonFilePath);
+        var directory = Path.GetDirectoryName(filePath);
         if (directory is null)
         {
             throw new Exception("Directory could not be created");

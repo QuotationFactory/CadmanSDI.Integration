@@ -1,5 +1,4 @@
 ﻿using CadmanSDI.Entities;
-using CadmanSDI.Host.Features.OutputFile;
 using CadmanSDI.Host.Features.RFMR;
 using CadmanSDI.Host.Helpers;
 using CadmanSDI.Result;
@@ -55,7 +54,7 @@ public class CadmanSdiResultHandler : ICadmanSdiResult
     {
         var agentUploadFolder = _integrationSettings.IntegrationInputFolder;
 
-        // Save the result file in the Agent/CADMAN-B/Input folder
+        // Save the result file in the Agent/CADMAN-SDI/Input folder
         var fileName = $"{result.PartTypeId.ToString()}.json";
         var responseFile = Path.Combine(agentUploadFolder, fileName);
         await File.WriteAllTextAsync(responseFile, JsonConvert.SerializeObject(result));

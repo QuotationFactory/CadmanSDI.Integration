@@ -74,7 +74,6 @@ public static class Program
 
             // register agent message serialization helper
             services.AddTransient<IAgentMessageSerializationHelper, ExternalAgentMessageSerializationHelper>();
-
             services.AddTransient<IRequestForManufacturability, RequestForManufacturability>();
             services.AddTransient<ICadmanSdiResult, CadmanSdiResultHandler>();
             services.AddTransient<IRequestManufacturabilityResponse, RequestManufacturabilityResponse>();

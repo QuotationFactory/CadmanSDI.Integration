@@ -1,7 +1,6 @@
 ﻿using System.Net;
 using System.Xml.Serialization;
 using CadmanSDI.Entities;
-using CadmanSDI.Host.Features.OutputFile;
 using CadmanSDI.Host.Helpers;
 using CadmanSDI.Import;
 using Integration.Common.Serialization;
