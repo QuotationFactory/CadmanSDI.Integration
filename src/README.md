@@ -15,18 +15,20 @@ and sends the response and configured documents back to the agent.
 
 Edit `CadmanSDI.Host\appsettings.json`, or provide equivalent configuration
 through the .NET configuration system. Configure the `CadmanSdiIntegrationSettings`
-section for the local installation.
+section for the local installation. `RootDirectory`, the folder settings below,
+and `CadmanSdiStepFolder` and `CadmanSdiResultsProcessedFolder` are required.
+`CadmanSdiVersion` defaults to `"8.7"` and `CadmanSdiMacroName` is optional.
 
 | Setting | Purpose |
 | --- | --- |
 | `CadmanSdiVersion` | CADMAN-SDI version: `"8.7"` or `"8.9"`. Defaults to `"8.7"`; other values fail startup validation. |
-| `IntegrationOutputFolder` | Agent output folder watched for incoming request JSON files. |
-| `IntegrationInputFolder` | Agent input folder where response JSON files are written. |
-| `CadmanSdiWatchFolder` | CADMAN-SDI watch folder where import XML files are written. |
-| `CadmanSdiResultsFolder` | Folder watched for CADMAN-SDI result XML files. |
-| `CadmanSdiResultsProcessedFolder` | Destination for processed result files. |
-| `CadmanSdiStepFolder` | Folder where downloaded STEP files are stored. |
-| `RootDirectory` | Root used by integration file-handling helpers. |
+| `IntegrationOutputFolder` | **Required.** Agent output folder watched for incoming request JSON files. |
+| `IntegrationInputFolder` | **Required.** Agent input folder where response JSON files are written. |
+| `CadmanSdiWatchFolder` | **Required.** CADMAN-SDI watch folder where import XML files are written. |
+| `CadmanSdiResultsFolder` | **Required.** Folder watched for CADMAN-SDI result XML files. |
+| `CadmanSdiResultsProcessedFolder` | **Required.** Destination for processed result files. |
+| `CadmanSdiStepFolder` | **Required.** Folder where downloaded STEP files are stored. |
+| `RootDirectory` | **Required.** Root used by integration file-handling helpers. |
 | `CadmanSdiMacroName` | Optional CADMAN-SDI macro name. When unset, the standard batch macro is used. |
 | `SaveAsPartName` | Use the part name instead of its ID when naming the CADMAN-SDI part. |
 | `SaveAsUniqueInclPartName` | Include the article number and part name in the CADMAN-SDI part name. |

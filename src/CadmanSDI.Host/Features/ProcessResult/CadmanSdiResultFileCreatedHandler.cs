@@ -37,11 +37,11 @@ public class CadmanSdiResultFileCreatedHandler
         }
 
         var lastDirectoryName = Path.GetFileName(directory);
-        var files = Directory.EnumerateFiles(directory);
+        var files = Directory.GetFiles(directory);
 
         foreach (var file in files)
         {
-            file.MoveFileToDirectory($"{_settings.CadmanSdiResultsProcessedFolder}/{lastDirectoryName}");
+            file.MoveFileToDirectory($"{_settings.CadmanSdiResultsProcessedFolder}\\{lastDirectoryName}");
         }
 
         Directory.Delete(directory);

@@ -49,9 +49,9 @@ public class CadmanSdiResultFileWatcherService : FileWatcherService
             switch (e.ChangeType)
             {
                 case WatcherChangeTypes.Created:
-                case WatcherChangeTypes.Changed:
                     await HandleCreatedFileAsync(e.FullPath, CancellationToken.None);
                     break;
+                case WatcherChangeTypes.Changed:
                 case WatcherChangeTypes.Deleted:
                 case WatcherChangeTypes.Renamed:
                 case WatcherChangeTypes.All:
