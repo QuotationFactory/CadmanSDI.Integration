@@ -1,7 +1,5 @@
 ﻿using MetalHeaven.Agent.Shared.External.Messages;
 using Newtonsoft.Json;
-using Versioned.ExternalDataContracts.Contracts.Resource;
-using Versioned.ExternalDataContracts.Enums;
 
 namespace CadmanSDI.Host.Helpers;
 

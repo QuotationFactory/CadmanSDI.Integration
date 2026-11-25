@@ -1,4 +1,4 @@
-﻿namespace CadmanSDI.Host.Features.CadmanSdiResult;
+﻿namespace CadmanSDI.Host.Features.ProcessResult;
 
 public interface ICadmanSdiResult
 {

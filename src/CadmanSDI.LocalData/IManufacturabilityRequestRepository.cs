@@ -1,7 +1,6 @@
-﻿using CadmanSDI.Entities.Models;
-using CadmanSDI.LocalData.Models;
+﻿using CadmanSDI.LocalData.Models;
 
-namespace CadmanSDI.Entities.Repositories;
+namespace CadmanSDI.LocalData;
 
 public interface IManufacturabilityRequestRepository
 {

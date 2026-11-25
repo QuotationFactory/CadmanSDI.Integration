@@ -4,7 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
-namespace CadmanSDI.Host.Features.CadmanSdiResultFile;
+namespace CadmanSDI.Host.Features.ProcessResult;
 
 /// <summary>
 /// Service that watches on the output directory of the agent for *.json files
@@ -49,9 +49,9 @@ public class CadmanSdiResultFileWatcherService : FileWatcherService
             switch (e.ChangeType)
             {
                 case WatcherChangeTypes.Created:
-                case WatcherChangeTypes.Changed:
                     await HandleCreatedFileAsync(e.FullPath, CancellationToken.None);
                     break;
+                case WatcherChangeTypes.Changed:
                 case WatcherChangeTypes.Deleted:
                 case WatcherChangeTypes.Renamed:
                 case WatcherChangeTypes.All:

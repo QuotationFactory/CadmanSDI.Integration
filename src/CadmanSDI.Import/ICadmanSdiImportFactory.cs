@@ -5,5 +5,5 @@ namespace CadmanSDI.Import;
 
 public interface ICadmanSdiImportFactory
 {
-    SdiImport FromRequest(RequestManufacturabilityCheckOfPartTypeMessage request, string importFileName);
+    ICadmanSdiImport FromRequest(RequestManufacturabilityCheckOfPartTypeMessage request, string importFileName);
 }

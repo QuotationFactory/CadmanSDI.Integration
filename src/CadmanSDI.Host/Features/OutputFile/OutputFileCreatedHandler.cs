@@ -1,4 +1,4 @@
-﻿using CadmanSDI.Host.Features.CadmanSdiImport;
+﻿using CadmanSDI.Host.Features.RFM;
 using Microsoft.Extensions.Logging;
 
 namespace CadmanSDI.Host.Features.OutputFile;
@@ -6,15 +6,15 @@ namespace CadmanSDI.Host.Features.OutputFile;
 public class OutputFileCreatedHandler
 {
     private readonly ILogger<OutputFileCreatedHandler> _logger;
-    private readonly ICadmanSdiImport _cadmanSdiImport;
+    private readonly IRequestForManufacturability _requestForManufacturability;
 
     public OutputFileCreatedHandler(
         ILogger<OutputFileCreatedHandler> logger,
-        ICadmanSdiImport cadmanSdiImport
+        IRequestForManufacturability requestForManufacturability
     )
     {
         _logger = logger;
-        _cadmanSdiImport = cadmanSdiImport;
+        _requestForManufacturability = requestForManufacturability;
     }
 
     public async Task HandleAsync(string filePath, CancellationToken cancellationToken)
@@ -24,10 +24,7 @@ public class OutputFileCreatedHandler
         // default file creation timeout
         await Task.Delay(500, cancellationToken);
 
-        // define file paths
-        var jsonFilePath = filePath;
-
-        _logger.LogInformation("Start processing request file: {JsonFilePath}", jsonFilePath);
-        await _cadmanSdiImport.Import(jsonFilePath);
+        _logger.LogInformation("Start processing request file: {FilePath}", filePath);
+        await _requestForManufacturability.Import(filePath);
     }
 }

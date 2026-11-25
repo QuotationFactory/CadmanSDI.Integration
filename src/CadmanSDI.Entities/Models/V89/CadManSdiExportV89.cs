@@ -1,6 +1,6 @@
 ﻿using System.Xml.Serialization;
 
-namespace CadmanSDI.Entities.Models;
+namespace CadmanSDI.Entities.Models.V89;
 
 [XmlRoot(ElementName="OSMCONVERTORDER")]
 public class OSMCONVERTORDER {
@@ -131,7 +131,7 @@ public class TAG {
 [XmlRoot(ElementName="TAGS")]
 public class TAGS {
 	[XmlElement(ElementName="TAG")]
-	public TAG TAG { get; set; }
+	public List<TAG> TAG { get; set; } = new();
 }
 
 [XmlRoot(ElementName="PARTSHEETMETALMODEL")]
@@ -459,7 +459,7 @@ public class MATERIALLIST {
 }
 
 [XmlRoot(ElementName="CADMAN")]
-public class SdiExport {
+public class CadManSdiExportV89 : ICadmanSdiExport {
 	[XmlElement(ElementName="JOBOSMCONVERTLIST")]
 	public JOBOSMCONVERTLIST JOBOSMCONVERTLIST { get; set; }
 	[XmlElement(ElementName="JOBPARTPREPARATIONLIST")]

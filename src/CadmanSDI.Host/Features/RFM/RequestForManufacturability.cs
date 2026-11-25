@@ -1,8 +1,6 @@
 ﻿using System.Net;
 using System.Xml.Serialization;
 using CadmanSDI.Entities;
-using CadmanSDI.Entities.Models;
-using CadmanSDI.Host.Features.OutputFile;
 using CadmanSDI.Host.Helpers;
 using CadmanSDI.Import;
 using Integration.Common.Serialization;
@@ -12,17 +10,18 @@ using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using Versioned.ExternalDataContracts;
 
-namespace CadmanSDI.Host.Features.CadmanSdiImport;
+namespace CadmanSDI.Host.Features.RFM;
 
-public class CadmanSdiImport : ICadmanSdiImport
+public class RequestForManufacturability : IRequestForManufacturability
 {
+    private static readonly HttpClient s_httpClient = new();
     private readonly CadmanSdiIntegrationSettings _settings;
     private readonly ICadmanSdiImportFactory _inputFactory;
-    private readonly ILogger<CadmanSdiImport> _logger;
+    private readonly ILogger<RequestForManufacturability> _logger;
 
-    public CadmanSdiImport(
+    public RequestForManufacturability(
         ICadmanSdiImportFactory inputFactory,
-        ILogger<CadmanSdiImport> logger,
+        ILogger<RequestForManufacturability> logger,
         IOptions<CadmanSdiIntegrationSettings> settings)
     {
         _inputFactory = inputFactory;
@@ -66,24 +65,17 @@ public class CadmanSdiImport : ICadmanSdiImport
         }
     }
 
-    private void SaveImportFileInWatchFolder(string requestId, SdiImport import)
+    private void SaveImportFileInWatchFolder(string requestId, Entities.Models.ICadmanSdiImport import)
     {
         // Save import file in cadman-sdi watch folder
         // Make the name the request-id, then we can use this as a reference when reading the file
         var fileNameOnly = requestId + ".xml";
         var fullFileName = Path.Combine(_settings.CadmanSdiWatchFolder, fileNameOnly);
         // save
-        XmlSerializer xmlSerializer = new XmlSerializer(typeof(SdiImport));
+        var xmlSerializer = new XmlSerializer(import.GetType());
 
-        if (File.Exists(fullFileName))
-        {
-            File.Delete(fullFileName);
-        }
-
-        FileStream file = File.Create(fullFileName);
-
+        using var file = File.Create(fullFileName);
         xmlSerializer.Serialize(file, import);
-        file.Close();
         _logger.LogInformation("Saved batch input file: {FullFileName}", fullFileName);
     }
 
@@ -134,11 +126,9 @@ public class CadmanSdiImport : ICadmanSdiImport
         if (!Uri.TryCreate(uri, UriKind.Absolute, out _))
             throw new InvalidOperationException("URI is invalid.");
 
-        var httpClient = new HttpClient();
-
         try
         {
-            var fileBytes = await httpClient.GetByteArrayAsync(uri);
+            var fileBytes = await s_httpClient.GetByteArrayAsync(uri);
             await File.WriteAllBytesAsync(outputPath, fileBytes);
         }
         catch (HttpRequestException e)

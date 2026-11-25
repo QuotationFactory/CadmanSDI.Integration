@@ -1,6 +1,6 @@
 using CadmanSDI.Entities;
 
-namespace CadmanSDI.Host.Features.OutputFile;
+namespace CadmanSDI.Host;
 
 public static class SettingsExtension
 {
@@ -65,7 +65,7 @@ public static class SettingsExtension
 
         var destFileName = Path.Combine(subDirectoryPath, Path.GetFileName(filePath));
 
-        File.Move(filePath, destFileName);
+        File.Move(filePath, destFileName, true);
 
         return destFileName;
     }
@@ -89,15 +89,8 @@ public static class SettingsExtension
         if (!File.Exists(filePath))
             throw new FileNotFoundException("File not found", filePath);
 
-        var result = destinationFilePath;
+        File.Move(filePath, destinationFilePath, true);
 
-        while (File.Exists(result))
-        {
-            result = Path.Combine(Path.GetDirectoryName(destinationFilePath) ?? "", $"{Path.GetFileNameWithoutExtension(destinationFilePath)} (1){Path.GetExtension(destinationFilePath)}");
-        }
-
-        File.Move(filePath, result);
-
-        return result;
+        return destinationFilePath;
     }
 }

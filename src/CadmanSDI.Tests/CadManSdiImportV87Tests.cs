@@ -1,6 +1,7 @@
 using System.Xml;
 using System.Xml.Serialization;
 using CadmanSDI.Entities.Models;
+using CadmanSDI.Entities.Models.V87;
 using CadmanSDI.Import;
 using MetalHeaven.Agent.Shared.External.Messages;
 using Newtonsoft.Json;
@@ -9,7 +10,7 @@ using Xunit;
 
 namespace CadmanSDI.Tests;
 
-public class SdiImportTests
+public class CadManSdiImportV87Tests
 {
     private const string SdiInputPath = @"TestData\Cadman-SDI input.xml";
     private const string ManufacturabilityRequestPath = @"TestData/manufacturabilityRequest.json";
@@ -17,7 +18,7 @@ public class SdiImportTests
     [Fact]
     private void GetDeserializedSdiImport()
     {
-        var sdiImport = GetDeserializedXml<SdiImport>(SdiInputPath);
+        var sdiImport = GetDeserializedXml<CadManSdiImportV87>(SdiInputPath);
 
         Assert.Contains("demoLVD.sat", sdiImport.PartTypeImport.PartTypeList.PartTypes[0].Importfilename);
     }
@@ -38,7 +39,7 @@ public class SdiImportTests
         return JsonConvert.DeserializeObject<RequestManufacturabilityCheckOfPartTypeMessage>(json, settings)!;
     }
 
-    private SdiImport GetSdiImportFromManufacturabilityCheckOfPartTypeMessage()
+    private ICadmanSdiImport GetSdiImportFromManufacturabilityCheckOfPartTypeMessage()
     {
         var request = GetDeserializedManufacturabilityCheckOfPartTypeMessage();
 
@@ -48,7 +49,7 @@ public class SdiImportTests
 
         var cadmanSdiResultsFolder = string.Empty;
 
-        return CadmanSdiImportFactory.FromRequest(request, "testSdiImport.xml", partTypeId, materialId, cadmanSdiResultsFolder, string.Empty);
+        return new CadmanSdiImportMapperV87().FromRequest(request, "testSdiImport.xml", partTypeId, materialId, cadmanSdiResultsFolder, string.Empty);
     }
 
     private static T GetDeserializedXml<T>(string filePath)
@@ -67,12 +68,12 @@ public class SdiImportTests
     {
         var sdiImport = GetSdiImportFromManufacturabilityCheckOfPartTypeMessage();
 
-        var serializer = new XmlSerializer(typeof(SdiImport));
+        var serializer = new XmlSerializer(typeof(CadManSdiImportV87));
 
         var file = File.Create("SdiImportTest.xml");
         serializer.Serialize(file, sdiImport);
         file.Close();
 
-        Assert.NotNull(GetDeserializedXml<SdiImport>(file.Name));
+        Assert.NotNull(GetDeserializedXml<CadManSdiImportV87>(file.Name));
     }
 }

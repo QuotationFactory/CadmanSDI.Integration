@@ -1,13 +1,10 @@
 ﻿using System.Diagnostics;
 using System.Runtime.InteropServices;
-using CadmanSDI.Entities;
-using CadmanSDI.Entities.Repositories;
-using CadmanSDI.Export;
-using CadmanSDI.Host.Features.CadmanSdiImport;
-using CadmanSDI.Host.Features.CadmanSdiResult;
-using CadmanSDI.Host.Features.CadmanSdiResultFile;
+using CadmanSDI.Host.Features;
 using CadmanSDI.Host.Features.OutputFile;
-using CadmanSDI.Import;
+using CadmanSDI.Host.Features.ProcessResult;
+using CadmanSDI.Host.Features.RFM;
+using CadmanSDI.Host.Features.RFMR;
 using CadmanSDI.LocalData;
 using MetalHeaven.Agent.Shared.External.Classes;
 using MetalHeaven.Agent.Shared.External.Interfaces;
@@ -72,17 +69,14 @@ public static class Program
 
         hostBuilder.ConfigureServices((hostContext, services) =>
         {
-            // register cadman-sdi integration settings
-            services.AddOptions<CadmanSdiIntegrationSettings>()
-                .Bind(hostContext.Configuration.GetSection("CadmanSdiIntegrationSettings")).ValidateDataAnnotations();
+            services.AddCadmanSdiImport(hostContext.Configuration);
+            services.AddCadmanSdiResult(hostContext.Configuration);
 
             // register agent message serialization helper
             services.AddTransient<IAgentMessageSerializationHelper, ExternalAgentMessageSerializationHelper>();
-
-            services.AddTransient<ICadmanSdiImport, CadmanSdiImport>();
-            services.AddTransient<ICadmanSdiImportFactory, CadmanSdiImportFactory>();
-            services.AddTransient<ICadmanSdiResult, CadmanSdiResult>();
-            services.AddTransient<ICadmanSdiRequestManufacturabilityResponseFactory, CadmanSdiRequestManufacturabilityResponseFactory>();
+            services.AddTransient<IRequestForManufacturability, RequestForManufacturability>();
+            services.AddTransient<ICadmanSdiResult, CadmanSdiResultHandler>();
+            services.AddTransient<IRequestManufacturabilityResponse, RequestManufacturabilityResponse>();
             services.AddTransient<IManufacturabilityRequestRepository, ManufacturabilityRequestRepository>();
             services.AddTransient<IMaterialMappingRepository, MaterialMappingRepository>();
 

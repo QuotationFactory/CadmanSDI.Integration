@@ -11,6 +11,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\CadmanSDI.Entities\CadmanSDI.Entities.csproj" />
+      <ProjectReference Include="..\CadmanSDI.Result\CadmanSDI.Result.csproj" />
     </ItemGroup>
 
 </Project>
